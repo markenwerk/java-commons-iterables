@@ -53,7 +53,7 @@ public final class NullSaveIterable<Payload> implements Iterable<Payload> {
 
 	@Override
 	public Iterator<Payload> iterator() {
-		return null == iterator() ? new EmptyIterator<Payload>() : iterable.iterator();
+		return null == iterable ? new EmptyIterator<Payload>() : iterable.iterator();
 	}
 
 }
