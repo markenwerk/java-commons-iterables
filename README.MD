@@ -5,7 +5,7 @@
 [![Dependency Status](https://www.versioneye.com/user/projects/56323f1636d0ab0016001bc4/badge.svg)](https://www.versioneye.com/user/projects/56323f1636d0ab0016001bc4)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/java-commons-iterables/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/java-commons-iterables)
 
-This is a collection of companion iterators for [some commonly useful `Iterable` implementations][https://github.com/markenwerk/java-commons-iterators].
+This is a collection of companion iterators for [some commonly useful `Iterable` implementations](https://github.com/markenwerk/java-commons-iterators).
 
 ## Overview
 
