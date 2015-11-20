@@ -24,7 +24,7 @@ package net.markenwerk.commons.iterables;
 import java.util.Iterator;
 
 import net.markenwerk.commons.interfaces.Converter;
-import net.markenwerk.commons.interfaces.exceptions.ConverterException;
+import net.markenwerk.commons.iterators.ArrayIterator;
 import net.markenwerk.commons.iterators.CombinedIterator;
 import net.markenwerk.commons.iterators.ConvertingIterator;
 
@@ -45,7 +45,7 @@ import net.markenwerk.commons.iterators.ConvertingIterator;
  */
 public final class CombinedIterable<Payload> implements Iterable<Payload> {
 
-	private final Iterator<Iterable<Payload>> iterables;
+	private final Iterator<? extends Iterable<? extends Payload>> iterables;
 
 	/**
 	 * Creates a new {@link CombinedIterable} from the given {@link Iterable
@@ -55,19 +55,49 @@ public final class CombinedIterable<Payload> implements Iterable<Payload> {
 	 *            The {@link Iterable Iterables} to combine into a single
 	 *            {@link Iterable}.
 	 */
-	public CombinedIterable(Iterator<Iterable<Payload>> iterables) {
+	public CombinedIterable(Iterable<? extends Payload>... iterables) {
+		this(new ArrayIterator<Iterable<? extends Payload>>(iterables));
+	}
+
+	/**
+	 * Creates a new {@link CombinedIterable} from the given {@link Iterable
+	 * Iterables}.
+	 * 
+	 * @param iterable
+	 *            The {@link Iterable Iterables} to combine into a single
+	 *            {@link Iterable}.
+	 */
+	public CombinedIterable(Iterable<? extends Iterable<? extends Payload>> iterable) {
+		this(iterable.iterator());
+	}
+
+	/**
+	 * Creates a new {@link CombinedIterable} from the given {@link Iterable
+	 * Iterables}.
+	 * 
+	 * @param iterables
+	 *            The {@link Iterable Iterables} to combine into a single
+	 *            {@link Iterable}.
+	 */
+	public CombinedIterable(Iterator<? extends Iterable<? extends Payload>> iterables) {
 		this.iterables = iterables;
 	}
 
 	@Override
 	public Iterator<Payload> iterator() {
-		return new CombinedIterator<Payload>(new ConvertingIterator<Iterable<Payload>, Iterator<Payload>>(iterables,
-				new Converter<Iterable<Payload>, Iterator<Payload>>() {
+		// @formatter:off
+		return new CombinedIterator<Payload>(
+			new ConvertingIterator<Iterable<? extends Payload>, Iterator<? extends Payload>>(
+				iterables,
+				new Converter<Iterable<? extends Payload>, Iterator<? extends Payload>>() {
 					@Override
-					public Iterator<Payload> convert(Iterable<Payload> iterable) throws ConverterException {
+					public Iterator<? extends Payload> convert(Iterable<? extends Payload> iterable) {
 						return iterable.iterator();
 					}
-				}));
+				}
+			)
+		);
+		// @formatter:on
 	}
 
 }
