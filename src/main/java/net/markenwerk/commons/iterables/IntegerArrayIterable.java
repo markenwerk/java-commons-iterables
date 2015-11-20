@@ -40,6 +40,8 @@ public final class IntegerArrayIterable implements Iterable<Integer> {
 
 	private final int[] values;
 
+	private final Integer replacement;
+
 	/**
 	 * Creates a new {@link IntegerArrayIterable} for the given {@code int[]}.
 	 * 
@@ -47,12 +49,29 @@ public final class IntegerArrayIterable implements Iterable<Integer> {
 	 *            The {@code int[]} to iterate over.
 	 */
 	public IntegerArrayIterable(int[] values) {
+		this(values, null);
+	}
+
+	/**
+	 * Creates a new {@link IntegerArrayIterable} for the given {@code int[]}.
+	 * 
+	 * @param values
+	 *            The {@code int[]} to iterate over.
+	 * @param replacement
+	 *            The value to replace removed values with.
+	 */
+	public IntegerArrayIterable(int[] values, int replacement) {
+		this(values, Integer.valueOf(replacement));
+	}
+
+	private IntegerArrayIterable(int[] values, Integer replacement) {
 		this.values = values;
+		this.replacement = replacement;
 	}
 
 	@Override
 	public Iterator<Integer> iterator() {
-		return new IntegerArrayIterator(values);
+		return null != replacement ? new IntegerArrayIterator(values, replacement) : new IntegerArrayIterator(values);
 	}
 
 }

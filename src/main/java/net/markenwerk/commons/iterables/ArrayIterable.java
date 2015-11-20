@@ -42,6 +42,10 @@ public final class ArrayIterable<Payload> implements Iterable<Payload> {
 
 	private final Payload[] values;
 
+	private final boolean removable;
+
+	private final Payload replacement;
+
 	/**
 	 * Creates a new {@link ArrayIterable} for the given payload array.
 	 * 
@@ -49,12 +53,30 @@ public final class ArrayIterable<Payload> implements Iterable<Payload> {
 	 *            The payload array to iterate over.
 	 */
 	public ArrayIterable(Payload[] values) {
+		this(values, false, null);
+	}
+
+	/**
+	 * Creates a new {@link ArrayIterable} for the given payload array.
+	 * 
+	 * @param values
+	 *            The payload array to iterate over.
+	 * @param replacement
+	 *            The value to replace removed values with.
+	 */
+	public ArrayIterable(Payload[] values, Payload replacement) {
+		this(values, true, replacement);
+	}
+
+	private ArrayIterable(Payload[] values, boolean removable, Payload replacement) {
 		this.values = values;
+		this.removable = removable;
+		this.replacement = replacement;
 	}
 
 	@Override
 	public Iterator<Payload> iterator() {
-		return new ArrayIterator<Payload>(values);
+		return removable ? new ArrayIterator<Payload>(values, replacement) : new ArrayIterator<Payload>(values);
 	}
 
 }

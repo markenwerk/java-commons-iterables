@@ -40,19 +40,41 @@ public final class CharacterArrayIterable implements Iterable<Character> {
 
 	private final char[] values;
 
+	private final Character replacement;
+
 	/**
-	 * Creates a new {@link CharacterArrayIterable} for the given {@code char[]}.
+	 * Creates a new {@link CharacterArrayIterable} for the given {@code char[]}
+	 * .
 	 * 
 	 * @param values
 	 *            The {@code char[]} to iterate over.
 	 */
 	public CharacterArrayIterable(char[] values) {
+		this(values, null);
+	}
+
+	/**
+	 * Creates a new {@link CharacterArrayIterable} for the given {@code char[]}
+	 * .
+	 * 
+	 * @param values
+	 *            The {@code char[]} to iterate over.
+	 * @param replacement
+	 *            The value to replace removed values with.
+	 */
+	public CharacterArrayIterable(char[] values, char replacement) {
+		this(values, Character.valueOf(replacement));
+	}
+
+	private CharacterArrayIterable(char[] values, Character replacement) {
 		this.values = values;
+		this.replacement = replacement;
 	}
 
 	@Override
 	public Iterator<Character> iterator() {
-		return new CharacterArrayIterator(values);
+		return null != replacement ? new CharacterArrayIterator(values, replacement) : new CharacterArrayIterator(
+				values);
 	}
 
 }

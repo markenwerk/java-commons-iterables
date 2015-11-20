@@ -40,19 +40,40 @@ public final class BooleanArrayIterable implements Iterable<Boolean> {
 
 	private final boolean[] values;
 
+	private final Boolean replacement;
+
 	/**
-	 * Creates a new {@link BooleanArrayIterable} for the given {@code boolean[]}.
+	 * Creates a new {@link BooleanArrayIterable} for the given
+	 * {@code boolean[]}.
 	 * 
 	 * @param values
 	 *            The {@code boolean[]} to iterate over.
 	 */
 	public BooleanArrayIterable(boolean[] values) {
+		this(values, null);
+	}
+
+	/**
+	 * Creates a new {@link BooleanArrayIterable} for the given
+	 * {@code boolean[]}.
+	 * 
+	 * @param values
+	 *            The {@code boolean[]} to iterate over.
+	 * @param replacement
+	 *            The value to replace removed values with.
+	 */
+	public BooleanArrayIterable(boolean[] values, boolean replacement) {
+		this(values, Boolean.valueOf(replacement));
+	}
+
+	private BooleanArrayIterable(boolean[] values, Boolean replacement) {
 		this.values = values;
+		this.replacement = replacement;
 	}
 
 	@Override
 	public Iterator<Boolean> iterator() {
-		return new BooleanArrayIterator(values);
+		return null != replacement ? new BooleanArrayIterator(values, replacement) : new BooleanArrayIterator(values);
 	}
 
 }

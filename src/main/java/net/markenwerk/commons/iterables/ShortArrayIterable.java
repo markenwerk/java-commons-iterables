@@ -40,6 +40,8 @@ public final class ShortArrayIterable implements Iterable<Short> {
 
 	private final short[] values;
 
+	private final Short replacement;
+
 	/**
 	 * Creates a new {@link ShortArrayIterable} for the given {@code short[]}.
 	 * 
@@ -47,12 +49,29 @@ public final class ShortArrayIterable implements Iterable<Short> {
 	 *            The {@code short[]} to iterate over.
 	 */
 	public ShortArrayIterable(short[] values) {
+		this(values, null);
+	}
+
+	/**
+	 * Creates a new {@link ShortArrayIterable} for the given {@code short[]}.
+	 * 
+	 * @param values
+	 *            The {@code short[]} to iterate over.
+	 * @param replacement
+	 *            The value to replace removed values with.
+	 */
+	public ShortArrayIterable(short[] values, short replacement) {
+		this(values, Short.valueOf(replacement));
+	}
+
+	private ShortArrayIterable(short[] values, Short replacement) {
 		this.values = values;
+		this.replacement = replacement;
 	}
 
 	@Override
 	public Iterator<Short> iterator() {
-		return new ShortArrayIterator(values);
+		return null != replacement ? new ShortArrayIterator(values, replacement) : new ShortArrayIterator(values);
 	}
 
 }

@@ -40,6 +40,8 @@ public final class FloatArrayIterable implements Iterable<Float> {
 
 	private final float[] values;
 
+	private final Float replacement;
+
 	/**
 	 * Creates a new {@link FloatArrayIterable} for the given {@code float[]}.
 	 * 
@@ -47,12 +49,29 @@ public final class FloatArrayIterable implements Iterable<Float> {
 	 *            The {@code float[]} to iterate over.
 	 */
 	public FloatArrayIterable(float[] values) {
+		this(values, null);
+	}
+
+	/**
+	 * Creates a new {@link FloatArrayIterable} for the given {@code float[]}.
+	 * 
+	 * @param values
+	 *            The {@code float[]} to iterate over.
+	 * @param replacement
+	 *            The value to replace removed values with.
+	 */
+	public FloatArrayIterable(float[] values, float replacement) {
+		this(values, Float.valueOf(replacement));
+	}
+
+	private FloatArrayIterable(float[] values, Float replacement) {
 		this.values = values;
+		this.replacement = replacement;
 	}
 
 	@Override
 	public Iterator<Float> iterator() {
-		return new FloatArrayIterator(values);
+		return null != replacement ? new FloatArrayIterator(values, replacement) : new FloatArrayIterator(values);
 	}
 
 }

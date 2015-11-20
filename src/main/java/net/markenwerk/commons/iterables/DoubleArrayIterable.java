@@ -40,6 +40,8 @@ public final class DoubleArrayIterable implements Iterable<Double> {
 
 	private final double[] values;
 
+	private final Double replacement;
+
 	/**
 	 * Creates a new {@link DoubleArrayIterable} for the given {@code double[]}.
 	 * 
@@ -47,12 +49,29 @@ public final class DoubleArrayIterable implements Iterable<Double> {
 	 *            The {@code double[]} to iterate over.
 	 */
 	public DoubleArrayIterable(double[] values) {
+		this(values, null);
+	}
+
+	/**
+	 * Creates a new {@link DoubleArrayIterable} for the given {@code double[]}.
+	 * 
+	 * @param values
+	 *            The {@code double[]} to iterate over.
+	 * @param replacement
+	 *            The value to replace removed values with.
+	 */
+	public DoubleArrayIterable(double[] values, double replacement) {
+		this(values, Double.valueOf(replacement));
+	}
+
+	private DoubleArrayIterable(double[] values, Double replacement) {
 		this.values = values;
+		this.replacement = replacement;
 	}
 
 	@Override
 	public Iterator<Double> iterator() {
-		return new DoubleArrayIterator(values);
+		return null != replacement ? new DoubleArrayIterator(values, replacement) : new DoubleArrayIterator(values);
 	}
 
 }

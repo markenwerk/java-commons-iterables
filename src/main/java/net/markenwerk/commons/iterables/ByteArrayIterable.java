@@ -40,6 +40,8 @@ public final class ByteArrayIterable implements Iterable<Byte> {
 
 	private final byte[] values;
 
+	private final Byte replacement;
+
 	/**
 	 * Creates a new {@link ByteArrayIterable} for the given {@code byte[]}.
 	 * 
@@ -47,12 +49,29 @@ public final class ByteArrayIterable implements Iterable<Byte> {
 	 *            The {@code byte[]} to iterate over.
 	 */
 	public ByteArrayIterable(byte[] values) {
+		this(values, null);
+	}
+
+	/**
+	 * Creates a new {@link ByteArrayIterable} for the given {@code byte[]}.
+	 * 
+	 * @param values
+	 *            The {@code byte[]} to iterate over.
+	 * @param replacement
+	 *            The value to replace removed values with.
+	 */
+	public ByteArrayIterable(byte[] values, byte replacement) {
+		this(values, Byte.valueOf(replacement));
+	}
+
+	private ByteArrayIterable(byte[] values, Byte replacement) {
 		this.values = values;
+		this.replacement = replacement;
 	}
 
 	@Override
 	public Iterator<Byte> iterator() {
-		return new ByteArrayIterator(values);
+		return null != replacement ? new ByteArrayIterator(values, replacement) : new ByteArrayIterator(values);
 	}
 
 }
