@@ -19,36 +19,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.commons.iterators;
+package net.markenwerk.commons.iterables;
 
 import java.util.Iterator;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.ByteArrayIterable;
+import net.markenwerk.commons.iterables.DoubleArrayIterable;
 
 /**
- * JUnit test for {@link ByteArrayIterable}.
+ * JUnit test for {@link DoubleArrayIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public class ByteArrayIteratorTests {
+public class DoubleArrayIterableTests {
 
 	/**
-	 * Iterate over a {@code byte[]}.
+	 * Iterate over a {@code double[]}.
 	 */
 	@Test
-	public void byteArray_iterate() {
+	public void doubleArray_iterate() {
 
-		byte[] values = new byte[] { 1, 2 };
-		Iterator<Byte> iterator = new ByteArrayIterable(values).iterator();
+		double[] values = new double[] { 1, 2 };
+		Iterator<Double> iterator = new DoubleArrayIterable(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Byte(values[0]), iterator.next());
+		Assert.assertEquals(new Double(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Byte(values[1]), iterator.next());
+		Assert.assertEquals(new Double(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}
@@ -57,45 +57,45 @@ public class ByteArrayIteratorTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void byteArray_iterateNullArray() {
+	public void doubleArray_iterateNullArray() {
 
-		Iterator<Byte> iterator = new ByteArrayIterable(null).iterator();
+		Iterator<Double> iterator = new DoubleArrayIterable(null).iterator();
 
 		Assert.assertFalse(iterator.hasNext());
 
 	}
 
 	/**
-	 * Remove a value in a {@code byte[]}.
+	 * Remove a value in a {@code double[]}.
 	 */
 	@Test
-	public void byteArray_removeWithFallback() {
+	public void doubleArray_removeWithFallback() {
 
-		byte replacement = 0;
-		byte[] values = new byte[] { 1 };
-		Iterator<Byte> iterator = new ByteArrayIterable(values, replacement).iterator();
+		double replacement = 2;
+		double[] values = new double[] { 1 };
+		Iterator<Double> iterator = new DoubleArrayIterable(values, replacement).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Byte.valueOf(values[0]), iterator.next());
+		Assert.assertEquals(Double.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();
 
-		Assert.assertEquals(replacement, values[0]);
+		Assert.assertEquals(replacement, values[0], 0);
 
 	}
 
 	/**
-	 * Remove a value in a {@code byte[]}.
+	 * Remove a value in a {@code double[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void byteArray_removeWithoutFallback() {
+	public void doubleArray_removeWithoutFallback() {
 
-		byte[] values = new byte[] { 1 };
-		Iterator<Byte> iterator = new ByteArrayIterable(values).iterator();
+		double[] values = new double[] { 1 };
+		Iterator<Double> iterator = new DoubleArrayIterable(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Byte.valueOf(values[0]), iterator.next());
+		Assert.assertEquals(Double.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();

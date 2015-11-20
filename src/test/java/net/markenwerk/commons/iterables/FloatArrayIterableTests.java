@@ -19,36 +19,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.commons.iterators;
+package net.markenwerk.commons.iterables;
 
 import java.util.Iterator;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.IntegerArrayIterable;
+import net.markenwerk.commons.iterables.FloatArrayIterable;
 
 /**
- * JUnit test for {@link IntegerArrayIterable}.
+ * JUnit test for {@link FloatArrayIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public class IntegerArrayIteratorTests {
+public class FloatArrayIterableTests {
 
 	/**
-	 * Iterate over a {@code int[]}.
+	 * Iterate over a {@code float[]}.
 	 */
 	@Test
-	public void intArray_iterate() {
+	public void floatArray_iterate() {
 
-		int[] values = new int[] { 1, 2 };
-		Iterator<Integer> iterator = new IntegerArrayIterable(values).iterator();
+		float[] values = new float[] { 1, 2 };
+		Iterator<Float> iterator = new FloatArrayIterable(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Integer(values[0]), iterator.next());
+		Assert.assertEquals(new Float(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Integer(values[1]), iterator.next());
+		Assert.assertEquals(new Float(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}
@@ -57,45 +57,45 @@ public class IntegerArrayIteratorTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void integerArray_iterateNullArray() {
+	public void floatArray_iterateNullArray() {
 
-		Iterator<Integer> iterator = new IntegerArrayIterable(null).iterator();
+		Iterator<Float> iterator = new FloatArrayIterable(null).iterator();
 
 		Assert.assertFalse(iterator.hasNext());
 
 	}
 
 	/**
-	 * Remove a value in a {@code integer[]}.
+	 * Remove a value in a {@code float[]}.
 	 */
 	@Test
-	public void integerArray_removeWithFallback() {
+	public void floatArray_removeWithFallback() {
 
-		int replacement = 0;
-		int[] values = new int[] { 1 };
-		Iterator<Integer> iterator = new IntegerArrayIterable(values, replacement).iterator();
+		float replacement = 0;
+		float[] values = new float[] { 1 };
+		Iterator<Float> iterator = new FloatArrayIterable(values, replacement).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Integer.valueOf(values[0]), iterator.next());
+		Assert.assertEquals(Float.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();
 
-		Assert.assertEquals(replacement, values[0]);
+		Assert.assertEquals(replacement, values[0], 0);
 
 	}
 
 	/**
-	 * Remove a value in a {@code integer[]}.
+	 * Remove a value in a {@code float[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void integerArray_removeWithoutFallback() {
+	public void floatArray_removeWithoutFallback() {
 
-		int[] values = new int[] { 1 };
-		Iterator<Integer> iterator = new IntegerArrayIterable(values).iterator();
+		float[] values = new float[] { 1 };
+		Iterator<Float> iterator = new FloatArrayIterable(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Integer.valueOf(values[0]), iterator.next());
+		Assert.assertEquals(Float.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();

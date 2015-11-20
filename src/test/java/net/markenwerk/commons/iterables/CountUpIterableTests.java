@@ -19,85 +19,73 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.commons.iterators;
+package net.markenwerk.commons.iterables;
 
 import java.util.Iterator;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.FloatArrayIterable;
+import net.markenwerk.commons.iterables.CountUpIterable;
+import net.markenwerk.commons.iterators.CountUpIterator;
 
 /**
- * JUnit test for {@link FloatArrayIterable}.
+ * JUnit test for {@link CountUpIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public class FloatArrayIteratorTests {
+public class CountUpIterableTests {
 
 	/**
-	 * Iterate over a {@code float[]}.
+	 * Count up from a lower bound that is larger than the upper bound.
 	 */
 	@Test
-	public void floatArray_iterate() {
+	public void countUp_lowerBoundLargerThanUpperBound() {
 
-		float[] values = new float[] { 1, 2 };
-		Iterator<Float> iterator = new FloatArrayIterable(values).iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Float(values[0]), iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Float(values[1]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-	}
-
-	/**
-	 * Iterate over a {@code null} array.
-	 */
-	@Test
-	public void floatArray_iterateNullArray() {
-
-		Iterator<Float> iterator = new FloatArrayIterable(null).iterator();
+		Iterator<Integer> iterator = new CountUpIterable(2, 1).iterator();
 
 		Assert.assertFalse(iterator.hasNext());
 
 	}
 
 	/**
-	 * Remove a value in a {@code float[]}.
+	 * Count up from a lower bound that equals the upper bound.
 	 */
 	@Test
-	public void floatArray_removeWithFallback() {
+	public void countUp_lowerBoundEqualsUpperBound() {
 
-		float replacement = 0;
-		float[] values = new float[] { 1 };
-		Iterator<Float> iterator = new FloatArrayIterable(values, replacement).iterator();
+		Iterator<Integer> iterator = new CountUpIterable(0, 0).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Float.valueOf(values[0]), iterator.next());
+		Assert.assertEquals(new Integer(0), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
-
-		iterator.remove();
-
-		Assert.assertEquals(replacement, values[0], 0);
 
 	}
 
 	/**
-	 * Remove a value in a {@code float[]}.
+	 * Count up from a lower bound that is smaller than the upper bound.
+	 */
+	@Test
+	public void countUp_lowerBoundSmallerThanUpperBound() {
+
+		Iterator<Integer> iterator = new CountUpIterable(1, 2).iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(new Integer(1), iterator.next());
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(new Integer(2), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+
+	/**
+	 * Remove a value from a {@link CountUpIterator}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void floatArray_removeWithoutFallback() {
+	public void countUp_remove() {
 
-		float[] values = new float[] { 1 };
-		Iterator<Float> iterator = new FloatArrayIterable(values).iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Float.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		Iterator<Integer> iterator = new CountUpIterable(1, 2).iterator();
 		iterator.remove();
 
 	}

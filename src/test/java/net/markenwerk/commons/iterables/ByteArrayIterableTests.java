@@ -19,36 +19,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.commons.iterators;
+package net.markenwerk.commons.iterables;
 
 import java.util.Iterator;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.ShortArrayIterable;
+import net.markenwerk.commons.iterables.ByteArrayIterable;
 
 /**
- * JUnit test for {@link ShortArrayIterable}.
+ * JUnit test for {@link ByteArrayIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public class ShortArrayIteratorTests {
+public class ByteArrayIterableTests {
 
 	/**
-	 * Iterate over a {@code short[]}.
+	 * Iterate over a {@code byte[]}.
 	 */
 	@Test
-	public void shortArray_iterate() {
+	public void byteArray_iterate() {
 
-		short[] values = new short[] { 1, 2 };
-		Iterator<Short> iterator = new ShortArrayIterable(values).iterator();
+		byte[] values = new byte[] { 1, 2 };
+		Iterator<Byte> iterator = new ByteArrayIterable(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Short(values[0]), iterator.next());
+		Assert.assertEquals(new Byte(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Short(values[1]), iterator.next());
+		Assert.assertEquals(new Byte(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}
@@ -57,26 +57,26 @@ public class ShortArrayIteratorTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void shortArray_iterateNullArray() {
+	public void byteArray_iterateNullArray() {
 
-		Iterator<Short> iterator = new ShortArrayIterable(null).iterator();
+		Iterator<Byte> iterator = new ByteArrayIterable(null).iterator();
 
 		Assert.assertFalse(iterator.hasNext());
 
 	}
 
 	/**
-	 * Remove a value in a {@code short[]}.
+	 * Remove a value in a {@code byte[]}.
 	 */
 	@Test
-	public void shortArray_removeWithFallback() {
+	public void byteArray_removeWithFallback() {
 
-		short replacement = 0;
-		short[] values = new short[] { 1 };
-		Iterator<Short> iterator = new ShortArrayIterable(values, replacement).iterator();
+		byte replacement = 0;
+		byte[] values = new byte[] { 1 };
+		Iterator<Byte> iterator = new ByteArrayIterable(values, replacement).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Short.valueOf(values[0]), iterator.next());
+		Assert.assertEquals(Byte.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();
@@ -86,16 +86,16 @@ public class ShortArrayIteratorTests {
 	}
 
 	/**
-	 * Remove a value in a {@code short[]}.
+	 * Remove a value in a {@code byte[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void shortArray_removeWithoutFallback() {
+	public void byteArray_removeWithoutFallback() {
 
-		short[] values = new short[] { 1 };
-		Iterator<Short> iterator = new ShortArrayIterable(values).iterator();
+		byte[] values = new byte[] { 1 };
+		Iterator<Byte> iterator = new ByteArrayIterable(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Short.valueOf(values[0]), iterator.next());
+		Assert.assertEquals(Byte.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();

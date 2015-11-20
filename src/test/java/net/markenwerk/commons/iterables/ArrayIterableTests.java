@@ -19,36 +19,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.commons.iterators;
+package net.markenwerk.commons.iterables;
 
 import java.util.Iterator;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.LongArrayIterable;
+import net.markenwerk.commons.iterables.ArrayIterable;
 
 /**
- * JUnit test for {@link LongArrayIterable}.
+ * JUnit test for {@link ArrayIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public class LongArrayIteratorTests {
+public class ArrayIterableTests {
 
 	/**
-	 * Iterate over a {@code long[]}.
+	 * Iterate over a payload array.
 	 */
 	@Test
-	public void longArray_iterate() {
+	public void array_iterate() {
 
-		long[] values = new long[] { 1, 2 };
-		Iterator<Long> iterator = new LongArrayIterable(values).iterator();
+		Object[] values = new Object[] { new Object(), new Object() };
+		Iterator<Object> iterator = new ArrayIterable<Object>(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Long(values[0]), iterator.next());
+		Assert.assertSame(values[0], iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Long(values[1]), iterator.next());
+		Assert.assertSame(values[1], iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}
@@ -57,26 +57,26 @@ public class LongArrayIteratorTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void longArray_iterateNullArray() {
+	public void array_iterateNullArray() {
 
-		Iterator<Long> iterator = new LongArrayIterable(null).iterator();
+		Iterator<Object> iterator = new ArrayIterable<Object>(null).iterator();
 
 		Assert.assertFalse(iterator.hasNext());
 
 	}
 
 	/**
-	 * Remove a value in a {@code long[]}.
+	 * Remove a value in a {@code short[]}.
 	 */
 	@Test
-	public void longArray_removeWithFallback() {
+	public void array_removeWithFallback() {
 
-		long replacement = 0;
-		long[] values = new long[] { 1 };
-		Iterator<Long> iterator = new LongArrayIterable(values, replacement).iterator();
+		Object replacement = new Object();
+		Object[] values = new Object[] { new Object() };
+		Iterator<Object> iterator = new ArrayIterable<Object>(values, replacement).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Long.valueOf(values[0]), iterator.next());
+		Assert.assertSame(values[0], iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();
@@ -86,16 +86,16 @@ public class LongArrayIteratorTests {
 	}
 
 	/**
-	 * Remove a value in a {@code long[]}.
+	 * Remove a value in a {@code short[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void longArray_removeWithoutFallback() {
+	public void array_removeWithoutFallback() {
 
-		long[] values = new long[] { 1 };
-		Iterator<Long> iterator = new LongArrayIterable(values).iterator();
+		Object[] values = new Object[] { new Object() };
+		Iterator<Object> iterator = new ArrayIterable<Object>(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Long.valueOf(values[0]), iterator.next());
+		Assert.assertSame(values[0], iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();

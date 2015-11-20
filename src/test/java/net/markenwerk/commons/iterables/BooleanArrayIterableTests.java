@@ -19,36 +19,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.commons.iterators;
+package net.markenwerk.commons.iterables;
 
 import java.util.Iterator;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.DoubleArrayIterable;
+import net.markenwerk.commons.iterables.BooleanArrayIterable;
 
 /**
- * JUnit test for {@link DoubleArrayIterable}.
+ * JUnit test for {@link BooleanArrayIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public class DoubleArrayIteratorTests {
+public class BooleanArrayIterableTests {
 
 	/**
-	 * Iterate over a {@code double[]}.
+	 * Iterate over a {@code boolean[]}.
 	 */
 	@Test
-	public void doubleArray_iterate() {
+	public void booleanArray_iterate() {
 
-		double[] values = new double[] { 1, 2 };
-		Iterator<Double> iterator = new DoubleArrayIterable(values).iterator();
+		boolean[] values = new boolean[] { true, false };
+		Iterator<Boolean> iterator = new BooleanArrayIterable(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Double(values[0]), iterator.next());
+		Assert.assertEquals(new Boolean(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Double(values[1]), iterator.next());
+		Assert.assertEquals(new Boolean(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}
@@ -57,45 +57,45 @@ public class DoubleArrayIteratorTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void doubleArray_iterateNullArray() {
+	public void booleanArray_iterateNullArray() {
 
-		Iterator<Double> iterator = new DoubleArrayIterable(null).iterator();
+		Iterator<Boolean> iterator = new BooleanArrayIterable(null).iterator();
 
 		Assert.assertFalse(iterator.hasNext());
 
 	}
 
 	/**
-	 * Remove a value in a {@code double[]}.
+	 * Remove a value in a {@code boolean[]}.
 	 */
 	@Test
-	public void doubleArray_removeWithFallback() {
+	public void booleanArray_removeWithFallback() {
 
-		double replacement = 2;
-		double[] values = new double[] { 1 };
-		Iterator<Double> iterator = new DoubleArrayIterable(values, replacement).iterator();
+		boolean replacement = false;
+		boolean[] values = new boolean[] { true };
+		Iterator<Boolean> iterator = new BooleanArrayIterable(values, replacement).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Double.valueOf(values[0]), iterator.next());
+		Assert.assertEquals(Boolean.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();
 
-		Assert.assertEquals(replacement, values[0], 0);
+		Assert.assertEquals(replacement, values[0]);
 
 	}
 
 	/**
-	 * Remove a value in a {@code double[]}.
+	 * Remove a value in a {@code boolean[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void doubleArray_removeWithoutFallback() {
+	public void booleanArray_removeWithoutFallback() {
 
-		double[] values = new double[] { 1 };
-		Iterator<Double> iterator = new DoubleArrayIterable(values).iterator();
+		boolean[] values = new boolean[] { true };
+		Iterator<Boolean> iterator = new BooleanArrayIterable(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Double.valueOf(values[0]), iterator.next());
+		Assert.assertEquals(Boolean.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();

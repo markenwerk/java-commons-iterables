@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.commons.iterators;
+package net.markenwerk.commons.iterables;
 
 import java.util.Iterator;
 
@@ -27,26 +27,28 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import net.markenwerk.commons.iterables.ArrayIterable;
-import net.markenwerk.commons.iterables.NullFreeIterable;
+import net.markenwerk.commons.iterables.NullSaveIterable;
+import net.markenwerk.commons.iterators.ArrayIterator;
 
 /**
- * JUnit test for {@link NullFreeIterable}.
+ * JUnit test for {@link NullSaveIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public class NullFreeIteratorTests {
+public class NullSaveIterableTests {
 
 	/**
-	 * Filter out a {@literal null} value at the front of the underlying
-	 * {@link Iterable}.
+	 * Iterate over a a non-{@literal null} {@link Iterable}.
 	 */
 	@Test
-	public void nullFree_nullAtFront() {
+	public void nullSave_withNonNullIterator() {
 
-		Object[] values = new Object[] { null, new Object() };
-		Iterator<Object> iterator = new NullFreeIterable<Object>(new ArrayIterable<Object>(values)).iterator();
+		Object[] values = new Object[] { new Object(), new Object() };
+		Iterator<Object> iterator = new NullSaveIterable<Object>(new ArrayIterable<Object>(values)).iterator();
 
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertSame(values[0], iterator.next());
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[1], iterator.next());
 		Assert.assertFalse(iterator.hasNext());
@@ -54,35 +56,50 @@ public class NullFreeIteratorTests {
 	}
 
 	/**
-	 * Filter out a {@literal null} value in the middle of the underlying
-	 * {@link Iterable}.
+	 * Iterate over a a non-{@literal null} {@link Iterable}.
 	 */
-	@Test
-	public void nullFree_nullInMiddle() {
 
-		Object[] values = new Object[] { new Object(), null, new Object() };
-		Iterator<Object> iterator = new NullFreeIterable<Object>(new ArrayIterable<Object>(values)).iterator();
+	@Test
+	public void nullSave_withNonNullIterable() {
+
+		final Object[] values = new Object[] { new Object(), new Object() };
+		Iterator<Object> iterator = new NullSaveIterable<Object>(new Iterable<Object>() {
+			@Override
+			public Iterator<Object> iterator() {
+				return new ArrayIterator<Object>(values);
+			}
+		}).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[2], iterator.next());
+		Assert.assertSame(values[1], iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}
 
 	/**
-	 * Filter out a {@literal null} value at the end of the underlying
-	 * {@link Iterable}.
+	 * Iterate over a a {@literal null} {@link Iterable}.
 	 */
+
 	@Test
-	public void nullFree_nullAtEnd() {
+	public void nullSave_withNullIterator() {
 
-		Object[] values = new Object[] { new Object(), null };
-		Iterator<Object> iterator = new NullFreeIterable<Object>(new ArrayIterable<Object>(values)).iterator();
+		Iterator<Object> iterator = new NullSaveIterable<Object>((Iterable<Object>) null).iterator();
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+
+	/**
+	 * Iterate over a a non-{@literal null} {@link Iterable}.
+	 */
+
+	@Test
+	public void nullSave_withNullIterable() {
+
+		Iterator<Object> iterator = new NullSaveIterable<Object>((Iterable<Object>) null).iterator();
+
 		Assert.assertFalse(iterator.hasNext());
 
 	}
@@ -91,11 +108,11 @@ public class NullFreeIteratorTests {
 	 * Remove an object from the underlying {@link Iterable}.
 	 */
 	@Test
-	public void nullFree_remove() {
+	public void nullSave_remove() {
 
 		Object replacement = new Object();
 		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new NullFreeIterable<Object>(new ArrayIterable<Object>(values, replacement))
+		Iterator<Object> iterator = new NullSaveIterable<Object>(new ArrayIterable<Object>(values, replacement))
 				.iterator();
 
 		Assert.assertTrue(iterator.hasNext());

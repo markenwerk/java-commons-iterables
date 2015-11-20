@@ -19,70 +19,85 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.commons.iterators;
+package net.markenwerk.commons.iterables;
 
 import java.util.Iterator;
 
 import org.junit.Assert;
 import org.junit.Test;
 
+import net.markenwerk.commons.iterables.ShortArrayIterable;
+
 /**
- * JUnit test for {@link CountUpIterator}.
+ * JUnit test for {@link ShortArrayIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public class CountUpIteratorTests {
+public class ShortArrayIterableTests {
 
 	/**
-	 * Count up from a lower bound that is larger than the upper bound.
+	 * Iterate over a {@code short[]}.
 	 */
 	@Test
-	public void countUp_lowerBoundLargerThanUpperBound() {
+	public void shortArray_iterate() {
 
-		Iterator<Integer> iterator = new CountUpIterator(2, 1);
+		short[] values = new short[] { 1, 2 };
+		Iterator<Short> iterator = new ShortArrayIterable(values).iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(new Short(values[0]), iterator.next());
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(new Short(values[1]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+
+	/**
+	 * Iterate over a {@code null} array.
+	 */
+	@Test
+	public void shortArray_iterateNullArray() {
+
+		Iterator<Short> iterator = new ShortArrayIterable(null).iterator();
 
 		Assert.assertFalse(iterator.hasNext());
 
 	}
 
 	/**
-	 * Count up from a lower bound that equals the upper bound.
+	 * Remove a value in a {@code short[]}.
 	 */
 	@Test
-	public void countUp_lowerBoundEqualsUpperBound() {
+	public void shortArray_removeWithFallback() {
 
-		Iterator<Integer> iterator = new CountUpIterator(0, 0);
+		short replacement = 0;
+		short[] values = new short[] { 1 };
+		Iterator<Short> iterator = new ShortArrayIterable(values, replacement).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Integer(0), iterator.next());
+		Assert.assertEquals(Short.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
+
+		iterator.remove();
+
+		Assert.assertEquals(replacement, values[0]);
 
 	}
 
 	/**
-	 * Count up from a lower bound that is smaller than the upper bound.
-	 */
-	@Test
-	public void countUp_lowerBoundSmallerThanUpperBound() {
-
-		Iterator<Integer> iterator = new CountUpIterator(1, 2);
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Integer(1), iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Integer(2), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-	}
-
-	/**
-	 * Remove a value from a {@link CountUpIterator}.
+	 * Remove a value in a {@code short[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void countUp_remove() {
+	public void shortArray_removeWithoutFallback() {
 
-		Iterator<Integer> iterator = new CountUpIterator(1, 2);
+		short[] values = new short[] { 1 };
+		Iterator<Short> iterator = new ShortArrayIterable(values).iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Short.valueOf(values[0]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
 		iterator.remove();
 
 	}

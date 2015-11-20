@@ -19,85 +19,73 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.commons.iterators;
+package net.markenwerk.commons.iterables;
 
 import java.util.Iterator;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.ArrayIterable;
+import net.markenwerk.commons.iterables.CountDownIterable;
+import net.markenwerk.commons.iterators.CountDownIterator;
 
 /**
- * JUnit test for {@link ArrayIterable}.
+ * JUnit test for {@link CountDownIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public class ArrayIteratorTests {
+public class CountDownIterableTests {
 
 	/**
-	 * Iterate over a payload array.
+	 * Count down from an upper bound that is smaller than the lower bound.
 	 */
 	@Test
-	public void array_iterate() {
+	public void countDown_upperBoundSmallerThanLowerBound() {
 
-		Object[] values = new Object[] { new Object(), new Object() };
-		Iterator<Object> iterator = new ArrayIterable<Object>(values).iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[1], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-	}
-
-	/**
-	 * Iterate over a {@code null} array.
-	 */
-	@Test
-	public void array_iterateNullArray() {
-
-		Iterator<Object> iterator = new ArrayIterable<Object>(null).iterator();
+		Iterator<Integer> iterator = new CountDownIterable(1, 2).iterator();
 
 		Assert.assertFalse(iterator.hasNext());
 
 	}
 
 	/**
-	 * Remove a value in a {@code short[]}.
+	 * Count down from an upper bound that equals the lower bound.
 	 */
 	@Test
-	public void array_removeWithFallback() {
+	public void countDown_upperBoundEqualsLowerBound() {
 
-		Object replacement = new Object();
-		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new ArrayIterable<Object>(values, replacement).iterator();
+		Iterator<Integer> iterator = new CountDownIterable(0, 0).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
+		Assert.assertEquals(new Integer(0), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
-
-		iterator.remove();
-
-		Assert.assertEquals(replacement, values[0]);
 
 	}
 
 	/**
-	 * Remove a value in a {@code short[]}.
+	 * Count down from an upper bound that is larger than the lower bound.
+	 */
+	@Test
+	public void countDown_upperBoundLargerThanLowerBound() {
+
+		Iterator<Integer> iterator = new CountDownIterable(2, 1).iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(new Integer(2), iterator.next());
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(new Integer(1), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+
+	/**
+	 * Remove a value from a {@link CountDownIterator}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void array_removeWithoutFallback() {
+	public void countUp_remove() {
 
-		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new ArrayIterable<Object>(values).iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		Iterator<Integer> iterator = new CountDownIterable(1, 2).iterator();
 		iterator.remove();
 
 	}

@@ -19,59 +19,70 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.commons.iterators;
+package net.markenwerk.commons.iterables;
 
 import java.util.Iterator;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.interfaces.Converter;
-import net.markenwerk.commons.interfaces.exceptions.ConverterException;
 import net.markenwerk.commons.iterables.ArrayIterable;
-import net.markenwerk.commons.iterables.ConvertingIterable;
-import net.markenwerk.commons.iterables.FilteringIterable;
+import net.markenwerk.commons.iterables.NullFreeIterable;
 
 /**
- * JUnit test for {@link FilteringIterable}.
+ * JUnit test for {@link NullFreeIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public class ConvertingIteratorTests {
+public class NullFreeIterableTests {
 
-	private static final class Wrapper {
+	/**
+	 * Filter out a {@literal null} value at the front of the underlying
+	 * {@link Iterable}.
+	 */
+	@Test
+	public void nullFree_nullAtFront() {
 
-		private final Object wrapped;
+		Object[] values = new Object[] { null, new Object() };
+		Iterator<Object> iterator = new NullFreeIterable<Object>(new ArrayIterable<Object>(values)).iterator();
 
-		public Wrapper(Object wrapped) {
-			this.wrapped = wrapped;
-		}
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertSame(values[1], iterator.next());
+		Assert.assertFalse(iterator.hasNext());
 
 	}
 
-	private final Converter<Object, Wrapper> WRAPPING_CONVERTER = new Converter<Object, Wrapper>() {
-		@Override
-		public Wrapper convert(Object from) throws ConverterException {
-			return null == from ? null : new Wrapper(from);
-		}
-	};
-
 	/**
-	 * Convert all values yielded by the underlying {@link Iterable} to their
-	 * hash values.
+	 * Filter out a {@literal null} value in the middle of the underlying
+	 * {@link Iterable}.
 	 */
 	@Test
-	public void converting_iterate() {
+	public void nullFree_nullInMiddle() {
 
-		Object[] values = new Object[] { new Object(), new Object() };
-		Iterator<Wrapper> iterator = new ConvertingIterable<Object, Wrapper>(new ArrayIterable<Object>(values),
-				WRAPPING_CONVERTER).iterator();
+		Object[] values = new Object[] { new Object(), null, new Object() };
+		Iterator<Object> iterator = new NullFreeIterable<Object>(new ArrayIterable<Object>(values)).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next().wrapped);
+		Assert.assertSame(values[0], iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[1], iterator.next().wrapped);
+		Assert.assertSame(values[2], iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+
+	/**
+	 * Filter out a {@literal null} value at the end of the underlying
+	 * {@link Iterable}.
+	 */
+	@Test
+	public void nullFree_nullAtEnd() {
+
+		Object[] values = new Object[] { new Object(), null };
+		Iterator<Object> iterator = new NullFreeIterable<Object>(new ArrayIterable<Object>(values)).iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertSame(values[0], iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}
@@ -80,15 +91,15 @@ public class ConvertingIteratorTests {
 	 * Remove an object from the underlying {@link Iterable}.
 	 */
 	@Test
-	public void converting_remove() {
+	public void nullFree_remove() {
 
 		Object replacement = new Object();
 		Object[] values = new Object[] { new Object() };
-		Iterator<Wrapper> iterator = new ConvertingIterable<Object, Wrapper>(new ArrayIterable<Object>(values,
-				replacement), WRAPPING_CONVERTER).iterator();
+		Iterator<Object> iterator = new NullFreeIterable<Object>(new ArrayIterable<Object>(values, replacement))
+				.iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next().wrapped);
+		Assert.assertSame(values[0], iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();

@@ -19,36 +19,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.commons.iterators;
+package net.markenwerk.commons.iterables;
 
 import java.util.Iterator;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.BooleanArrayIterable;
+import net.markenwerk.commons.iterables.CharacterArrayIterable;
 
 /**
- * JUnit test for {@link BooleanArrayIterable}.
+ * JUnit test for {@link CharacterArrayIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public class BooleanArrayIteratorTests {
+public class CharacterArrayIterableTests {
 
 	/**
-	 * Iterate over a {@code boolean[]}.
+	 * Iterate over a {@code char[]}.
 	 */
 	@Test
-	public void booleanArray_iterate() {
+	public void charArray_iterate() {
 
-		boolean[] values = new boolean[] { true, false };
-		Iterator<Boolean> iterator = new BooleanArrayIterable(values).iterator();
+		char[] values = new char[] { 1, 2 };
+		Iterator<Character> iterator = new CharacterArrayIterable(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Boolean(values[0]), iterator.next());
+		Assert.assertEquals(new Character(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Boolean(values[1]), iterator.next());
+		Assert.assertEquals(new Character(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}
@@ -57,26 +57,26 @@ public class BooleanArrayIteratorTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void booleanArray_iterateNullArray() {
+	public void characterArray_iterateNullArray() {
 
-		Iterator<Boolean> iterator = new BooleanArrayIterable(null).iterator();
+		Iterator<Character> iterator = new CharacterArrayIterable(null).iterator();
 
 		Assert.assertFalse(iterator.hasNext());
 
 	}
 
 	/**
-	 * Remove a value in a {@code boolean[]}.
+	 * Remove a value in a {@code char[]}.
 	 */
 	@Test
-	public void booleanArray_removeWithFallback() {
+	public void charArray_removeWithFallback() {
 
-		boolean replacement = false;
-		boolean[] values = new boolean[] { true };
-		Iterator<Boolean> iterator = new BooleanArrayIterable(values, replacement).iterator();
+		char replacement = 0;
+		char[] values = new char[] { 1 };
+		Iterator<Character> iterator = new CharacterArrayIterable(values, replacement).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Boolean.valueOf(values[0]), iterator.next());
+		Assert.assertEquals(Character.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();
@@ -86,16 +86,16 @@ public class BooleanArrayIteratorTests {
 	}
 
 	/**
-	 * Remove a value in a {@code boolean[]}.
+	 * Remove a value in a {@code char[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void booleanArray_removeWithoutFallback() {
+	public void charArray_removeWithoutFallback() {
 
-		boolean[] values = new boolean[] { true };
-		Iterator<Boolean> iterator = new BooleanArrayIterable(values).iterator();
+		char[] values = new char[] { 1 };
+		Iterator<Character> iterator = new CharacterArrayIterable(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Boolean.valueOf(values[0]), iterator.next());
+		Assert.assertEquals(Character.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();

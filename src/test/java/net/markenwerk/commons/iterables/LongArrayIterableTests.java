@@ -19,36 +19,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.commons.iterators;
+package net.markenwerk.commons.iterables;
 
 import java.util.Iterator;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.CharacterArrayIterable;
+import net.markenwerk.commons.iterables.LongArrayIterable;
 
 /**
- * JUnit test for {@link CharacterArrayIterable}.
+ * JUnit test for {@link LongArrayIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public class CharacterArrayIteratorTests {
+public class LongArrayIterableTests {
 
 	/**
-	 * Iterate over a {@code char[]}.
+	 * Iterate over a {@code long[]}.
 	 */
 	@Test
-	public void charArray_iterate() {
+	public void longArray_iterate() {
 
-		char[] values = new char[] { 1, 2 };
-		Iterator<Character> iterator = new CharacterArrayIterable(values).iterator();
+		long[] values = new long[] { 1, 2 };
+		Iterator<Long> iterator = new LongArrayIterable(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Character(values[0]), iterator.next());
+		Assert.assertEquals(new Long(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Character(values[1]), iterator.next());
+		Assert.assertEquals(new Long(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}
@@ -57,26 +57,26 @@ public class CharacterArrayIteratorTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void characterArray_iterateNullArray() {
+	public void longArray_iterateNullArray() {
 
-		Iterator<Character> iterator = new CharacterArrayIterable(null).iterator();
+		Iterator<Long> iterator = new LongArrayIterable(null).iterator();
 
 		Assert.assertFalse(iterator.hasNext());
 
 	}
 
 	/**
-	 * Remove a value in a {@code char[]}.
+	 * Remove a value in a {@code long[]}.
 	 */
 	@Test
-	public void charArray_removeWithFallback() {
+	public void longArray_removeWithFallback() {
 
-		char replacement = 0;
-		char[] values = new char[] { 1 };
-		Iterator<Character> iterator = new CharacterArrayIterable(values, replacement).iterator();
+		long replacement = 0;
+		long[] values = new long[] { 1 };
+		Iterator<Long> iterator = new LongArrayIterable(values, replacement).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Character.valueOf(values[0]), iterator.next());
+		Assert.assertEquals(Long.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();
@@ -86,16 +86,16 @@ public class CharacterArrayIteratorTests {
 	}
 
 	/**
-	 * Remove a value in a {@code char[]}.
+	 * Remove a value in a {@code long[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void charArray_removeWithoutFallback() {
+	public void longArray_removeWithoutFallback() {
 
-		char[] values = new char[] { 1 };
-		Iterator<Character> iterator = new CharacterArrayIterable(values).iterator();
+		long[] values = new long[] { 1 };
+		Iterator<Long> iterator = new LongArrayIterable(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Character.valueOf(values[0]), iterator.next());
+		Assert.assertEquals(Long.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 		iterator.remove();

@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.markenwerk.commons.iterators;
+package net.markenwerk.commons.iterables;
 
 import java.util.Iterator;
 
@@ -37,7 +37,7 @@ import net.markenwerk.commons.iterables.FilteringIterable;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public class FilteringIteratorTests {
+public class FilteringIterableTests {
 
 	private final Object UNSATISFYING_OBJECT = new Object();
 
