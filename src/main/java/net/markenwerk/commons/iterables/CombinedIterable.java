@@ -61,19 +61,13 @@ public final class CombinedIterable<Payload> implements Iterable<Payload> {
 
 	@Override
 	public Iterator<Payload> iterator() {
-		// @formatter:off
-		return new CombinedIterator<Payload>(
-			new ConvertingIterator<Iterable<Payload>, Iterator<Payload>>(
-				iterables,
+		return new CombinedIterator<Payload>(new ConvertingIterator<Iterable<Payload>, Iterator<Payload>>(iterables,
 				new Converter<Iterable<Payload>, Iterator<Payload>>() {
 					@Override
 					public Iterator<Payload> convert(Iterable<Payload> iterable) throws ConverterException {
 						return iterable.iterator();
 					}
-				}
-			)
-		);
-		// @formatter:on
+				}));
 	}
 
 }
