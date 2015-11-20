@@ -41,10 +41,10 @@ public final class ShortArrayIterable implements Iterable<Short> {
 	private final short[] values;
 
 	/**
-	 * Creates a new {@link ShortArrayIterable} for the given payload array.
+	 * Creates a new {@link ShortArrayIterable} for the given {@code short[]}.
 	 * 
 	 * @param values
-	 *            The payload array to iterate over.
+	 *            The {@code short[]} to iterate over.
 	 */
 	public ShortArrayIterable(short[] values) {
 		this.values = values;

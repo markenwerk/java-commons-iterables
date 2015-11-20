@@ -41,10 +41,10 @@ public final class FloatArrayIterable implements Iterable<Float> {
 	private final float[] values;
 
 	/**
-	 * Creates a new {@link FloatArrayIterable} for the given payload array.
+	 * Creates a new {@link FloatArrayIterable} for the given {@code float[]}.
 	 * 
 	 * @param values
-	 *            The payload array to iterate over.
+	 *            The {@code float[]} to iterate over.
 	 */
 	public FloatArrayIterable(float[] values) {
 		this.values = values;

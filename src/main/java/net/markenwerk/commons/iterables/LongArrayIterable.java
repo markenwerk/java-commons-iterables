@@ -41,10 +41,10 @@ public final class LongArrayIterable implements Iterable<Long> {
 	private final long[] values;
 
 	/**
-	 * Creates a new {@link LongArrayIterable} for the given payload array.
+	 * Creates a new {@link LongArrayIterable} for the given {@code long[]}.
 	 * 
 	 * @param values
-	 *            The payload array to iterate over.
+	 *            The {@code long[]} to iterate over.
 	 */
 	public LongArrayIterable(long[] values) {
 		this.values = values;

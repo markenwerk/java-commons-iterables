@@ -41,10 +41,10 @@ public final class BooleanArrayIterable implements Iterable<Boolean> {
 	private final boolean[] values;
 
 	/**
-	 * Creates a new {@link BooleanArrayIterable} for the given payload array.
+	 * Creates a new {@link BooleanArrayIterable} for the given {@code boolean[]}.
 	 * 
 	 * @param values
-	 *            The payload array to iterate over.
+	 *            The {@code boolean[]} to iterate over.
 	 */
 	public BooleanArrayIterable(boolean[] values) {
 		this.values = values;

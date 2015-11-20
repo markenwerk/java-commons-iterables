@@ -41,10 +41,10 @@ public final class CharacterArrayIterable implements Iterable<Character> {
 	private final char[] values;
 
 	/**
-	 * Creates a new {@link CharacterArrayIterable} for the given payload array.
+	 * Creates a new {@link CharacterArrayIterable} for the given {@code char[]}.
 	 * 
 	 * @param values
-	 *            The payload array to iterate over.
+	 *            The {@code char[]} to iterate over.
 	 */
 	public CharacterArrayIterable(char[] values) {
 		this.values = values;

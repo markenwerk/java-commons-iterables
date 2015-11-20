@@ -41,10 +41,10 @@ public final class DoubleArrayIterable implements Iterable<Double> {
 	private final double[] values;
 
 	/**
-	 * Creates a new {@link DoubleArrayIterable} for the given payload array.
+	 * Creates a new {@link DoubleArrayIterable} for the given {@code double[]}.
 	 * 
 	 * @param values
-	 *            The payload array to iterate over.
+	 *            The {@code double[]} to iterate over.
 	 */
 	public DoubleArrayIterable(double[] values) {
 		this.values = values;

@@ -41,10 +41,10 @@ public final class ByteArrayIterable implements Iterable<Byte> {
 	private final byte[] values;
 
 	/**
-	 * Creates a new {@link ByteArrayIterable} for the given payload array.
+	 * Creates a new {@link ByteArrayIterable} for the given {@code byte[]}.
 	 * 
 	 * @param values
-	 *            The payload array to iterate over.
+	 *            The {@code byte[]} to iterate over.
 	 */
 	public ByteArrayIterable(byte[] values) {
 		this.values = values;

@@ -41,10 +41,10 @@ public final class IntegerArrayIterable implements Iterable<Integer> {
 	private final int[] values;
 
 	/**
-	 * Creates a new {@link IntegerArrayIterable} for the given payload array.
+	 * Creates a new {@link IntegerArrayIterable} for the given {@code int[]}.
 	 * 
 	 * @param values
-	 *            The payload array to iterate over.
+	 *            The {@code int[]} to iterate over.
 	 */
 	public IntegerArrayIterable(int[] values) {
 		this.values = values;
