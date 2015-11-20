@@ -46,6 +46,8 @@ public final class FilteringIterable<Payload> implements Iterable<Payload> {
 
 	private final Predicate<Payload> predicate;
 
+	private final boolean invertPredicate;
+
 	/**
 	 * Creates a new {@link FilteringIterable} from the given {@link Iterable}.
 	 * 
@@ -57,13 +59,31 @@ public final class FilteringIterable<Payload> implements Iterable<Payload> {
 	 *            every value yielded by the given {@link Iterable} with.
 	 */
 	public FilteringIterable(Iterable<Payload> iterable, Predicate<Payload> predicate) {
+		this(iterable, predicate, false);
+	}
+	
+	/**
+	 * Creates a new {@link FilteringIterable} from the given {@link Iterable}.
+	 * 
+	 * @param iterable
+	 *            The {@link Iterable}, around which the new
+	 *            {@link FilteringIterable} will be wrapped.
+	 * @param predicate
+	 *            The {@link Predicate} to {@link Predicate#test(Object) test}
+	 *            every value yielded by the given {@link Iterable} with.
+	 * @param invertPredicate
+	 *            Whether to invert the test result and yielt values that don't
+	 *            satisfy the given {@link Predicate}.
+	 */
+	public FilteringIterable(Iterable<Payload> iterable, Predicate<Payload> predicate, boolean invertPredicate) {
 		this.iterable = iterable;
 		this.predicate = predicate;
+		this.invertPredicate = invertPredicate;
 	}
 
 	@Override
 	public Iterator<Payload> iterator() {
-		return new FilteringIterator<Payload>(iterable.iterator(), predicate);
+		return new FilteringIterator<Payload>(iterable.iterator(), predicate, invertPredicate);
 	}
 
 }
