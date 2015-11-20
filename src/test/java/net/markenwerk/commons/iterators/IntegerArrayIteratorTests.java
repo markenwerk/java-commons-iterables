@@ -1,0 +1,105 @@
+/*
+ * Copyright (c) 2015 Torsten Krause, Markenwerk GmbH
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+package net.markenwerk.commons.iterators;
+
+import java.util.Iterator;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import net.markenwerk.commons.iterables.IntegerArrayIterable;
+
+/**
+ * JUnit test for {@link IntegerArrayIterable}.
+ * 
+ * @author Torsten Krause (tk at markenwerk dot net)
+ * @since 1.0.0
+ */
+public class IntegerArrayIteratorTests {
+
+	/**
+	 * Iterate over a {@code int[]}.
+	 */
+	@Test
+	public void intArray_iterate() {
+
+		int[] values = new int[] { 1, 2 };
+		Iterator<Integer> iterator = new IntegerArrayIterable(values).iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(new Integer(values[0]), iterator.next());
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(new Integer(values[1]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+
+	/**
+	 * Iterate over a {@code null} array.
+	 */
+	@Test
+	public void integerArray_iterateNullArray() {
+
+		Iterator<Integer> iterator = new IntegerArrayIterable(null).iterator();
+
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+
+	/**
+	 * Remove a value in a {@code integer[]}.
+	 */
+	@Test
+	public void integerArray_removeWithFallback() {
+
+		int replacement = 0;
+		int[] values = new int[] { 1 };
+		Iterator<Integer> iterator = new IntegerArrayIterable(values, replacement).iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Integer.valueOf(values[0]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+		iterator.remove();
+
+		Assert.assertEquals(replacement, values[0]);
+
+	}
+
+	/**
+	 * Remove a value in a {@code integer[]}.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void integerArray_removeWithoutFallback() {
+
+		int[] values = new int[] { 1 };
+		Iterator<Integer> iterator = new IntegerArrayIterable(values).iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Integer.valueOf(values[0]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+		iterator.remove();
+
+	}
+
+}
