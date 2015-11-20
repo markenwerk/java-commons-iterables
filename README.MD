@@ -1,11 +1,11 @@
-# Companion iterators for some common iterators for Java
+# Some common iterables for Java
 
 [![Build Status](https://travis-ci.org/markenwerk/java-commons-iterables.svg?branch=master)](https://travis-ci.org/markenwerk/java-commons-iterables)
 [![Coverage Status](https://coveralls.io/repos/markenwerk/java-commons-iterables/badge.svg?branch=master&service=github)](https://coveralls.io/github/markenwerk/java-commons-iterables?branch=master)
 [![Dependency Status](https://www.versioneye.com/user/projects/56323f1636d0ab0016001bc4/badge.svg)](https://www.versioneye.com/user/projects/56323f1636d0ab0016001bc4)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/java-commons-iterables/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/java-commons-iterables)
 
-This is a collection of companion iterators for [some commonly useful `Iterable` implementations].
+This is a collection of companion iterators for [some commonly useful `Iterable` implementations][https://github.com/markenwerk/java-commons-iterators].
 
 ## Overview
 
@@ -28,8 +28,8 @@ Consult the [usage description](#usage) and [Javadoc](http://markenwerk.github.i
 This library provides the generic [`FilteringIterable`][FilteringIterable] that takes an existing [`Iterable`][Iterable] and a [`Predicate`][Predicate] and filters out all values yielded by the given [`Iterable`][Iterable] that don't satisfy the given [Predicate][`Predicate`].
 
 ```java
-Iterator<Foo> iterator = ...
-Iterator<Foo> filteringIterator = new FilteringIterator<Foo>(iterator, new Predicate<Foo>(){
+Iterable<Foo> iterable = ...
+Iterable<Foo> filteringIterable = new filteringIterable<Foo>(iterable, new Predicate<Foo>(){
 
 	@Override
 	public boolean test(Object object) throws PredicateException {
@@ -42,8 +42,8 @@ Iterator<Foo> filteringIterator = new FilteringIterator<Foo>(iterator, new Predi
 This library provides the generic [`ConvertingIterable`][ConvertingIterable] that takes an existing [`Iterable`][Iterable] and a [`Converter`][Converter] and converts all values yielded by the given [`Iterable`][Iterable] and yields the converted values. 
 
 ```java
-Iterator<Foo> iterator = ...
-Iterator<Bar> convertingIterator = new ConvertingIterator<Foo, Bar>(iterator, new Converter<Foo, Bar>(){
+Iterable<Foo> iterable = ...
+Iterable<Bar> convertingIterable = new ConvertingIterable<Foo, Bar>(iterable, new Converter<Foo, Bar>(){
 
 	@Override
 	public Bar convert(Foo foo) throws ConverterException {
@@ -55,21 +55,21 @@ Iterator<Bar> convertingIterator = new ConvertingIterator<Foo, Bar>(iterator, ne
 
 ### Combining multiple Iterators
 
-This library provides the generic [`CombinedIterable`][CombinedIterable] that takes multiple existing [`Iterators`][Iterable] and combines them into a single [`Iterable`][Iterable] that yields all values of all given [`Iterators`][Iterable].
+This library provides the generic [`CombinedIterable`][CombinedIterable] that takes multiple existing [`Iterables`][Iterable] and combines them into a single [`Iterable`][Iterable] that yields all values of all given [`Iterables`][Iterable].
 
-It can be constructed from an array or an arbitrary amount of known [`Iterators`][Iterable].
+It can be constructed from an array or an arbitrary amount of known [`Iterables`][Iterable].
 
 ```java
-Iterator<Foo> iterator1 = ...
-Iterator<Foo> iterator2 = ...
-Iterator<Foo> combinedIterator = new CombinedIterator<Foo>(iterator1, iterator2);
+Iterable<Foo> iterable1 = ...
+Iterable<Foo> iterable2 = ...
+Iterable<Foo> combinedIterable = new CombinedIterable<Foo>(iterable1, iterable2);
 ```
 
-It can be constructed from an [`Iterable`][Iterable] of [`Iterators`][Iterable] (i.e. a [`List`][List]).
+It can be constructed from an [`Iterable`][Iterable] of [`Iterables`][Iterable] (i.e. a [`List`][List]).
 
 ```java
-List<Foo>[] iterators = ...
-Iterator<Foo> combinedIterator = new CombinedIterator<Foo>(iterators);
+List<Iterable<Foo>>[] iterables = ...
+Iterable<Foo> combinedIterable = new CombinedIterable<Foo>(iterables);
 ```
 
 ### Counting
@@ -77,35 +77,35 @@ Iterator<Foo> combinedIterator = new CombinedIterator<Foo>(iterators);
 This library provides the [`CountDownIterable`][CountDownIterable] and [`CountUpIterable`][CountUpIterable] that take two integer values as bounds and yield every integer value between the given bounds, going downwards or upwards respectively.
 
 ```java
-Iterator<Integer> = new CountDownIterator(10, 0); // yields 10, 9, ..., 1, 0
-Iterator<Integer> = new CountUpIterator(0, 10); // yields 0, 1, ..., 9, 10
+Iterable<Integer> = new CountDownIterable(10, 0); // yields 10, 9, ..., 1, 0
+Iterable<Integer> = new CountUpIterable(0, 10); // yields 0, 1, ..., 9, 10
 ```
 
 ### Handling of `null` values
 
-For situations where it is necessary to provide an [`Iterable`][Iterable], but no meaningful [`Iterable`][Iterable] is available, it might be useful to create an [`EmptyIterable`][EmptyIterable]. An [`EmptyIterable`][EmptyIterable] doesn't yield any values, buf fulfils the [`Iterable`][Iterable] contract.
+For situations where it is necessary to provide an [`Iterable`][Iterable], but no meaningful [`Iterable`][Iterable] is available, it might be useful to create an [`EmptyIterable`][EmptyIterable]. An [`EmptyIterable`][EmptyIterable] generates [`Iterators`][Iterator] that don't yield any values, buf fulfil the [`Iterator`][Iterator] contract.
 
 ```java
-Iterator<Foo> = new EmptyIterator<Foo>();
+Iterable<Foo> = new EmptyIterable<Foo>();
 ```
 
-For situations where some [`Iterable`][Iterable] is obtained and passed along, it might be useful to wrap the obtained [`Iterable`][Iterable] in a [`NullSaveIterable`][NullSaveIterable]. A [`NullSaveIterable`][NullSaveIterable] always fulfils the [`Iterable`][Iterable] contract, even if it is constructed from a `null` [`Iterable`][Iterable].
+For situations where some [`Iterable`][Iterable] is obtained and passed along, it might be useful to wrap the obtained [`Iterable`][Iterable] in a [`NullSaveIterable`][NullSaveIterable]. A [`NullSaveIterable`][NullSaveIterable] always generates an [`Iterator`][Iterator], even if it is constructed from a `null` [`Iterable`][Iterable].
 
 ```java
-Iterator<Foo> iterator = ...
-iterator = new NullSaveIterator(iterator);
+Iterable<Foo> iterable = ...
+iterable = new NullSaveIterable(iterable);
 ```
 
-For situations where some [`Iterable`][Iterable] is obtained, it might be useful to wrap the obtained [`Iterable`][Iterable] in a [`NullFreeIterable`][NullFreeIterable]. A [`NullFreeIterable`][NullFreeIterable] filters out all `null` values yielded by the obtained [`Iterable`][Iterable] and doesn't yiels any `null` value itself.
+For situations where some [`Iterable`][Iterable] is obtained, it might be useful to wrap the obtained [`Iterable`][Iterable] in a [`NullFreeIterable`][NullFreeIterable]. A [`NullFreeIterable`][NullFreeIterable] generates [`Iterators`][Iterators] that tilter out all `null` values yielded by the obtained [`Iterable`][Iterable].
 
 ```java
-Iterator<Foo> iterator = ...
-iterator = new NullFreeIterator(iterator);
+Iterable<Foo> iterable = ...
+iterable = new NullFreeIterable(iterable);
 ```
 
 ### Iterating over primitive Arrays
 
-This library provides the following [`Iterators`][Iterable] that takes an existing primitive array and yields all elements of the given array:
+This library provides the following [`Iterables`][Iterable] that takes an existing primitive array and generate [`Iterators`][Iterator] that yield all elements of the given array:
 
 - [`BooleanArrayIterable`][BooleanArrayIterable]
 - [`ByteArrayIterable`][ByteArrayIterable]
@@ -118,18 +118,17 @@ This library provides the following [`Iterators`][Iterable] that takes an existi
 
 ```java
 boolean[] booleans = ...
-Iterator<Boolean> = new BooleanArrayIterator(booleans);
+Iterable<Boolean> = new BooleanArrayIterable(booleans);
 ```
 
 ### Iterating over non-primitive Arrays
 
-This library provides the generic [`ArrayIterable`][ArrayIterable] that takes an existing array and yields all elements of the given array:
+This library provides the generic [`ArrayIterable`][ArrayIterable] that takes an existing array and generate [`Iterators`][Iterator] that yield all elements of the given array:
 
 ```java
 Foo[] foos = ...
-Iterator<Foo> = new ArrayIterator(foos);
+Iterable<Foo> = new ArrayIterable(foos);
 ```
-
 
 [ArrayIterable]: http://markenwerk.github.io/java-commons-iterables/javadoc/1.1.0/index.html?net/markenwerk/commons/iterables/ArrayIterable.html
 [BooleanArrayIterable]: http://markenwerk.github.io/java-commons-iterables/javadoc/1.1.0/index.html?net/markenwerk/commons/iterables/BooleanArrayIterable.html
