@@ -2,10 +2,10 @@
 
 [![Build Status](https://travis-ci.org/markenwerk/java-commons-iterables.svg?branch=master)](https://travis-ci.org/markenwerk/java-commons-iterables)
 [![Coverage Status](https://coveralls.io/repos/markenwerk/java-commons-iterables/badge.svg?branch=master&service=github)](https://coveralls.io/github/markenwerk/java-commons-iterables?branch=master)
-[![Dependency Status](https://www.versioneye.com/user/projects/56323f1636d0ab0016001bc4/badge.svg)](https://www.versioneye.com/user/projects/56323f1636d0ab0016001bc4)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/java-commons-iterables/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/java-commons-iterables)
+[![Dependency Status](https://www.versioneye.com/user/projects/564f37bbff016c0033000471/badge.svg)](https://www.versioneye.com/user/projects/564f37bbff016c0033000471)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/commons-iterables/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/commons-iterables)
 
-This is a collection of companion iterators for [some commonly useful `Iterable` implementations][https://github.com/markenwerk/java-commons-iterators].
+This is a collection of companion iterators for [some commonly useful `Iterable` implementations](https://github.com/markenwerk/java-commons-iterators).
 
 ## Overview
 
