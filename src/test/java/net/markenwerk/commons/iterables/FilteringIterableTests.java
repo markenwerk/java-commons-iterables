@@ -27,9 +27,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import net.markenwerk.commons.interfaces.Predicate;
-import net.markenwerk.commons.interfaces.exceptions.PredicateException;
-import net.markenwerk.commons.iterables.ArrayIterable;
-import net.markenwerk.commons.iterables.FilteringIterable;
 
 /**
  * JUnit test for {@link FilteringIterable}.
@@ -43,7 +40,7 @@ public class FilteringIterableTests {
 
 	private final Predicate<Object> UNSATISFYING_OBJECT_PREDICATE = new Predicate<Object>() {
 		@Override
-		public boolean test(Object object) throws PredicateException {
+		public boolean test(Object object) {
 			return null == object || UNSATISFYING_OBJECT != object;
 		}
 	};

@@ -27,10 +27,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import net.markenwerk.commons.interfaces.Converter;
-import net.markenwerk.commons.interfaces.exceptions.ConverterException;
-import net.markenwerk.commons.iterables.ArrayIterable;
-import net.markenwerk.commons.iterables.ConvertingIterable;
-import net.markenwerk.commons.iterables.FilteringIterable;
 
 /**
  * JUnit test for {@link FilteringIterable}.
@@ -52,7 +48,7 @@ public class ConvertingIterableTests {
 
 	private final Converter<Object, Wrapper> WRAPPING_CONVERTER = new Converter<Object, Wrapper>() {
 		@Override
-		public Wrapper convert(Object from) throws ConverterException {
+		public Wrapper convert(Object from) {
 			return null == from ? null : new Wrapper(from);
 		}
 	};
