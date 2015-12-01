@@ -46,10 +46,35 @@ public class LongArrayIterableTests {
 		Iterator<Long> iterator = new LongArrayIterable(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Long(values[0]), iterator.next());
+		Assert.assertEquals(Long.valueOf(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Long(values[1]), iterator.next());
+		Assert.assertEquals(Long.valueOf(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
+
+	}
+	
+	
+	/**
+	 * Iterate over a {@code long[]} twice.
+	 */
+	@Test
+	public void longArray_iterateTwice() {
+
+		long[] values = new long[] { 1 };
+		Iterable<Long> iterable = new LongArrayIterable(values);
+		Iterator<Long> iterator = iterable.iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Long.valueOf(values[0]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+		
+		Iterator<Long> iterator2 = iterable.iterator();
+
+		Assert.assertNotSame(iterator, iterator2);
+
+		Assert.assertTrue(iterator2.hasNext());
+		Assert.assertEquals(Long.valueOf(values[0]), iterator2.next());
+		Assert.assertFalse(iterator2.hasNext());
 
 	}
 

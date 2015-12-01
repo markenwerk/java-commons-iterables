@@ -58,7 +58,7 @@ public class CountUpIterableTests {
 		Iterator<Integer> iterator = new CountUpIterable(0, 0).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Integer(0), iterator.next());
+		Assert.assertEquals(Integer.valueOf(0), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}
@@ -72,10 +72,39 @@ public class CountUpIterableTests {
 		Iterator<Integer> iterator = new CountUpIterable(1, 2).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Integer(1), iterator.next());
+		Assert.assertEquals(Integer.valueOf(1), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Integer(2), iterator.next());
+		Assert.assertEquals(Integer.valueOf(2), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
+
+	}
+	
+	/**
+	 * Count up from a lower bound that is smaller than the upper bound twice.
+	 */
+	@Test
+	public void countUp_iterateTwice() {
+
+		Iterable<Integer> iterable = new CountUpIterable(1, 2);
+		Iterator<Integer> iterator = iterable.iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Integer.valueOf(1), iterator.next());
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Integer.valueOf(2), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+		
+		Iterator<Integer> iterator2 = iterable.iterator();
+
+		Assert.assertNotSame(iterator, iterator2);
+		
+		Assert.assertTrue(iterator2.hasNext());
+		Assert.assertEquals(Integer.valueOf(1), iterator2.next());
+		Assert.assertTrue(iterator2.hasNext());
+		Assert.assertEquals(Integer.valueOf(2), iterator2.next());
+		Assert.assertFalse(iterator2.hasNext());
+		
+		
 
 	}
 

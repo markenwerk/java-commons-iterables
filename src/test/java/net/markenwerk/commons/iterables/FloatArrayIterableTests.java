@@ -46,10 +46,35 @@ public class FloatArrayIterableTests {
 		Iterator<Float> iterator = new FloatArrayIterable(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Float(values[0]), iterator.next());
+		Assert.assertEquals(Float.valueOf(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Float(values[1]), iterator.next());
+		Assert.assertEquals(Float.valueOf(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
+
+	}
+	
+	
+	/**
+	 * Iterate over a {@code float[]} twice.
+	 */
+	@Test
+	public void floatArray_iterateTwice() {
+
+		float[] values = new float[] { 1 };
+		Iterable<Float> iterable = new FloatArrayIterable(values);
+		Iterator<Float> iterator = iterable.iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Float.valueOf(values[0]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+		
+		Iterator<Float> iterator2 = iterable.iterator();
+
+		Assert.assertNotSame(iterator, iterator2);
+
+		Assert.assertTrue(iterator2.hasNext());
+		Assert.assertEquals(Float.valueOf(values[0]), iterator2.next());
+		Assert.assertFalse(iterator2.hasNext());
 
 	}
 

@@ -26,10 +26,6 @@ import java.util.Iterator;
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.ArrayIterable;
-import net.markenwerk.commons.iterables.NullSaveIterable;
-import net.markenwerk.commons.iterators.ArrayIterator;
-
 /**
  * JUnit test for {@link NullSaveIterable}.
  * 
@@ -56,25 +52,26 @@ public class NullSaveIterableTests {
 	}
 
 	/**
-	 * Iterate over a a non-{@literal null} {@link Iterable}.
+	 * Iterate over a a non-{@literal null} {@link Iterable} twice.
 	 */
-
 	@Test
-	public void nullSave_withNonNullIterable() {
+	public void nullSave_withNonNullIteratorTwice() {
 
-		final Object[] values = new Object[] { new Object(), new Object() };
-		Iterator<Object> iterator = new NullSaveIterable<Object>(new Iterable<Object>() {
-			@Override
-			public Iterator<Object> iterator() {
-				return new ArrayIterator<Object>(values);
-			}
-		}).iterator();
+		Object[] values = new Object[] { new Object() };
+		Iterable<Object> iterable = new NullSaveIterable<Object>(new ArrayIterable<Object>(values));
+		Iterator<Object> iterator = iterable.iterator();
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[1], iterator.next());
 		Assert.assertFalse(iterator.hasNext());
+
+		Iterator<Object> iterator2 = iterable.iterator();
+
+		Assert.assertNotSame(iterator, iterator2);
+		
+		Assert.assertTrue(iterator2.hasNext());
+		Assert.assertSame(values[0], iterator2.next());
+		Assert.assertFalse(iterator2.hasNext());
 
 	}
 

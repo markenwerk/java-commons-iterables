@@ -99,6 +99,32 @@ public class FilteringIterableTests {
 	}
 
 	/**
+	 * Filter out a unsatisfying value from the underlying {@link Iterable}
+	 * twice.
+	 */
+	@Test
+	public void filtering_iterateTwice() {
+
+		Object[] values = new Object[] { UNSATISFYING_OBJECT, new Object() };
+		Iterable<Object> iterable = new FilteringIterable<Object>(new ArrayIterable<Object>(values),
+				UNSATISFYING_OBJECT_PREDICATE);
+		Iterator<Object> iterator = iterable.iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertSame(values[1], iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+		Iterator<Object> iterator2 = iterable.iterator();
+
+		Assert.assertNotSame(iterator, iterator2);
+
+		Assert.assertTrue(iterator2.hasNext());
+		Assert.assertSame(values[1], iterator2.next());
+		Assert.assertFalse(iterator2.hasNext());
+
+	}
+
+	/**
 	 * Filter out a unsatisfying value in the middle of the underlying
 	 * {@link Iterable}.
 	 */

@@ -46,10 +46,35 @@ public class ByteArrayIterableTests {
 		Iterator<Byte> iterator = new ByteArrayIterable(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Byte(values[0]), iterator.next());
+		Assert.assertEquals(Byte.valueOf(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Byte(values[1]), iterator.next());
+		Assert.assertEquals(Byte.valueOf(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
+
+	}
+	
+	
+	/**
+	 * Iterate over a {@code byte[]} twice.
+	 */
+	@Test
+	public void byteArray_iterateTwice() {
+
+		byte[] values = new byte[] { 1 };
+		Iterable<Byte> iterable = new ByteArrayIterable(values);
+		Iterator<Byte> iterator = iterable.iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Byte.valueOf(values[0]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+		
+		Iterator<Byte> iterator2 = iterable.iterator();
+
+		Assert.assertNotSame(iterator, iterator2);
+
+		Assert.assertTrue(iterator2.hasNext());
+		Assert.assertEquals(Byte.valueOf(values[0]), iterator2.next());
+		Assert.assertFalse(iterator2.hasNext());
 
 	}
 

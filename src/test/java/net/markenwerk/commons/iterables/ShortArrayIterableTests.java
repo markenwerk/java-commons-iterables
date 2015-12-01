@@ -43,13 +43,37 @@ public class ShortArrayIterableTests {
 	public void shortArray_iterate() {
 
 		short[] values = new short[] { 1, 2 };
+		Iterable<Short> iterable = new ShortArrayIterable(values);
+		Iterator<Short> iterator = iterable.iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Short.valueOf(values[0]), iterator.next());
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Short.valueOf(values[1]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+	}
+	
+	/**
+	 * Iterate over a {@code short[]} twice.
+	 */
+	@Test
+	public void shortArray_iterateTwice() {
+
+		short[] values = new short[] { 1 };
 		Iterator<Short> iterator = new ShortArrayIterable(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Short(values[0]), iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Short(values[1]), iterator.next());
+		Assert.assertEquals(Short.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
+		
+		Iterator<Short> iterator2 = new ShortArrayIterable(values).iterator();
+
+		Assert.assertNotSame(iterator, iterator2);
+		
+		Assert.assertTrue(iterator2.hasNext());
+		Assert.assertEquals(Short.valueOf(values[0]), iterator2.next());
+		Assert.assertFalse(iterator2.hasNext());
 
 	}
 

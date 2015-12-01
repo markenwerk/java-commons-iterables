@@ -46,10 +46,34 @@ public class IntegerArrayIterableTests {
 		Iterator<Integer> iterator = new IntegerArrayIterable(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Integer(values[0]), iterator.next());
+		Assert.assertEquals(Integer.valueOf(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Integer(values[1]), iterator.next());
+		Assert.assertEquals(Integer.valueOf(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
+
+	}
+	
+	/**
+	 * Iterate over a {@code int[]} twice.
+	 */
+	@Test
+	public void intArray_iterateTwice() {
+
+		int[] values = new int[] { 1 };
+		Iterable<Integer> iterable = new IntegerArrayIterable(values);
+		Iterator<Integer> iterator = iterable.iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Integer.valueOf(values[0]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+		
+		Iterator<Integer> iterator2 = iterable.iterator();
+
+		Assert.assertNotSame(iterator, iterator2);
+
+		Assert.assertTrue(iterator2.hasNext());
+		Assert.assertEquals(Integer.valueOf(values[0]), iterator2.next());
+		Assert.assertFalse(iterator2.hasNext());
 
 	}
 

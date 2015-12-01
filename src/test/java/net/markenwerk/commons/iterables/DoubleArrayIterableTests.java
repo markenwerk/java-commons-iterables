@@ -46,10 +46,34 @@ public class DoubleArrayIterableTests {
 		Iterator<Double> iterator = new DoubleArrayIterable(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Double(values[0]), iterator.next());
+		Assert.assertEquals(Double.valueOf(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Double(values[1]), iterator.next());
+		Assert.assertEquals(Double.valueOf(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
+
+	}
+	
+	/**
+	 * Iterate over a {@code double[]} twice.
+	 */
+	@Test
+	public void doubleArray_iterateTwice() {
+
+		double[] values = new double[] { 1 };
+		Iterable<Double> iterable = new DoubleArrayIterable(values);
+		Iterator<Double> iterator = iterable.iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Double.valueOf(values[0]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+		
+		Iterator<Double> iterator2 = iterable.iterator();
+
+		Assert.assertNotSame(iterator, iterator2);
+
+		Assert.assertTrue(iterator2.hasNext());
+		Assert.assertEquals(Double.valueOf(values[0]), iterator2.next());
+		Assert.assertFalse(iterator2.hasNext());
 
 	}
 

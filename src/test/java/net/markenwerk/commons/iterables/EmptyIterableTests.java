@@ -48,6 +48,28 @@ public class EmptyIterableTests {
 		Assert.assertNull(iterator.next());
 
 	}
+	
+	/**
+	 * Iterate over an {@link EmptyIterable} twice.
+	 */
+	@Test
+	public void empty_iterateTwice() {
+
+		Iterable<Object> iterable = new EmptyIterable<Object>();
+		Iterator<Object> iterator = iterable.iterator();
+
+		Assert.assertFalse(iterator.hasNext());
+		Assert.assertNull(iterator.next());
+		
+		Iterator<Object> iterator2 = iterable.iterator();
+
+		Assert.assertNotSame(iterator, iterator2);
+
+		Assert.assertNotSame(iterator, iterator2);
+		Assert.assertFalse(iterator2.hasNext());
+		Assert.assertNull(iterator2.next());
+
+	}
 
 	/**
 	 * Iterate over an {@link EmptyIterable}.

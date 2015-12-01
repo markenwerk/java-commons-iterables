@@ -87,6 +87,32 @@ public class NullFreeIterableTests {
 
 	}
 
+	
+	/**
+	 * Filter out a {@literal null} value from the underlying
+	 * {@link Iterable} twice.
+	 */
+	@Test
+	public void nullFree_iterateTwice() {
+
+		Object[] values = new Object[] { null, new Object() };
+		Iterable<Object> iterable = new NullFreeIterable<Object>(new ArrayIterable<Object>(values));
+		Iterator<Object> iterator = iterable.iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertSame(values[1], iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+		
+		Iterator<Object> iterator2 = iterable.iterator();
+
+		Assert.assertNotSame(iterator, iterator2);
+
+		Assert.assertTrue(iterator2.hasNext());
+		Assert.assertSame(values[1], iterator2.next());
+		Assert.assertFalse(iterator2.hasNext());
+
+	}
+	
 	/**
 	 * Remove an object from the underlying {@link Iterable}.
 	 */

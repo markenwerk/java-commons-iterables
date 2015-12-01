@@ -26,7 +26,6 @@ import java.util.Iterator;
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.CountDownIterable;
 import net.markenwerk.commons.iterators.CountDownIterator;
 
 /**
@@ -58,7 +57,7 @@ public class CountDownIterableTests {
 		Iterator<Integer> iterator = new CountDownIterable(0, 0).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Integer(0), iterator.next());
+		Assert.assertEquals(Integer.valueOf(0), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
 
 	}
@@ -72,10 +71,37 @@ public class CountDownIterableTests {
 		Iterator<Integer> iterator = new CountDownIterable(2, 1).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Integer(2), iterator.next());
+		Assert.assertEquals(Integer.valueOf(2), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Integer(1), iterator.next());
+		Assert.assertEquals(Integer.valueOf(1), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
+
+	}
+
+	/**
+	 * Count down from an upper bound that is larger than the lower bound twice.
+	 */
+	@Test
+	public void countDown_iterateTwice() {
+
+		Iterable<Integer> iterable = new CountDownIterable(2, 1);
+		Iterator<Integer> iterator = iterable.iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Integer.valueOf(2), iterator.next());
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Integer.valueOf(1), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+
+		Iterator<Integer> iterator2 = iterable.iterator();
+
+		Assert.assertNotSame(iterator, iterator2);
+
+		Assert.assertTrue(iterator2.hasNext());
+		Assert.assertEquals(Integer.valueOf(2), iterator2.next());
+		Assert.assertTrue(iterator2.hasNext());
+		Assert.assertEquals(Integer.valueOf(1), iterator2.next());
+		Assert.assertFalse(iterator2.hasNext());
 
 	}
 

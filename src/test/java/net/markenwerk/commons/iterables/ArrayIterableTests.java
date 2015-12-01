@@ -52,6 +52,30 @@ public class ArrayIterableTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
+	
+	/**
+	 * Iterate over a payload array twice.
+	 */
+	@Test
+	public void array_iterateTwice() {
+
+		Object[] values = new Object[] { new Object(), };
+		Iterable<Object> iterable = new ArrayIterable<Object>(values);
+		Iterator<Object> iterator = iterable.iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertSame(values[0], iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+		
+		Iterator<Object> iterator2 = iterable.iterator();
+
+		Assert.assertNotSame(iterator, iterator2);
+
+		Assert.assertTrue(iterator2.hasNext());
+		Assert.assertSame(values[0], iterator2.next());
+		Assert.assertFalse(iterator2.hasNext());
+
+	}
 
 	/**
 	 * Iterate over a {@code null} array.

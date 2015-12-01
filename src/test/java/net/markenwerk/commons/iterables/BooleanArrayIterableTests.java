@@ -46,10 +46,35 @@ public class BooleanArrayIterableTests {
 		Iterator<Boolean> iterator = new BooleanArrayIterable(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Boolean(values[0]), iterator.next());
+		Assert.assertEquals(Boolean.valueOf(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Boolean(values[1]), iterator.next());
+		Assert.assertEquals(Boolean.valueOf(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
+
+	}
+	
+	
+	/**
+	 * Iterate over a {@code boolean[]} twice.
+	 */
+	@Test
+	public void booleanArray_iterateTwice() {
+
+		boolean[] values = new boolean[] { true };
+		Iterable<Boolean> iterable = new BooleanArrayIterable(values);
+		Iterator<Boolean> iterator = iterable.iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Boolean.valueOf(values[0]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+		
+		Iterator<Boolean> iterator2 = iterable.iterator();
+
+		Assert.assertNotSame(iterator, iterator2);
+
+		Assert.assertTrue(iterator2.hasNext());
+		Assert.assertEquals(Boolean.valueOf(values[0]), iterator2.next());
+		Assert.assertFalse(iterator2.hasNext());
 
 	}
 

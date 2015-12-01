@@ -73,6 +73,32 @@ public class ConvertingIterableTests {
 	}
 
 	/**
+	 * Convert all values yielded by the underlying {@link Iterable} to their
+	 * hash values twice.
+	 */
+	@Test
+	public void converting_iterateTwice() {
+
+		Object[] values = new Object[] { new Object() };
+		Iterable<Wrapper> iterable = new ConvertingIterable<Object, Wrapper>(new ArrayIterable<Object>(values),
+				WRAPPING_CONVERTER);
+		Iterator<Wrapper> iterator = iterable.iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertSame(values[0], iterator.next().wrapped);
+		Assert.assertFalse(iterator.hasNext());
+
+		Iterator<Wrapper> iterator2 = iterable.iterator();
+
+		Assert.assertNotSame(iterator, iterator2);
+
+		Assert.assertTrue(iterator2.hasNext());
+		Assert.assertSame(values[0], iterator2.next().wrapped);
+		Assert.assertFalse(iterator2.hasNext());
+
+	}
+
+	/**
 	 * Remove an object from the underlying {@link Iterable}.
 	 */
 	@Test

@@ -46,10 +46,34 @@ public class CharacterArrayIterableTests {
 		Iterator<Character> iterator = new CharacterArrayIterable(values).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Character(values[0]), iterator.next());
+		Assert.assertEquals(Character.valueOf(values[0]), iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(new Character(values[1]), iterator.next());
+		Assert.assertEquals(Character.valueOf(values[1]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
+
+	}
+	
+	/**
+	 * Iterate over a {@code char[]} twice.
+	 */
+	@Test
+	public void charArray_iterateTwice() {
+
+		char[] values = new char[] { 1 };
+		Iterable<Character> iterable = new CharacterArrayIterable(values);
+		Iterator<Character> iterator = iterable.iterator();
+
+		Assert.assertTrue(iterator.hasNext());
+		Assert.assertEquals(Character.valueOf(values[0]), iterator.next());
+		Assert.assertFalse(iterator.hasNext());
+		
+		Iterator<Character> iterator2 = iterable.iterator();
+
+		Assert.assertNotSame(iterator, iterator2);
+
+		Assert.assertTrue(iterator2.hasNext());
+		Assert.assertEquals(Character.valueOf(values[0]), iterator2.next());
+		Assert.assertFalse(iterator2.hasNext());
 
 	}
 
