@@ -25,7 +25,7 @@ Consult the [usage description](#usage) and [Javadoc](http://markenwerk.github.i
 
 ### Filtering and Converting
 
-This library provides the generic [`FilteringIterable`][FilteringIterable] that takes an existing [`Iterable`][Iterable] and a [`Predicate`][Predicate] and filters out all values yielded by the given [`Iterable`][Iterable] that don't satisfy the given [Predicate][`Predicate`].
+This library provides the generic [`FilteringIterable`][FilteringIterable] that takes an existing [`Iterable`][Iterable] and a [`Predicate`][Predicate] and filters out all values yielded by the given [`Iterable`][Iterable] that don't satisfy the given [`Predicate`][Predicate].
 
 ```java
 Iterable<Foo> iterable = ...
@@ -96,7 +96,7 @@ Iterable<Foo> iterable = ...
 iterable = new NullSaveIterable(iterable);
 ```
 
-For situations where some [`Iterable`][Iterable] is obtained, it might be useful to wrap the obtained [`Iterable`][Iterable] in a [`NullFreeIterable`][NullFreeIterable]. A [`NullFreeIterable`][NullFreeIterable] generates [`Iterators`][Iterators] that tilter out all `null` values yielded by the obtained [`Iterable`][Iterable].
+For situations where some [`Iterable`][Iterable] is obtained, it might be useful to wrap the obtained [`Iterable`][Iterable] in a [`NullFreeIterable`][NullFreeIterable]. A [`NullFreeIterable`][NullFreeIterable] generates [`Iterators`][Iterator] that tilter out all `null` values yielded by the obtained [`Iterable`][Iterable].
 
 ```java
 Iterable<Foo> iterable = ...
