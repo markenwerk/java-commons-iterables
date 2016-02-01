@@ -9,7 +9,7 @@ This is a collection of companion iterators for [some commonly useful `Iterable`
 
 ## Overview
 
-This library is hosted in the [Maven Central Repositoy](http://search.maven.org/#artifactdetails|net.markenwerk|java-commons-iterables|1.1.4|jar). You can use it with the following coordinates:
+This library is hosted in the [Maven Central Repository](http://search.maven.org/#artifactdetails|net.markenwerk|java-commons-iterables|1.1.4|jar). You can use it with the following coordinates:
 
 ```xml
 <dependency>
@@ -29,6 +29,8 @@ This library provides the generic [`FilteringIterable`][FilteringIterable] that 
 
 ```java
 Iterable<Foo> iterable = ...
+
+// generated iterable yield every foo from from iterator that matches the condition
 Iterable<Foo> filteringIterable = new filteringIterable<Foo>(iterable, new Predicate<Foo>(){
 
 	@Override
@@ -43,6 +45,8 @@ This library provides the generic [`ConvertingIterable`][ConvertingIterable] tha
 
 ```java
 Iterable<Foo> iterable = ...
+
+// generated iterable yield a bar for every foo from from iterator
 Iterable<Bar> convertingIterable = new ConvertingIterable<Foo, Bar>(iterable, new Converter<Foo, Bar>(){
 
 	@Override
@@ -62,6 +66,8 @@ It can be constructed from an array or an arbitrary amount of known [`Iterables`
 ```java
 Iterable<Foo> iterable1 = ...
 Iterable<Foo> iterable2 = ...
+
+// generated iterable yield every foo from every iterator1 and iterator2
 Iterable<Foo> combinedIterable = new CombinedIterable<Foo>(iterable1, iterable2);
 ```
 
@@ -69,23 +75,17 @@ It can be constructed from an [`Iterable`][Iterable] of [`Iterables`][Iterable] 
 
 ```java
 List<Iterable<Foo>>[] iterables = ...
+
+// generated iterable yield every foo from every iterator from iterators
 Iterable<Foo> combinedIterable = new CombinedIterable<Foo>(iterables);
-```
-
-### Counting
-
-This library provides the [`CountDownIterable`][CountDownIterable] and [`CountUpIterable`][CountUpIterable] that take two integer values as bounds and yield every integer value between the given bounds, going downwards or upwards respectively.
-
-```java
-Iterable<Integer> = new CountDownIterable(10, 0); // yields 10, 9, ..., 1, 0
-Iterable<Integer> = new CountUpIterable(0, 10); // yields 0, 1, ..., 9, 10
 ```
 
 ### Handling of `null` values
 
-For situations where it is necessary to provide an [`Iterable`][Iterable], but no meaningful [`Iterable`][Iterable] is available, it might be useful to create an [`EmptyIterable`][EmptyIterable]. An [`EmptyIterable`][EmptyIterable] generates [`Iterators`][Iterator] that don't yield any values, buf fulfil the [`Iterator`][Iterator] contract.
+For situations where it is necessary to provide an [`Iterable`][Iterable], but no meaningful [`Iterable`][Iterable] is available, it might be useful to create an [`EmptyIterable`][EmptyIterable]. An [`EmptyIterable`][EmptyIterable] generates [`Iterators`][Iterator] that don't yield any values, but fulfill the [`Iterator`][Iterator] contract.
 
 ```java
+// generated iterable yield nothing
 Iterable<Foo> = new EmptyIterable<Foo>();
 ```
 
@@ -93,6 +93,8 @@ For situations where some [`Iterable`][Iterable] is obtained and passed along, i
 
 ```java
 Iterable<Foo> iterable = ...
+
+// generated iterable yield every foo from iterator of nothing, if iterator is null
 iterable = new NullSaveIterable(iterable);
 ```
 
@@ -100,12 +102,28 @@ For situations where some [`Iterable`][Iterable] is obtained, it might be useful
 
 ```java
 Iterable<Foo> iterable = ...
+
+// generated iterable yield every non-null foo from iterator
 iterable = new NullFreeIterable(iterable);
+```
+
+### Iterating over single values
+
+This library provides the [`ObjectIterable`][ObjectIterable] and [`OptionalIterable`][OptionalIterable] that take an existing object and generate [`Iterators`][Iterator] that yield the given object. An [`ObjectIterable`] generates [`Iterators`][Iterator] that always yields the given object, whereas an [`OptionalIterator`] generates [`Iterators`][Iterator] that only yields the given object, if it isn't `null`. 
+
+```java
+Foo foo = ...
+
+// generated iterable yield foo, even if foo is null
+Iterable<Foo> = new ObjectIterable(foo); 
+
+// generated iterable yield foo or nothing, if foo is null
+Iterable<Foo> = new OptionalIterable(foo); 
 ```
 
 ### Iterating over primitive Arrays
 
-This library provides the following [`Iterables`][Iterable] that takes an existing primitive array and generate [`Iterators`][Iterator] that yield all elements of the given array:
+This library provides the following [`Iterables`][Iterable] that take existing primitive arrays and generate [`Iterators`][Iterator] that yield all elements of the given array:
 
 - [`BooleanArrayIterable`][BooleanArrayIterable]
 - [`ByteArrayIterable`][ByteArrayIterable]
@@ -118,6 +136,8 @@ This library provides the following [`Iterables`][Iterable] that takes an existi
 
 ```java
 boolean[] booleans = ...
+
+// generated iterables yield every boolean from booleans
 Iterable<Boolean> = new BooleanArrayIterable(booleans);
 ```
 
@@ -127,7 +147,21 @@ This library provides the generic [`ArrayIterable`][ArrayIterable] that takes an
 
 ```java
 Foo[] foos = ...
+
+// generated iterables yield every foo from foos
 Iterable<Foo> = new ArrayIterable(foos);
+```
+
+### Counting
+
+This library provides the [`CountDownIterable`][CountDownIterable] and [`CountUpIterable`][CountUpIterable] that take two integer values as bounds and yield every integer value between the given bounds, going downwards or upwards respectively.
+
+```java
+// generated iterables yield 10, 9, ..., 1, 0
+Iterable<Integer> = new CountDownIterable(10, 0);
+
+// generated iterables yield 0, 1, ..., 9, 10
+Iterable<Integer> = new CountUpIterable(0, 10); 
 ```
 
 [ArrayIterable]: http://static.javadoc.io/net.markenwerk/commons-iterables/1.1.4/index.html?net/markenwerk/commons/iterables/ArrayIterable.html
@@ -146,6 +180,8 @@ Iterable<Foo> = new ArrayIterable(foos);
 [LongArrayIterable]: http://static.javadoc.io/net.markenwerk/commons-iterables/1.1.4/index.html?net/markenwerk/commons/iterables/LongArrayIterable.html
 [NullFreeIterable]: http://static.javadoc.io/net.markenwerk/commons-iterables/1.1.4/index.html?net/markenwerk/commons/iterables/NullFreeIterable.html
 [NullSaveIterable]: http://static.javadoc.io/net.markenwerk/commons-iterables/1.1.4/index.html?net/markenwerk/commons/iterables/NullSaveIterable.html
+[ObjectIterable]: http://static.javadoc.io/net.markenwerk/commons-iterables/1.1.4/index.html?net/markenwerk/commons/iterables/ObjectIterable.html
+[OptionalIterable]: http://static.javadoc.io/net.markenwerk/commons-iterables/1.1.4/index.html?net/markenwerk/commons/iterables/OptionalIterable.html
 [ShortArrayIterable]: http://static.javadoc.io/net.markenwerk/commons-iterables/1.1.4/index.html?net/markenwerk/commons/iterables/ShortArrayIterable.html
 
 [Converter]: http://static.javadoc.io/net.markenwerk/commons-interfaces/2.0.0/index.html?net/markenwerk/commons/interfaces/Converter.html
