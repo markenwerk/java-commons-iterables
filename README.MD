@@ -109,7 +109,7 @@ iterable = new NullFreeIterable(iterable);
 
 ### Iterating over single values
 
-This library provides the [`ObjectIterable`][ObjectIterable] and [`OptionalIterable`][OptionalIterable] that take an existing object and generate [`Iterators`][Iterator] that yield the given object. An [`ObjectIterable`] generates [`Iterators`][Iterator] that always yields the given object, whereas an [`OptionalIterator`] generates [`Iterators`][Iterator] that only yields the given object, if it isn't `null`. 
+This library provides the [`ObjectIterable`][ObjectIterable] and [`OptionalIterable`][OptionalIterable] that take an existing object and generate [`Iterators`][Iterator] that yield the given object. An [`ObjectIterable`][ObjectIterable] generates [`Iterators`][Iterator] that always yields the given object, whereas an [`OptionalIterator`][OptionalIterator] generates [`Iterators`][Iterator] that only yields the given object, if it isn't `null`. 
 
 ```java
 Foo foo = ...
