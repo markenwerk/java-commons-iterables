@@ -4,12 +4,24 @@
 [![Coverage Status](https://coveralls.io/repos/markenwerk/java-commons-iterables/badge.svg?branch=master&service=github)](https://coveralls.io/github/markenwerk/java-commons-iterables?branch=master)
 [![Dependency Status](https://www.versioneye.com/user/projects/564f37bbff016c0033000471/badge.svg)](https://www.versioneye.com/user/projects/564f37bbff016c0033000471)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/commons-iterables/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/commons-iterables)
-
-This is a collection of companion iterators for [some commonly useful `Iterable` implementations](https://github.com/markenwerk/java-commons-iterators).
+[![Java SE 6](https://img.shields.io/badge/java-SE_6-brightgreen.svg)](http://docs.oracle.com/javase/6/docs/api/)
+[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/markenwerk/java-commons-iterables/blob/master/LICENSE)
 
 ## Overview
 
-This library is hosted in the [Maven Central Repository](http://search.maven.org/#artifactdetails|net.markenwerk|java-commons-iterables|1.1.5|jar). You can use it with the following coordinates:
+This is a collection of companion iterators for [some commonly useful `Iterable` implementations](https://github.com/markenwerk/java-commons-iterators) for the following use cases:
+
+- [Filtering and Converting](#filtering-and-converting)
+- [Combining multiple `Iterators`](#combining-multiple-iterators)
+- [Interspersing infix value](#interspersing-infix-value)
+- [Looking ahead](#looking-ahead)
+- [Handling of null values](#handling-of-null-values)
+- [Iterating over single values](#iterating-over-single-values)
+- [Iterating over primitive arrays](#iterating-over-non-primitive-arrays)
+- [Iterating over non-primitive arrays](#iterating-over-primitive-arrays)
+- [Counting up and down](#counting-up-and-down)
+
+This library is hosted in the [Maven Central Repository](https://maven-badges.herokuapp.com/maven-central/net.markenwerk/commons-iterables). You can use it with the following coordinates:
 
 ```xml
 <dependency>
@@ -19,7 +31,7 @@ This library is hosted in the [Maven Central Repository](http://search.maven.org
 </dependency>
 ```
 
-Consult the [usage description](#usage) and [Javadoc](http://markenwerk.github.io/java-commons-iterables/javadoc/1.1.5/index.html) for further information.
+Consult the [usage description](#usage) and [Javadoc](http://markenwerk.github.io/java-commons-iterables/index.html) for further information.
 
 ## Usage
 
@@ -78,6 +90,45 @@ List<Iterable<Foo>>[] iterables = ...
 
 // generated iterable yield every foo from every iterator from iterators
 Iterable<Foo> combinedIterable = new CombinedIterable<Foo>(iterables);
+```
+
+### Interspersing infix value
+
+This library provides the generic [`InfixingIterable`][InfixingIterable] that takes an existing [`Iterable`][Iterable] and a single value that is used as an infix and interspersed between all values yielded by the given [`Iterable`][Iterable]
+
+```java
+Foo infix = ...
+Iterable<Foo> iterable = ...
+
+// generated iterable yields every foo from iterator, interspersed with the infix
+Iterable<Foo> infixingIterable = new InfixingIterable<Foo>(iterator, infix);
+```
+
+### Looking ahead
+
+This library provides the generic [`LookAheadIterable`][LookAheadIterable] that takes an existing [`Iterable`][Iterable] and yield every value yielded by the given [`Iterable`][Iterable] wrapped in a [`LookAhead`][LookAhead] that also contains the next value. This allows to peak into the future, while iterating through the given [`Iterable`][Iterable].
+
+```java
+Iterable<Foo> iterable = ...
+
+// generated iterator yields a look ahead for every foo from iterator
+Iterable<LookAhead<Foo>> lookAheadIterable = new LookAheadIterable<Foo>(iterator);
+```
+
+A [`LookAheadIterable`][LookAheadIterable] can be used to easily perform actions between every element yielded by the original [`Iterable`][Iterable].
+
+```java
+for (LookAhead<Foo> lookAhead : lookAheadIterable) {
+    // returns the current foo
+    Foo currentFoo = lookAhead.get() 
+    doForEveryFoo(currentFoo);
+    // returns whether the look ahead has a next value
+    if (lookAhead.hasNext()) {  
+        // returns the next foo
+        Foo nextFoo = lookAhead.getNext();
+        doBetweenFoos(currentFoo, nextFoo);
+    }  
+}
 ```
 
 ### Handling of `null` values
@@ -176,13 +227,17 @@ Iterable<Integer> = new CountUpIterable(0, 10);
 [EmptyIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/EmptyIterable.html
 [FilteringIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/FilteringIterable.html
 [FloatArrayIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/FloatArrayIterable.html
+[InfixingIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/InfixingIterable.html
 [IntegerArrayIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/IntegerArrayIterable.html
 [LongArrayIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/LongArrayIterable.html
+[LookAheadIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/LookAheadIterable.html
 [NullFreeIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/NullFreeIterable.html
 [NullSaveIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/NullSaveIterable.html
 [ObjectIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/ObjectIterable.html
 [OptionalIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/OptionalIterable.html
 [ShortArrayIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/ShortArrayIterable.html
+
+[LookAhead]: https://markenwerk.github.io/java-commons-iterators/index.html?net/markenwerk/commons/iterators/LookAhead.html
 
 [Converter]: https://markenwerk.github.io/java-commons-interfaces/index.html?net/markenwerk/commons/interfaces/Converter.html
 [Predicate]: https://markenwerk.github.io/java-commons-interfaces/index.html?net/markenwerk/commons/interfaces/Predicate.html
