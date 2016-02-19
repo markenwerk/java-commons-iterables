@@ -32,7 +32,6 @@ import net.markenwerk.commons.iterators.CountDownIterator;
  * JUnit test for {@link CountDownIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.0.0
  */
 public class CountDownIterableTests {
 

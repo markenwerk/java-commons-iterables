@@ -36,7 +36,6 @@ import net.markenwerk.commons.iterables.FilteringIterable;
  * JUnit test for {@link FilteringIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.0.0
  */
 public class CombinedIterableTests {
 

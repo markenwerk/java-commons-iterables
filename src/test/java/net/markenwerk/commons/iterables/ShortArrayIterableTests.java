@@ -26,13 +26,10 @@ import java.util.Iterator;
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.ShortArrayIterable;
-
 /**
  * JUnit test for {@link ShortArrayIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.0.0
  */
 public class ShortArrayIterableTests {
 
@@ -53,7 +50,7 @@ public class ShortArrayIterableTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
+
 	/**
 	 * Iterate over a {@code short[]} twice.
 	 */
@@ -66,11 +63,11 @@ public class ShortArrayIterableTests {
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertEquals(Short.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
-		
+
 		Iterator<Short> iterator2 = new ShortArrayIterable(values).iterator();
 
 		Assert.assertNotSame(iterator, iterator2);
-		
+
 		Assert.assertTrue(iterator2.hasNext());
 		Assert.assertEquals(Short.valueOf(values[0]), iterator2.next());
 		Assert.assertFalse(iterator2.hasNext());

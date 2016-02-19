@@ -32,7 +32,6 @@ import net.markenwerk.commons.iterables.IntegerArrayIterable;
  * JUnit test for {@link IntegerArrayIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.0.0
  */
 public class IntegerArrayIterableTests {
 

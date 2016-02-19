@@ -32,7 +32,6 @@ import net.markenwerk.commons.iterables.DoubleArrayIterable;
  * JUnit test for {@link DoubleArrayIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.0.0
  */
 public class DoubleArrayIterableTests {
 

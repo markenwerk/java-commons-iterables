@@ -32,7 +32,6 @@ import net.markenwerk.commons.iterables.BooleanArrayIterable;
  * JUnit test for {@link BooleanArrayIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.0.0
  */
 public class BooleanArrayIterableTests {
 

@@ -32,7 +32,6 @@ import net.markenwerk.commons.iterables.LongArrayIterable;
  * JUnit test for {@link LongArrayIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.0.0
  */
 public class LongArrayIterableTests {
 
