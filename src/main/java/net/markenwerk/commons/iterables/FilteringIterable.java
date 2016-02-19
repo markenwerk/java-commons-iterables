@@ -72,7 +72,7 @@ public final class FilteringIterable<Payload> implements Iterable<Payload> {
 	 *            The {@link Predicate} to {@link Predicate#test(Object) test}
 	 *            every value yielded by the given {@link Iterable} with.
 	 * @param invertPredicate
-	 *            Whether to invert the test result and yielt values that don't
+	 *            Whether to invert the test result and yield values that don't
 	 *            satisfy the given {@link Predicate}.
 	 */
 	public FilteringIterable(Iterable<? extends Payload> iterable, Predicate<Payload> predicate, boolean invertPredicate) {
