@@ -53,7 +53,7 @@ public final class ObjectIterable<Payload> implements Iterable<Payload> {
 	}
 
 	@Override
-	public Iterator<Payload> iterator() {
+	public ObjectIterator<Payload> iterator() {
 		return new ObjectIterator<Payload>(value);
 	}
 

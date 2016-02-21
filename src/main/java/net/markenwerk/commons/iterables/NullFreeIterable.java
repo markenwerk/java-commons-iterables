@@ -55,7 +55,7 @@ public final class NullFreeIterable<Payload> implements Iterable<Payload> {
 	}
 
 	@Override
-	public Iterator<Payload> iterator() {
+	public NullFreeIterator<Payload> iterator() {
 		return new NullFreeIterator<Payload>(iterable.iterator());
 	}
 

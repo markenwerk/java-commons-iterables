@@ -71,7 +71,7 @@ public final class CombinedIterable<Payload> implements Iterable<Payload> {
 	}
 
 	@Override
-	public Iterator<Payload> iterator() {
+	public CombinedIterator<Payload> iterator() {
 		// @formatter:off
 		return new CombinedIterator<Payload>(
 			new ConvertingIterator<Iterable<? extends Payload>, Iterator<? extends Payload>>(

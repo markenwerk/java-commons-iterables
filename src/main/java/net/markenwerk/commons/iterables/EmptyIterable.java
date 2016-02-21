@@ -41,7 +41,7 @@ import net.markenwerk.commons.iterators.EmptyIterator;
 public final class EmptyIterable<Payload> implements Iterable<Payload> {
 
 	@Override
-	public Iterator<Payload> iterator() {
+	public EmptyIterator<Payload> iterator() {
 		return new EmptyIterator<Payload>();
 	}
 

@@ -72,7 +72,7 @@ public final class BooleanArrayIterable implements Iterable<Boolean> {
 	}
 
 	@Override
-	public Iterator<Boolean> iterator() {
+	public BooleanArrayIterator iterator() {
 		return null != replacement ? new BooleanArrayIterator(values, replacement) : new BooleanArrayIterator(values);
 	}
 

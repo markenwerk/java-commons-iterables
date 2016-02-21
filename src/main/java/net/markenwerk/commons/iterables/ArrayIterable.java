@@ -75,7 +75,7 @@ public final class ArrayIterable<Payload> implements Iterable<Payload> {
 	}
 
 	@Override
-	public Iterator<Payload> iterator() {
+	public ArrayIterator<Payload> iterator() {
 		return removable ? new ArrayIterator<Payload>(values, replacement) : new ArrayIterator<Payload>(values);
 	}
 

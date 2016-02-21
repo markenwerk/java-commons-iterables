@@ -49,9 +49,9 @@ public final class CountDownIterable implements Iterable<Integer> {
 	 * 
 	 * 
 	 * @param fromUpper
-	 *            The upper bound and first value to be yielded.
+	 *           The upper bound and first value to be yielded.
 	 * @param toLower
-	 *            The lower bound and last value to be yielded.
+	 *           The lower bound and last value to be yielded.
 	 */
 	public CountDownIterable(int fromUpper, int toLower) {
 		this.fromUpper = fromUpper;
@@ -59,7 +59,7 @@ public final class CountDownIterable implements Iterable<Integer> {
 	}
 
 	@Override
-	public Iterator<Integer> iterator() {
+	public CountDownIterator iterator() {
 		return new CountDownIterator(fromUpper, toLower);
 	}
 

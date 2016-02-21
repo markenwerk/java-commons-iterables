@@ -70,7 +70,7 @@ public final class FloatArrayIterable implements Iterable<Float> {
 	}
 
 	@Override
-	public Iterator<Float> iterator() {
+	public FloatArrayIterator iterator() {
 		return null != replacement ? new FloatArrayIterator(values, replacement) : new FloatArrayIterator(values);
 	}
 

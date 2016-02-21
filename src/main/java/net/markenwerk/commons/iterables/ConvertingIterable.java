@@ -67,7 +67,7 @@ public final class ConvertingIterable<From, To> implements Iterable<To> {
 	}
 
 	@Override
-	public Iterator<To> iterator() {
+	public ConvertingIterator<From, To> iterator() {
 		return new ConvertingIterator<From, To>(iterable.iterator(), converter);
 	}
 

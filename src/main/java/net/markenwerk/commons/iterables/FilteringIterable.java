@@ -82,7 +82,7 @@ public final class FilteringIterable<Payload> implements Iterable<Payload> {
 	}
 
 	@Override
-	public Iterator<Payload> iterator() {
+	public FilteringIterator<Payload> iterator() {
 		return new FilteringIterator<Payload>(iterable.iterator(), predicate, invertPredicate);
 	}
 

@@ -58,7 +58,7 @@ public final class CountUpIterable implements Iterable<Integer> {
 	}
 
 	@Override
-	public Iterator<Integer> iterator() {
+	public CountUpIterator iterator() {
 		return new CountUpIterator(fromLower, toUpper);
 	}
 

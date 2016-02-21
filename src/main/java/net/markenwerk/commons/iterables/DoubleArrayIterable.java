@@ -70,7 +70,7 @@ public final class DoubleArrayIterable implements Iterable<Double> {
 	}
 
 	@Override
-	public Iterator<Double> iterator() {
+	public DoubleArrayIterator iterator() {
 		return null != replacement ? new DoubleArrayIterator(values, replacement) : new DoubleArrayIterator(values);
 	}
 

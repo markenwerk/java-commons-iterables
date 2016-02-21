@@ -70,7 +70,7 @@ public final class ByteArrayIterable implements Iterable<Byte> {
 	}
 
 	@Override
-	public Iterator<Byte> iterator() {
+	public ByteArrayIterator iterator() {
 		return null != replacement ? new ByteArrayIterator(values, replacement) : new ByteArrayIterator(values);
 	}
 

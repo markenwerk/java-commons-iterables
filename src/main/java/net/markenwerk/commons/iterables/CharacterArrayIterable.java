@@ -72,7 +72,7 @@ public final class CharacterArrayIterable implements Iterable<Character> {
 	}
 
 	@Override
-	public Iterator<Character> iterator() {
+	public CharacterArrayIterator iterator() {
 		return null != replacement ? new CharacterArrayIterator(values, replacement) : new CharacterArrayIterator(
 				values);
 	}

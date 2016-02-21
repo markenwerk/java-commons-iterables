@@ -46,7 +46,7 @@ public final class LongArrayIterable implements Iterable<Long> {
 	 * Creates a new {@link LongArrayIterable} for the given {@code long[]}.
 	 * 
 	 * @param values
-	 *            The {@code long[]} to iterate over.
+	 *           The {@code long[]} to iterate over.
 	 */
 	public LongArrayIterable(long[] values) {
 		this(values, null);
@@ -56,9 +56,9 @@ public final class LongArrayIterable implements Iterable<Long> {
 	 * Creates a new {@link LongArrayIterable} for the given {@code long[]}.
 	 * 
 	 * @param values
-	 *            The {@code long[]} to iterate over.
+	 *           The {@code long[]} to iterate over.
 	 * @param replacement
-	 *            The value to replace removed values with.
+	 *           The value to replace removed values with.
 	 */
 	public LongArrayIterable(long[] values, long replacement) {
 		this(values, Long.valueOf(replacement));
@@ -70,7 +70,7 @@ public final class LongArrayIterable implements Iterable<Long> {
 	}
 
 	@Override
-	public Iterator<Long> iterator() {
+	public LongArrayIterator iterator() {
 		return null != replacement ? new LongArrayIterator(values, replacement) : new LongArrayIterator(values);
 	}
 

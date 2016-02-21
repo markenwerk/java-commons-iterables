@@ -70,7 +70,7 @@ public final class IntegerArrayIterable implements Iterable<Integer> {
 	}
 
 	@Override
-	public Iterator<Integer> iterator() {
+	public IntegerArrayIterator iterator() {
 		return null != replacement ? new IntegerArrayIterator(values, replacement) : new IntegerArrayIterator(values);
 	}
 

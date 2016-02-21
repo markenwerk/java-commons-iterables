@@ -21,8 +21,6 @@
  */
 package net.markenwerk.commons.iterables;
 
-import java.util.Iterator;
-
 import net.markenwerk.commons.iterators.OptionalIterator;
 
 /**
@@ -35,7 +33,7 @@ import net.markenwerk.commons.iterators.OptionalIterator;
  * {@link OptionalIterator}.
  * 
  * @param <Payload>
- *            The payload type.
+ *           The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.5
  */
@@ -47,14 +45,14 @@ public final class OptionalIterable<Payload> implements Iterable<Payload> {
 	 * Creates a new {@link OptionalIterable} for the given payload object.
 	 * 
 	 * @param value
-	 *            The payload object to iterate over.
+	 *           The payload object to iterate over.
 	 */
 	public OptionalIterable(Payload value) {
 		this.value = value;
 	}
 
 	@Override
-	public Iterator<Payload> iterator() {
+	public OptionalIterator<Payload> iterator() {
 		return new OptionalIterator<Payload>(value);
 	}
 

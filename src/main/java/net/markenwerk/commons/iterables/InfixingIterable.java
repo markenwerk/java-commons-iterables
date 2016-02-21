@@ -61,7 +61,7 @@ public final class InfixingIterable<Payload> implements Iterable<Payload> {
 	}
 
 	@Override
-	public Iterator<Payload> iterator() {
+	public InfixingIterator<Payload> iterator() {
 		return new InfixingIterator<Payload>(iterable.iterator(), infix);
 	}
 
