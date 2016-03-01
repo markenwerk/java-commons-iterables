@@ -39,7 +39,7 @@ public class CountDownIterableTests {
 	 * Count down from an upper bound that is smaller than the lower bound.
 	 */
 	@Test
-	public void countDown_upperBoundSmallerThanLowerBound() {
+	public void upperBoundSmallerThanLowerBound() {
 
 		Iterator<Integer> iterator = new CountDownIterable(1, 2).iterator();
 
@@ -51,7 +51,7 @@ public class CountDownIterableTests {
 	 * Count down from an upper bound that equals the lower bound.
 	 */
 	@Test
-	public void countDown_upperBoundEqualsLowerBound() {
+	public void upperBoundEqualsLowerBound() {
 
 		Iterator<Integer> iterator = new CountDownIterable(0, 0).iterator();
 
@@ -65,7 +65,7 @@ public class CountDownIterableTests {
 	 * Count down from an upper bound that is larger than the lower bound.
 	 */
 	@Test
-	public void countDown_upperBoundLargerThanLowerBound() {
+	public void upperBoundLargerThanLowerBound() {
 
 		Iterator<Integer> iterator = new CountDownIterable(2, 1).iterator();
 
@@ -81,7 +81,7 @@ public class CountDownIterableTests {
 	 * Count down from an upper bound that is larger than the lower bound twice.
 	 */
 	@Test
-	public void countDown_iterateTwice() {
+	public void iterateTwice() {
 
 		Iterable<Integer> iterable = new CountDownIterable(2, 1);
 		Iterator<Integer> iterator = iterable.iterator();
@@ -108,7 +108,7 @@ public class CountDownIterableTests {
 	 * Remove a value from a {@link CountDownIterator}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void countUp_remove() {
+	public void remove() {
 
 		Iterator<Integer> iterator = new CountDownIterable(1, 2).iterator();
 		iterator.remove();

@@ -37,7 +37,7 @@ public class ObjectIterableTests {
 	 * Iterate over a payload array.
 	 */
 	@Test
-	public void object_iterate() {
+	public void iterate() {
 
 		Object value = new Object();
 		Iterator<Object> iterator = new ObjectIterable<Object>(value).iterator();
@@ -52,7 +52,7 @@ public class ObjectIterableTests {
 	 * Iterate over a payload array twice.
 	 */
 	@Test
-	public void object_iterateTwice() {
+	public void iterateTwice() {
 
 		Object value = new Object();
 		Iterable<Object> iterable = new ObjectIterable<Object>(value);
@@ -76,7 +76,7 @@ public class ObjectIterableTests {
 	 * Iterate over a payload array.
 	 */
 	@Test
-	public void object_iterateNull() {
+	public void iterateNull() {
 
 		Iterator<Object> iterator = new ObjectIterable<Object>(null).iterator();
 

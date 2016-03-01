@@ -39,7 +39,7 @@ public class FloatArrayIterableTests {
 	 * Iterate over a {@code float[]}.
 	 */
 	@Test
-	public void floatArray_iterate() {
+	public void iterate() {
 
 		float[] values = new float[] { 1, 2 };
 		Iterator<Float> iterator = new FloatArrayIterable(values).iterator();
@@ -57,7 +57,7 @@ public class FloatArrayIterableTests {
 	 * Iterate over a {@code float[]} twice.
 	 */
 	@Test
-	public void floatArray_iterateTwice() {
+	public void iterateTwice() {
 
 		float[] values = new float[] { 1 };
 		Iterable<Float> iterable = new FloatArrayIterable(values);
@@ -81,7 +81,7 @@ public class FloatArrayIterableTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void floatArray_iterateNullArray() {
+	public void iterateNullArray() {
 
 		Iterator<Float> iterator = new FloatArrayIterable(null).iterator();
 
@@ -93,7 +93,7 @@ public class FloatArrayIterableTests {
 	 * Remove a value in a {@code float[]}.
 	 */
 	@Test
-	public void floatArray_removeWithFallback() {
+	public void removeWithFallback() {
 
 		float replacement = 0;
 		float[] values = new float[] { 1 };
@@ -113,7 +113,7 @@ public class FloatArrayIterableTests {
 	 * Remove a value in a {@code float[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void floatArray_removeWithoutFallback() {
+	public void removeWithoutFallback() {
 
 		float[] values = new float[] { 1 };
 		Iterator<Float> iterator = new FloatArrayIterable(values).iterator();

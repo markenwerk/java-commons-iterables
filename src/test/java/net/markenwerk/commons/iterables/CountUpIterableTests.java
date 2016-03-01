@@ -40,7 +40,7 @@ public class CountUpIterableTests {
 	 * Count up from a lower bound that is larger than the upper bound.
 	 */
 	@Test
-	public void countUp_lowerBoundLargerThanUpperBound() {
+	public void lowerBoundLargerThanUpperBound() {
 
 		Iterator<Integer> iterator = new CountUpIterable(2, 1).iterator();
 
@@ -52,7 +52,7 @@ public class CountUpIterableTests {
 	 * Count up from a lower bound that equals the upper bound.
 	 */
 	@Test
-	public void countUp_lowerBoundEqualsUpperBound() {
+	public void lowerBoundEqualsUpperBound() {
 
 		Iterator<Integer> iterator = new CountUpIterable(0, 0).iterator();
 
@@ -66,7 +66,7 @@ public class CountUpIterableTests {
 	 * Count up from a lower bound that is smaller than the upper bound.
 	 */
 	@Test
-	public void countUp_lowerBoundSmallerThanUpperBound() {
+	public void lowerBoundSmallerThanUpperBound() {
 
 		Iterator<Integer> iterator = new CountUpIterable(1, 2).iterator();
 
@@ -82,7 +82,7 @@ public class CountUpIterableTests {
 	 * Count up from a lower bound that is smaller than the upper bound twice.
 	 */
 	@Test
-	public void countUp_iterateTwice() {
+	public void iterateTwice() {
 
 		Iterable<Integer> iterable = new CountUpIterable(1, 2);
 		Iterator<Integer> iterator = iterable.iterator();
@@ -111,7 +111,7 @@ public class CountUpIterableTests {
 	 * Remove a value from a {@link CountUpIterator}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void countUp_remove() {
+	public void remove() {
 
 		Iterator<Integer> iterator = new CountUpIterable(1, 2).iterator();
 		iterator.remove();

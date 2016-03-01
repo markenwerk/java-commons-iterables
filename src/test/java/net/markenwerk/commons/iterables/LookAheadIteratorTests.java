@@ -52,7 +52,7 @@ public class LookAheadIteratorTests {
 	 * Iterate over an {@link Iterator} with one element.
 	 */
 	@Test
-	public void object_iterateOne() {
+	public void iterateOne() {
 
 		Object[] values = new Object[] { new Object() };
 		Iterator<LookAhead<Object>> iterator = new LookAheadIterable<Object>(new ArrayIterable<Object>(values))
@@ -72,7 +72,7 @@ public class LookAheadIteratorTests {
 	 * Iterate over an {@link Iterator} with two elements.
 	 */
 	@Test
-	public void object_iterateTwo() {
+	public void iterateTwo() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 		Iterator<LookAhead<Object>> iterator = new LookAheadIterable<Object>(new ArrayIterable<Object>(values))
@@ -99,7 +99,7 @@ public class LookAheadIteratorTests {
 	 * Iterate over an {@link Iterator} with three elements.
 	 */
 	@Test
-	public void object_iterateThree() {
+	public void iterateThree() {
 
 		Object[] values = new Object[] { new Object(), new Object(), new Object() };
 		Iterator<LookAhead<Object>> iterator = new LookAheadIterable<Object>(new ArrayIterable<Object>(values))

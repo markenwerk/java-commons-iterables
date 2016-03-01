@@ -37,7 +37,7 @@ public class InfixingIterableTests {
 	 * Iterate over an empty iterator.
 	 */
 	@Test
-	public void lookAhead_iterateEmpty() {
+	public void iterateEmpty() {
 
 		Object infix = new Object();
 		Iterator<Object> iterator = new InfixingIterable<Object>(new EmptyIterable<Object>(), infix).iterator();
@@ -50,7 +50,7 @@ public class InfixingIterableTests {
 	 * Iterate over an {@link Iterator} with one element.
 	 */
 	@Test
-	public void object_iterateOne() {
+	public void iterateOne() {
 
 		Object infix = new Object();
 		Object[] values = new Object[] { new Object() };
@@ -66,7 +66,7 @@ public class InfixingIterableTests {
 	 * Iterate over an {@link Iterator} with two elements.
 	 */
 	@Test
-	public void object_iterateTwo() {
+	public void iterateTwo() {
 
 		Object infix = new Object();
 		Object[] values = new Object[] { new Object(), new Object() };
@@ -86,7 +86,7 @@ public class InfixingIterableTests {
 	 * Iterate over an {@link Iterator} with three elements.
 	 */
 	@Test
-	public void object_iterateThree() {
+	public void iterateThree() {
 
 		Object infix = new Object();
 		Object[] values = new Object[] { new Object(), new Object(), new Object() };

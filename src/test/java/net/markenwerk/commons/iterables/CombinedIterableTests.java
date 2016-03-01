@@ -44,7 +44,7 @@ public class CombinedIterableTests {
 	 */
 	@Test
 	@SuppressWarnings("unchecked")
-	public void combined_noIterators() {
+	public void noIterators() {
 
 		Iterator<Object> iterator = new CombinedIterable<Object>().iterator();
 
@@ -57,7 +57,7 @@ public class CombinedIterableTests {
 	 */
 	@Test
 	@SuppressWarnings("unchecked")
-	public void combined_oneIterator() {
+	public void oneIterator() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 		Iterator<Object> iterator = new CombinedIterable<Object>(new ArrayIterable<Object>(values)).iterator();
@@ -75,7 +75,7 @@ public class CombinedIterableTests {
 	 */
 	@Test
 	@SuppressWarnings("unchecked")
-	public void combined_iterablesArray() {
+	public void iterablesArray() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 		Iterator<Object> iterator = new CombinedIterable<Object>(new ArrayIterable<Object>(values),
@@ -97,7 +97,7 @@ public class CombinedIterableTests {
 	 * Iterate over multiple iterator.
 	 */
 	@Test
-	public void combined_iterablesIterable() {
+	public void iterablesIterable() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 
@@ -123,7 +123,7 @@ public class CombinedIterableTests {
 	 */
 	@Test
 	@SuppressWarnings("unchecked")
-	public void combined_iterateTwice() {
+	public void iterateTwice() {
 
 		Object[] values = new Object[] { new Object()};
 		Iterable<Object> iterable = new CombinedIterable<Object>(new ArrayIterable<Object>(values));
@@ -148,7 +148,7 @@ public class CombinedIterableTests {
 	 */
 	@Test
 	@SuppressWarnings("unchecked")
-	public void combined_remove() {
+	public void remove() {
 
 		Object replacement = new Object();
 		Object[] values = new Object[] { new Object() };

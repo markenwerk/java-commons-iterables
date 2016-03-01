@@ -37,7 +37,7 @@ public class ShortArrayIterableTests {
 	 * Iterate over a {@code short[]}.
 	 */
 	@Test
-	public void shortArray_iterate() {
+	public void iterate() {
 
 		short[] values = new short[] { 1, 2 };
 		Iterable<Short> iterable = new ShortArrayIterable(values);
@@ -55,7 +55,7 @@ public class ShortArrayIterableTests {
 	 * Iterate over a {@code short[]} twice.
 	 */
 	@Test
-	public void shortArray_iterateTwice() {
+	public void iterateTwice() {
 
 		short[] values = new short[] { 1 };
 		Iterator<Short> iterator = new ShortArrayIterable(values).iterator();
@@ -78,7 +78,7 @@ public class ShortArrayIterableTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void shortArray_iterateNullArray() {
+	public void iterateNullArray() {
 
 		Iterator<Short> iterator = new ShortArrayIterable(null).iterator();
 
@@ -90,7 +90,7 @@ public class ShortArrayIterableTests {
 	 * Remove a value in a {@code short[]}.
 	 */
 	@Test
-	public void shortArray_removeWithFallback() {
+	public void removeWithFallback() {
 
 		short replacement = 0;
 		short[] values = new short[] { 1 };
@@ -110,7 +110,7 @@ public class ShortArrayIterableTests {
 	 * Remove a value in a {@code short[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void shortArray_removeWithoutFallback() {
+	public void removeWithoutFallback() {
 
 		short[] values = new short[] { 1 };
 		Iterator<Short> iterator = new ShortArrayIterable(values).iterator();

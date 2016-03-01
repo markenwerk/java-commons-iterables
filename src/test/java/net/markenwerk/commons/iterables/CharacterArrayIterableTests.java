@@ -39,7 +39,7 @@ public class CharacterArrayIterableTests {
 	 * Iterate over a {@code char[]}.
 	 */
 	@Test
-	public void charArray_iterate() {
+	public void iterate() {
 
 		char[] values = new char[] { 1, 2 };
 		Iterator<Character> iterator = new CharacterArrayIterable(values).iterator();
@@ -56,7 +56,7 @@ public class CharacterArrayIterableTests {
 	 * Iterate over a {@code char[]} twice.
 	 */
 	@Test
-	public void charArray_iterateTwice() {
+	public void iterateTwice() {
 
 		char[] values = new char[] { 1 };
 		Iterable<Character> iterable = new CharacterArrayIterable(values);
@@ -80,7 +80,7 @@ public class CharacterArrayIterableTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void characterArray_iterateNullArray() {
+	public void iterateNullArray() {
 
 		Iterator<Character> iterator = new CharacterArrayIterable(null).iterator();
 
@@ -92,7 +92,7 @@ public class CharacterArrayIterableTests {
 	 * Remove a value in a {@code char[]}.
 	 */
 	@Test
-	public void charArray_removeWithFallback() {
+	public void removeWithFallback() {
 
 		char replacement = 0;
 		char[] values = new char[] { 1 };
@@ -112,7 +112,7 @@ public class CharacterArrayIterableTests {
 	 * Remove a value in a {@code char[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void charArray_removeWithoutFallback() {
+	public void removeWithoutFallback() {
 
 		char[] values = new char[] { 1 };
 		Iterator<Character> iterator = new CharacterArrayIterable(values).iterator();

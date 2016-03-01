@@ -39,7 +39,7 @@ public class EmptyIterableTests {
 	 * Iterate over an {@link EmptyIterable}.
 	 */
 	@Test
-	public void empty_iterate() {
+	public void iterate() {
 
 		Iterator<Object> iterator = new EmptyIterable<Object>().iterator();
 
@@ -52,7 +52,7 @@ public class EmptyIterableTests {
 	 * Iterate over an {@link EmptyIterable} twice.
 	 */
 	@Test
-	public void empty_iterateTwice() {
+	public void iterateTwice() {
 
 		Iterable<Object> iterable = new EmptyIterable<Object>();
 		Iterator<Object> iterator = iterable.iterator();
@@ -74,7 +74,7 @@ public class EmptyIterableTests {
 	 * Iterate over an {@link EmptyIterable}.
 	 */
 	@Test
-	public void empty_remove() {
+	public void remove() {
 
 		Iterator<Object> iterator = new EmptyIterable<Object>().iterator();
 		iterator.remove();

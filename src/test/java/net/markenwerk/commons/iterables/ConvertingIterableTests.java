@@ -57,7 +57,7 @@ public class ConvertingIterableTests {
 	 * hash values.
 	 */
 	@Test
-	public void converting_iterate() {
+	public void iterate() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 		Iterator<Wrapper> iterator = new ConvertingIterable<Object, Wrapper>(new ArrayIterable<Object>(values),
@@ -76,7 +76,7 @@ public class ConvertingIterableTests {
 	 * hash values twice.
 	 */
 	@Test
-	public void converting_iterateTwice() {
+	public void iterateTwice() {
 
 		Object[] values = new Object[] { new Object() };
 		Iterable<Wrapper> iterable = new ConvertingIterable<Object, Wrapper>(new ArrayIterable<Object>(values),
@@ -101,7 +101,7 @@ public class ConvertingIterableTests {
 	 * Remove an object from the underlying {@link Iterable}.
 	 */
 	@Test
-	public void converting_remove() {
+	public void remove() {
 
 		Object replacement = new Object();
 		Object[] values = new Object[] { new Object() };

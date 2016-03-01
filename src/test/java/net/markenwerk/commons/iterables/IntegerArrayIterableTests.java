@@ -39,7 +39,7 @@ public class IntegerArrayIterableTests {
 	 * Iterate over a {@code int[]}.
 	 */
 	@Test
-	public void intArray_iterate() {
+	public void iterate() {
 
 		int[] values = new int[] { 1, 2 };
 		Iterator<Integer> iterator = new IntegerArrayIterable(values).iterator();
@@ -56,7 +56,7 @@ public class IntegerArrayIterableTests {
 	 * Iterate over a {@code int[]} twice.
 	 */
 	@Test
-	public void intArray_iterateTwice() {
+	public void iterateTwice() {
 
 		int[] values = new int[] { 1 };
 		Iterable<Integer> iterable = new IntegerArrayIterable(values);
@@ -80,7 +80,7 @@ public class IntegerArrayIterableTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void integerArray_iterateNullArray() {
+	public void iterateNullArray() {
 
 		Iterator<Integer> iterator = new IntegerArrayIterable(null).iterator();
 
@@ -92,7 +92,7 @@ public class IntegerArrayIterableTests {
 	 * Remove a value in a {@code integer[]}.
 	 */
 	@Test
-	public void integerArray_removeWithFallback() {
+	public void removeWithFallback() {
 
 		int replacement = 0;
 		int[] values = new int[] { 1 };
@@ -112,7 +112,7 @@ public class IntegerArrayIterableTests {
 	 * Remove a value in a {@code integer[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void integerArray_removeWithoutFallback() {
+	public void removeWithoutFallback() {
 
 		int[] values = new int[] { 1 };
 		Iterator<Integer> iterator = new IntegerArrayIterable(values).iterator();

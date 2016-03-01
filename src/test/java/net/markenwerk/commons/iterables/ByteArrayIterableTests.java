@@ -39,7 +39,7 @@ public class ByteArrayIterableTests {
 	 * Iterate over a {@code byte[]}.
 	 */
 	@Test
-	public void byteArray_iterate() {
+	public void iterate() {
 
 		byte[] values = new byte[] { 1, 2 };
 		Iterator<Byte> iterator = new ByteArrayIterable(values).iterator();
@@ -57,7 +57,7 @@ public class ByteArrayIterableTests {
 	 * Iterate over a {@code byte[]} twice.
 	 */
 	@Test
-	public void byteArray_iterateTwice() {
+	public void iterateTwice() {
 
 		byte[] values = new byte[] { 1 };
 		Iterable<Byte> iterable = new ByteArrayIterable(values);
@@ -81,7 +81,7 @@ public class ByteArrayIterableTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void byteArray_iterateNullArray() {
+	public void iterateNullArray() {
 
 		Iterator<Byte> iterator = new ByteArrayIterable(null).iterator();
 
@@ -93,7 +93,7 @@ public class ByteArrayIterableTests {
 	 * Remove a value in a {@code byte[]}.
 	 */
 	@Test
-	public void byteArray_removeWithFallback() {
+	public void removeWithFallback() {
 
 		byte replacement = 0;
 		byte[] values = new byte[] { 1 };
@@ -113,7 +113,7 @@ public class ByteArrayIterableTests {
 	 * Remove a value in a {@code byte[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void byteArray_removeWithoutFallback() {
+	public void removeWithoutFallback() {
 
 		byte[] values = new byte[] { 1 };
 		Iterator<Byte> iterator = new ByteArrayIterable(values).iterator();

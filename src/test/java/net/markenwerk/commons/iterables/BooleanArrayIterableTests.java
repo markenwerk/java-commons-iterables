@@ -39,7 +39,7 @@ public class BooleanArrayIterableTests {
 	 * Iterate over a {@code boolean[]}.
 	 */
 	@Test
-	public void booleanArray_iterate() {
+	public void iterate() {
 
 		boolean[] values = new boolean[] { true, false };
 		Iterator<Boolean> iterator = new BooleanArrayIterable(values).iterator();
@@ -57,7 +57,7 @@ public class BooleanArrayIterableTests {
 	 * Iterate over a {@code boolean[]} twice.
 	 */
 	@Test
-	public void booleanArray_iterateTwice() {
+	public void iterateTwice() {
 
 		boolean[] values = new boolean[] { true };
 		Iterable<Boolean> iterable = new BooleanArrayIterable(values);
@@ -81,7 +81,7 @@ public class BooleanArrayIterableTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void booleanArray_iterateNullArray() {
+	public void iterateNullArray() {
 
 		Iterator<Boolean> iterator = new BooleanArrayIterable(null).iterator();
 
@@ -93,7 +93,7 @@ public class BooleanArrayIterableTests {
 	 * Remove a value in a {@code boolean[]}.
 	 */
 	@Test
-	public void booleanArray_removeWithFallback() {
+	public void removeWithFallback() {
 
 		boolean replacement = false;
 		boolean[] values = new boolean[] { true };
@@ -113,7 +113,7 @@ public class BooleanArrayIterableTests {
 	 * Remove a value in a {@code boolean[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void booleanArray_removeWithoutFallback() {
+	public void removeWithoutFallback() {
 
 		boolean[] values = new boolean[] { true };
 		Iterator<Boolean> iterator = new BooleanArrayIterable(values).iterator();

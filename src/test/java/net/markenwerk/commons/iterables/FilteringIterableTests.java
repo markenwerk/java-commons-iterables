@@ -49,7 +49,7 @@ public class FilteringIterableTests {
 	 * {@link Iterable}.
 	 */
 	@Test
-	public void filtering_unsatisfyingAtFront() {
+	public void unsatisfyingAtFront() {
 
 		Object[] values = new Object[] { UNSATISFYING_OBJECT, new Object() };
 		Iterator<Object> iterator = new FilteringIterable<Object>(new ArrayIterable<Object>(values),
@@ -66,7 +66,7 @@ public class FilteringIterableTests {
 	 * {@link Iterable}.
 	 */
 	@Test
-	public void filtering_unsatisfyingInMiddle() {
+	public void unsatisfyingInMiddle() {
 
 		Object[] values = new Object[] { new Object(), UNSATISFYING_OBJECT, new Object() };
 		Iterator<Object> iterator = new FilteringIterable<Object>(new ArrayIterable<Object>(values),
@@ -85,7 +85,7 @@ public class FilteringIterableTests {
 	 * {@link Iterable}.
 	 */
 	@Test
-	public void filtering_unsatisfyingAtEnd() {
+	public void unsatisfyingAtEnd() {
 
 		Object[] values = new Object[] { new Object(), UNSATISFYING_OBJECT };
 		Iterator<Object> iterator = new FilteringIterable<Object>(new ArrayIterable<Object>(values),
@@ -102,7 +102,7 @@ public class FilteringIterableTests {
 	 * twice.
 	 */
 	@Test
-	public void filtering_iterateTwice() {
+	public void iterateTwice() {
 
 		Object[] values = new Object[] { UNSATISFYING_OBJECT, new Object() };
 		Iterable<Object> iterable = new FilteringIterable<Object>(new ArrayIterable<Object>(values),
@@ -128,7 +128,7 @@ public class FilteringIterableTests {
 	 * {@link Iterable}.
 	 */
 	@Test
-	public void filtering_invertedPredicate() {
+	public void invertedPredicate() {
 
 		Object[] values = new Object[] { new Object(), UNSATISFYING_OBJECT, new Object() };
 		Iterator<Object> iterator = new FilteringIterable<Object>(new ArrayIterable<Object>(values),
@@ -144,7 +144,7 @@ public class FilteringIterableTests {
 	 * Remove an object from the underlying {@link Iterable}.
 	 */
 	@Test
-	public void filtering_remove() {
+	public void remove() {
 
 		Object replacement = new Object();
 		Object[] values = new Object[] { new Object() };

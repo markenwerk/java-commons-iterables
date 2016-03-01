@@ -41,7 +41,7 @@ public class NullFreeIterableTests {
 	 * {@link Iterable}.
 	 */
 	@Test
-	public void nullFree_nullAtFront() {
+	public void nullAtFront() {
 
 		Object[] values = new Object[] { null, new Object() };
 		Iterator<Object> iterator = new NullFreeIterable<Object>(new ArrayIterable<Object>(values)).iterator();
@@ -57,7 +57,7 @@ public class NullFreeIterableTests {
 	 * {@link Iterable}.
 	 */
 	@Test
-	public void nullFree_nullInMiddle() {
+	public void nullInMiddle() {
 
 		Object[] values = new Object[] { new Object(), null, new Object() };
 		Iterator<Object> iterator = new NullFreeIterable<Object>(new ArrayIterable<Object>(values)).iterator();
@@ -75,7 +75,7 @@ public class NullFreeIterableTests {
 	 * {@link Iterable}.
 	 */
 	@Test
-	public void nullFree_nullAtEnd() {
+	public void nullAtEnd() {
 
 		Object[] values = new Object[] { new Object(), null };
 		Iterator<Object> iterator = new NullFreeIterable<Object>(new ArrayIterable<Object>(values)).iterator();
@@ -92,7 +92,7 @@ public class NullFreeIterableTests {
 	 * {@link Iterable} twice.
 	 */
 	@Test
-	public void nullFree_iterateTwice() {
+	public void iterateTwice() {
 
 		Object[] values = new Object[] { null, new Object() };
 		Iterable<Object> iterable = new NullFreeIterable<Object>(new ArrayIterable<Object>(values));
@@ -116,7 +116,7 @@ public class NullFreeIterableTests {
 	 * Remove an object from the underlying {@link Iterable}.
 	 */
 	@Test
-	public void nullFree_remove() {
+	public void remove() {
 
 		Object replacement = new Object();
 		Object[] values = new Object[] { new Object() };

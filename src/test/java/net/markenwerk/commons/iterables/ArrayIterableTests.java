@@ -39,7 +39,7 @@ public class ArrayIterableTests {
 	 * Iterate over a payload array.
 	 */
 	@Test
-	public void array_iterate() {
+	public void iterate() {
 
 		Object[] values = new Object[] { new Object(), new Object() };
 		Iterator<Object> iterator = new ArrayIterable<Object>(values).iterator();
@@ -56,7 +56,7 @@ public class ArrayIterableTests {
 	 * Iterate over a payload array twice.
 	 */
 	@Test
-	public void array_iterateTwice() {
+	public void iterateTwice() {
 
 		Object[] values = new Object[] { new Object(), };
 		Iterable<Object> iterable = new ArrayIterable<Object>(values);
@@ -80,7 +80,7 @@ public class ArrayIterableTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void array_iterateNullArray() {
+	public void iterateNullArray() {
 
 		Iterator<Object> iterator = new ArrayIterable<Object>(null).iterator();
 
@@ -92,7 +92,7 @@ public class ArrayIterableTests {
 	 * Remove a value in a {@code short[]}.
 	 */
 	@Test
-	public void array_removeWithFallback() {
+	public void removeWithFallback() {
 
 		Object replacement = new Object();
 		Object[] values = new Object[] { new Object() };
@@ -112,7 +112,7 @@ public class ArrayIterableTests {
 	 * Remove a value in a {@code short[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void array_removeWithoutFallback() {
+	public void removeWithoutFallback() {
 
 		Object[] values = new Object[] { new Object() };
 		Iterator<Object> iterator = new ArrayIterable<Object>(values).iterator();

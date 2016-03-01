@@ -39,7 +39,7 @@ public class LongArrayIterableTests {
 	 * Iterate over a {@code long[]}.
 	 */
 	@Test
-	public void longArray_iterate() {
+	public void iterate() {
 
 		long[] values = new long[] { 1, 2 };
 		Iterator<Long> iterator = new LongArrayIterable(values).iterator();
@@ -57,7 +57,7 @@ public class LongArrayIterableTests {
 	 * Iterate over a {@code long[]} twice.
 	 */
 	@Test
-	public void longArray_iterateTwice() {
+	public void iterateTwice() {
 
 		long[] values = new long[] { 1 };
 		Iterable<Long> iterable = new LongArrayIterable(values);
@@ -81,7 +81,7 @@ public class LongArrayIterableTests {
 	 * Iterate over a {@code null} array.
 	 */
 	@Test
-	public void longArray_iterateNullArray() {
+	public void iterateNullArray() {
 
 		Iterator<Long> iterator = new LongArrayIterable(null).iterator();
 
@@ -93,7 +93,7 @@ public class LongArrayIterableTests {
 	 * Remove a value in a {@code long[]}.
 	 */
 	@Test
-	public void longArray_removeWithFallback() {
+	public void removeWithFallback() {
 
 		long replacement = 0;
 		long[] values = new long[] { 1 };
@@ -113,7 +113,7 @@ public class LongArrayIterableTests {
 	 * Remove a value in a {@code long[]}.
 	 */
 	@Test(expected = UnsupportedOperationException.class)
-	public void longArray_removeWithoutFallback() {
+	public void removeWithoutFallback() {
 
 		long[] values = new long[] { 1 };
 		Iterator<Long> iterator = new LongArrayIterable(values).iterator();
