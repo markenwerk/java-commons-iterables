@@ -27,11 +27,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * JUnit test for {@link InfixingIterableTests}.
+ * JUnit test for {@link InfixedIterableTests}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  */
-public class InfixingIterableTests {
+public class InfixedIterableTests {
 
 	/**
 	 * Iterate over an empty iterator.
@@ -40,7 +40,7 @@ public class InfixingIterableTests {
 	public void iterateEmpty() {
 
 		Object infix = new Object();
-		Iterator<Object> iterator = new InfixingIterable<Object>(new EmptyIterable<Object>(), infix).iterator();
+		Iterator<Object> iterator = new InfixedIterable<Object>(new EmptyIterable<Object>(), infix).iterator();
 
 		Assert.assertFalse(iterator.hasNext());
 
@@ -54,7 +54,7 @@ public class InfixingIterableTests {
 
 		Object infix = new Object();
 		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new InfixingIterable<Object>(new ArrayIterable<Object>(values), infix).iterator();
+		Iterator<Object> iterator = new InfixedIterable<Object>(new ArrayIterable<Object>(values), infix).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next());
@@ -70,7 +70,7 @@ public class InfixingIterableTests {
 
 		Object infix = new Object();
 		Object[] values = new Object[] { new Object(), new Object() };
-		Iterator<Object> iterator = new InfixingIterable<Object>(new ArrayIterable<Object>(values), infix).iterator();
+		Iterator<Object> iterator = new InfixedIterable<Object>(new ArrayIterable<Object>(values), infix).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next());
@@ -90,7 +90,7 @@ public class InfixingIterableTests {
 
 		Object infix = new Object();
 		Object[] values = new Object[] { new Object(), new Object(), new Object() };
-		Iterator<Object> iterator = new InfixingIterable<Object>(new ArrayIterable<Object>(values), infix).iterator();
+		Iterator<Object> iterator = new InfixedIterable<Object>(new ArrayIterable<Object>(values), infix).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next());

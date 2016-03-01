@@ -94,14 +94,14 @@ Iterable<Foo> combinedIterable = new CombinedIterable<Foo>(iterables);
 
 ### Interspersing infix value
 
-This library provides the generic [`InfixingIterable`][InfixingIterable] that takes an existing [`Iterable`][Iterable] and a single value that is used as an infix and interspersed between all values yielded by the given [`Iterable`][Iterable]
+This library provides the generic [`InfixedIterable`][InfixedIterable] that takes an existing [`Iterable`][Iterable] and a single value that is used as an infix and interspersed between all values yielded by the given [`Iterable`][Iterable]
 
 ```java
 Foo infix = ...
 Iterable<Foo> iterable = ...
 
 // generated iterable yields every foo from iterator, interspersed with the infix
-Iterable<Foo> infixingIterable = new InfixingIterable<Foo>(iterator, infix);
+Iterable<Foo> infixedIterable = new InfixedIterable<Foo>(iterator, infix);
 ```
 
 ### Looking ahead
@@ -227,7 +227,7 @@ Iterable<Integer> countDownIterable = new CountUpIterable(0, 10);
 [EmptyIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/EmptyIterable.html
 [FilteringIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/FilteringIterable.html
 [FloatArrayIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/FloatArrayIterable.html
-[InfixingIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/InfixingIterable.html
+[InfixedIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/InfixedIterable.html
 [IntegerArrayIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/IntegerArrayIterable.html
 [LongArrayIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/LongArrayIterable.html
 [LookAheadIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/LookAheadIterable.html
