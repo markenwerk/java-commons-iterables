@@ -137,7 +137,7 @@ For situations where it is necessary to provide an [`Iterable`][Iterable], but n
 
 ```java
 // generated iterable yield nothing
-Iterable<Foo> = new EmptyIterable<Foo>();
+Iterable<Foo> emptyIterable = new EmptyIterable<Foo>();
 ```
 
 For situations where some [`Iterable`][Iterable] is obtained and passed along, it might be useful to wrap the obtained [`Iterable`][Iterable] in a [`NullSaveIterable`][NullSaveIterable]. A [`NullSaveIterable`][NullSaveIterable] always generates an [`Iterator`][Iterator], even if it is constructed from a `null` [`Iterable`][Iterable].
@@ -146,7 +146,7 @@ For situations where some [`Iterable`][Iterable] is obtained and passed along, i
 Iterable<Foo> iterable = ...
 
 // generated iterable yield every foo from iterator of nothing, if iterator is null
-iterable = new NullSaveIterable(iterable);
+Iterable<Foo> nullSaveIterable = new NullSaveIterable(iterable);
 ```
 
 For situations where some [`Iterable`][Iterable] is obtained, it might be useful to wrap the obtained [`Iterable`][Iterable] in a [`NullFreeIterable`][NullFreeIterable]. A [`NullFreeIterable`][NullFreeIterable] generates [`Iterators`][Iterator] that tilter out all `null` values yielded by the obtained [`Iterable`][Iterable].
@@ -155,7 +155,7 @@ For situations where some [`Iterable`][Iterable] is obtained, it might be useful
 Iterable<Foo> iterable = ...
 
 // generated iterable yield every non-null foo from iterator
-iterable = new NullFreeIterable(iterable);
+Iterable<Foo> nullFreeIterable = new NullFreeIterable(iterable);
 ```
 
 ### Iterating over single values
@@ -166,10 +166,10 @@ This library provides the [`ObjectIterable`][ObjectIterable] and [`OptionalItera
 Foo foo = ...
 
 // generated iterable yield foo, even if foo is null
-Iterable<Foo> = new ObjectIterable(foo); 
+Iterable<Foo> objectIterable = new ObjectIterable(foo); 
 
 // generated iterable yield foo or nothing, if foo is null
-Iterable<Foo> = new OptionalIterable(foo); 
+Iterable<Foo> optionalIterable = new OptionalIterable(foo); 
 ```
 
 ### Iterating over primitive Arrays
@@ -189,7 +189,7 @@ This library provides the following [`Iterables`][Iterable] that take existing p
 boolean[] booleans = ...
 
 // generated iterables yield every boolean from booleans
-Iterable<Boolean> = new BooleanArrayIterable(booleans);
+Iterable<Boolean> arrayIterable = new BooleanArrayIterable(booleans);
 ```
 
 ### Iterating over non-primitive Arrays
@@ -200,7 +200,7 @@ This library provides the generic [`ArrayIterable`][ArrayIterable] that takes an
 Foo[] foos = ...
 
 // generated iterables yield every foo from foos
-Iterable<Foo> = new ArrayIterable(foos);
+Iterable<Foo> arrayIterable = new ArrayIterable(foos);
 ```
 
 ### Counting
@@ -209,10 +209,10 @@ This library provides the [`CountDownIterable`][CountDownIterable] and [`CountUp
 
 ```java
 // generated iterables yield 10, 9, ..., 1, 0
-Iterable<Integer> = new CountDownIterable(10, 0);
+Iterable<Integer> countUpIterable = new CountDownIterable(10, 0);
 
 // generated iterables yield 0, 1, ..., 9, 10
-Iterable<Integer> = new CountUpIterable(0, 10); 
+Iterable<Integer> countDownIterable = new CountUpIterable(0, 10); 
 ```
 
 [ArrayIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/ArrayIterable.html
