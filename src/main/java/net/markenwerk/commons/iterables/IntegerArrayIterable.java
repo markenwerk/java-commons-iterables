@@ -38,40 +38,49 @@ import net.markenwerk.commons.iterators.IntegerArrayIterator;
  */
 public final class IntegerArrayIterable implements Iterable<Integer> {
 
-	private final int[] values;
+	private final int[] array;
 
 	private final Integer replacement;
 
 	/**
 	 * Creates a new {@link IntegerArrayIterable} for the given {@code int[]}.
 	 * 
-	 * @param values
+	 * @param array
 	 *            The {@code int[]} to iterate over.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@code int[]} is {@literal null}.
 	 */
-	public IntegerArrayIterable(int[] values) {
-		this(values, null);
+	public IntegerArrayIterable(int[] array) throws IllegalArgumentException {
+		this(array, null);
 	}
 
 	/**
 	 * Creates a new {@link IntegerArrayIterable} for the given {@code int[]}.
 	 * 
-	 * @param values
+	 * @param array
 	 *            The {@code int[]} to iterate over.
 	 * @param replacement
-	 *            The value to replace removed values with.
+	 *            The value to replace removed array with.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@code int[]} is {@literal null}.
 	 */
-	public IntegerArrayIterable(int[] values, int replacement) {
-		this(values, Integer.valueOf(replacement));
+	public IntegerArrayIterable(int[] array, int replacement) throws IllegalArgumentException {
+		this(array, Integer.valueOf(replacement));
 	}
 
-	private IntegerArrayIterable(int[] values, Integer replacement) {
-		this.values = values;
+	private IntegerArrayIterable(int[] array, Integer replacement) throws IllegalArgumentException {
+		if (null == array) {
+			throw new IllegalArgumentException("array is null");
+		}
+		this.array = array;
 		this.replacement = replacement;
 	}
 
 	@Override
 	public IntegerArrayIterator iterator() {
-		return null != replacement ? new IntegerArrayIterator(values, replacement) : new IntegerArrayIterator(values);
+		return null != replacement ? new IntegerArrayIterator(array, replacement) : new IntegerArrayIterator(array);
 	}
 
 }

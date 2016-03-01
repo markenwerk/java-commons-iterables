@@ -38,40 +38,49 @@ import net.markenwerk.commons.iterators.ByteArrayIterator;
  */
 public final class ByteArrayIterable implements Iterable<Byte> {
 
-	private final byte[] values;
+	private final byte[] array;
 
 	private final Byte replacement;
 
 	/**
 	 * Creates a new {@link ByteArrayIterable} for the given {@code byte[]}.
 	 * 
-	 * @param values
+	 * @param array
 	 *            The {@code byte[]} to iterate over.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@code byte[]} is {@literal null}.
 	 */
-	public ByteArrayIterable(byte[] values) {
-		this(values, null);
+	public ByteArrayIterable(byte[] array) throws IllegalArgumentException {
+		this(array, null);
 	}
 
 	/**
 	 * Creates a new {@link ByteArrayIterable} for the given {@code byte[]}.
 	 * 
-	 * @param values
+	 * @param array
 	 *            The {@code byte[]} to iterate over.
 	 * @param replacement
-	 *            The value to replace removed values with.
+	 *            The value to replace removed array with.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@code byte[]} is {@literal null}.
 	 */
-	public ByteArrayIterable(byte[] values, byte replacement) {
-		this(values, Byte.valueOf(replacement));
+	public ByteArrayIterable(byte[] array, byte replacement) throws IllegalArgumentException {
+		this(array, Byte.valueOf(replacement));
 	}
 
-	private ByteArrayIterable(byte[] values, Byte replacement) {
-		this.values = values;
+	private ByteArrayIterable(byte[] array, Byte replacement) throws IllegalArgumentException {
+		if (null == array) {
+			throw new IllegalArgumentException("array is null");
+		}
+		this.array = array;
 		this.replacement = replacement;
 	}
 
 	@Override
 	public ByteArrayIterator iterator() {
-		return null != replacement ? new ByteArrayIterator(values, replacement) : new ByteArrayIterator(values);
+		return null != replacement ? new ByteArrayIterator(array, replacement) : new ByteArrayIterator(array);
 	}
 
 }

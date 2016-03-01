@@ -26,8 +26,6 @@ import java.util.Iterator;
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.ArrayIterable;
-
 /**
  * JUnit test for {@link ArrayIterable}.
  * 
@@ -51,7 +49,7 @@ public class ArrayIterableTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
+
 	/**
 	 * Iterate over a payload array twice.
 	 */
@@ -65,7 +63,7 @@ public class ArrayIterableTests {
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next());
 		Assert.assertFalse(iterator.hasNext());
-		
+
 		Iterator<Object> iterator2 = iterable.iterator();
 
 		Assert.assertNotSame(iterator, iterator2);
@@ -79,12 +77,10 @@ public class ArrayIterableTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void iterateNullArray() {
 
-		Iterator<Object> iterator = new ArrayIterable<Object>(null).iterator();
-
-		Assert.assertFalse(iterator.hasNext());
+		new ArrayIterable<Object>(null);
 
 	}
 

@@ -26,9 +26,6 @@ import java.util.Iterator;
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.ArrayIterable;
-import net.markenwerk.commons.iterables.NullFreeIterable;
-
 /**
  * JUnit test for {@link NullFreeIterable}.
  * 
@@ -36,6 +33,17 @@ import net.markenwerk.commons.iterables.NullFreeIterable;
  */
 public class NullFreeIterableTests {
 
+	
+	/**
+	 * Iterate over a {@code null} {@link Iterator}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void iterateNullIterator() {
+
+		new NullFreeIterable<Object>(null);
+
+	}
+	
 	/**
 	 * Filter out a {@literal null} value at the front of the underlying
 	 * {@link Iterable}.

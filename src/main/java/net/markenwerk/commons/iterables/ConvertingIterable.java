@@ -60,8 +60,18 @@ public final class ConvertingIterable<From, To> implements Iterable<To> {
 	 *            The {@link Converter} to {@link Converter#convert(Object)
 	 *            convert} every value yielded by the given {@link Iterable}
 	 *            with.
+	 *            
+	 * @throws IllegalArgumentException
+	 *             If the given {@link Iterable} is {@literal null} or if the
+	 *             given {@link Converter} is {@literal null}.
 	 */
 	public ConvertingIterable(Iterable<From> iterable, Converter<From, To> converter) {
+		if(null == iterable) {
+			throw new IllegalArgumentException("iterable is null");
+		}
+		if(null == converter) {
+			throw new IllegalArgumentException("converter is null");
+		}
 		this.iterable = iterable;
 		this.converter = converter;
 	}

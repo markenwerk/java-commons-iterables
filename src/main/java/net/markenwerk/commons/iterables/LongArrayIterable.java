@@ -38,40 +38,49 @@ import net.markenwerk.commons.iterators.LongArrayIterator;
  */
 public final class LongArrayIterable implements Iterable<Long> {
 
-	private final long[] values;
+	private final long[] array;
 
 	private final Long replacement;
 
 	/**
 	 * Creates a new {@link LongArrayIterable} for the given {@code long[]}.
 	 * 
-	 * @param values
-	 *           The {@code long[]} to iterate over.
+	 * @param array
+	 *            The {@code long[]} to iterate over.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@code long[]} is {@literal null}.
 	 */
-	public LongArrayIterable(long[] values) {
-		this(values, null);
+	public LongArrayIterable(long[] array) throws IllegalArgumentException {
+		this(array, null);
 	}
 
 	/**
 	 * Creates a new {@link LongArrayIterable} for the given {@code long[]}.
 	 * 
-	 * @param values
-	 *           The {@code long[]} to iterate over.
+	 * @param array
+	 *            The {@code long[]} to iterate over.
 	 * @param replacement
-	 *           The value to replace removed values with.
+	 *            The value to replace removed array with.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@code long[]} is {@literal null}.
 	 */
-	public LongArrayIterable(long[] values, long replacement) {
-		this(values, Long.valueOf(replacement));
+	public LongArrayIterable(long[] array, long replacement) throws IllegalArgumentException {
+		this(array, Long.valueOf(replacement));
 	}
 
-	private LongArrayIterable(long[] values, Long replacement) {
-		this.values = values;
+	private LongArrayIterable(long[] array, Long replacement) throws IllegalArgumentException {
+		if (null == array) {
+			throw new IllegalArgumentException("array is null");
+		}
+		this.array = array;
 		this.replacement = replacement;
 	}
 
 	@Override
 	public LongArrayIterator iterator() {
-		return null != replacement ? new LongArrayIterator(values, replacement) : new LongArrayIterator(values);
+		return null != replacement ? new LongArrayIterator(array, replacement) : new LongArrayIterator(array);
 	}
 
 }

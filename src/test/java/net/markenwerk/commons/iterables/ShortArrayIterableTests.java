@@ -77,12 +77,10 @@ public class ShortArrayIterableTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void iterateNullArray() {
 
-		Iterator<Short> iterator = new ShortArrayIterable(null).iterator();
-
-		Assert.assertFalse(iterator.hasNext());
+		new ShortArrayIterable(null);
 
 	}
 

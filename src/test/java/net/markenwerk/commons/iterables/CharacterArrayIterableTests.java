@@ -26,8 +26,6 @@ import java.util.Iterator;
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.CharacterArrayIterable;
-
 /**
  * JUnit test for {@link CharacterArrayIterable}.
  * 
@@ -51,7 +49,7 @@ public class CharacterArrayIterableTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
+
 	/**
 	 * Iterate over a {@code char[]} twice.
 	 */
@@ -65,7 +63,7 @@ public class CharacterArrayIterableTests {
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertEquals(Character.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
-		
+
 		Iterator<Character> iterator2 = iterable.iterator();
 
 		Assert.assertNotSame(iterator, iterator2);
@@ -79,12 +77,10 @@ public class CharacterArrayIterableTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void iterateNullArray() {
 
-		Iterator<Character> iterator = new CharacterArrayIterable(null).iterator();
-
-		Assert.assertFalse(iterator.hasNext());
+		new CharacterArrayIterable(null).iterator();
 
 	}
 

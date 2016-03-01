@@ -37,10 +37,22 @@ import net.markenwerk.commons.iterators.LookAheadIterator;
 public class LookAheadIteratorTests {
 
 	/**
+	 * Iterate over a {@code null} {@link Iterator}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void iterateNullIterator() {
+
+		new LookAheadIterable<Object>(null);
+
+	}
+
+	
+	
+	/**
 	 * Iterate over an empty iterator.
 	 */
 	@Test
-	public void lookAhead_iterateEmpty() {
+	public void iterateEmpty() {
 
 		Iterator<LookAhead<Object>> iterator = new LookAheadIterable<Object>(new EmptyIterable<Object>()).iterator();
 

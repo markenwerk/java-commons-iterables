@@ -73,11 +73,10 @@ public class EmptyIterableTests {
 	/**
 	 * Iterate over an {@link EmptyIterable}.
 	 */
-	@Test
+	@Test(expected = UnsupportedOperationException.class)
 	public void remove() {
 
-		Iterator<Object> iterator = new EmptyIterable<Object>().iterator();
-		iterator.remove();
+		new EmptyIterable<Object>().iterator().remove();
 
 	}
 

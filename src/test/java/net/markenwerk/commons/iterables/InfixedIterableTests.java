@@ -33,14 +33,26 @@ import org.junit.Test;
  */
 public class InfixedIterableTests {
 
+	private static final Object INFIX = new Object();
+	
+	/**
+	 * Iterate over a {@code null} {@link Iterator}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void iterateNullIterator() {
+
+		new InfixedIterable<Object>(null, INFIX);
+
+	}
+
+	
 	/**
 	 * Iterate over an empty iterator.
 	 */
 	@Test
 	public void iterateEmpty() {
 
-		Object infix = new Object();
-		Iterator<Object> iterator = new InfixedIterable<Object>(new EmptyIterable<Object>(), infix).iterator();
+		Iterator<Object> iterator = new InfixedIterable<Object>(new EmptyIterable<Object>(), INFIX).iterator();
 
 		Assert.assertFalse(iterator.hasNext());
 
@@ -52,9 +64,8 @@ public class InfixedIterableTests {
 	@Test
 	public void iterateOne() {
 
-		Object infix = new Object();
 		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new InfixedIterable<Object>(new ArrayIterable<Object>(values), infix).iterator();
+		Iterator<Object> iterator = new InfixedIterable<Object>(new ArrayIterable<Object>(values), INFIX).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next());
@@ -68,14 +79,13 @@ public class InfixedIterableTests {
 	@Test
 	public void iterateTwo() {
 
-		Object infix = new Object();
 		Object[] values = new Object[] { new Object(), new Object() };
-		Iterator<Object> iterator = new InfixedIterable<Object>(new ArrayIterable<Object>(values), infix).iterator();
+		Iterator<Object> iterator = new InfixedIterable<Object>(new ArrayIterable<Object>(values), INFIX).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(infix, iterator.next());
+		Assert.assertSame(INFIX, iterator.next());
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[1], iterator.next());
 		Assert.assertFalse(iterator.hasNext());
@@ -88,18 +98,17 @@ public class InfixedIterableTests {
 	@Test
 	public void iterateThree() {
 
-		Object infix = new Object();
 		Object[] values = new Object[] { new Object(), new Object(), new Object() };
-		Iterator<Object> iterator = new InfixedIterable<Object>(new ArrayIterable<Object>(values), infix).iterator();
+		Iterator<Object> iterator = new InfixedIterable<Object>(new ArrayIterable<Object>(values), INFIX).iterator();
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(infix, iterator.next());
+		Assert.assertSame(INFIX, iterator.next());
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[1], iterator.next());
 		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(infix, iterator.next());
+		Assert.assertSame(INFIX, iterator.next());
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[2], iterator.next());
 		Assert.assertFalse(iterator.hasNext());

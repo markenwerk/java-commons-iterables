@@ -26,8 +26,6 @@ import java.util.Iterator;
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.DoubleArrayIterable;
-
 /**
  * JUnit test for {@link DoubleArrayIterable}.
  * 
@@ -51,7 +49,7 @@ public class DoubleArrayIterableTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
+
 	/**
 	 * Iterate over a {@code double[]} twice.
 	 */
@@ -65,7 +63,7 @@ public class DoubleArrayIterableTests {
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertEquals(Double.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
-		
+
 		Iterator<Double> iterator2 = iterable.iterator();
 
 		Assert.assertNotSame(iterator, iterator2);
@@ -79,12 +77,10 @@ public class DoubleArrayIterableTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void iterateNullArray() {
 
-		Iterator<Double> iterator = new DoubleArrayIterable(null).iterator();
-
-		Assert.assertFalse(iterator.hasNext());
+		new DoubleArrayIterable(null).iterator();
 
 	}
 

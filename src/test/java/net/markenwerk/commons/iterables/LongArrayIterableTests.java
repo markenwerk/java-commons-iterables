@@ -26,8 +26,6 @@ import java.util.Iterator;
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.LongArrayIterable;
-
 /**
  * JUnit test for {@link LongArrayIterable}.
  * 
@@ -51,8 +49,7 @@ public class LongArrayIterableTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
-	
+
 	/**
 	 * Iterate over a {@code long[]} twice.
 	 */
@@ -66,7 +63,7 @@ public class LongArrayIterableTests {
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertEquals(Long.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
-		
+
 		Iterator<Long> iterator2 = iterable.iterator();
 
 		Assert.assertNotSame(iterator, iterator2);
@@ -80,12 +77,10 @@ public class LongArrayIterableTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void iterateNullArray() {
 
-		Iterator<Long> iterator = new LongArrayIterable(null).iterator();
-
-		Assert.assertFalse(iterator.hasNext());
+		new LongArrayIterable(null);
 
 	}
 

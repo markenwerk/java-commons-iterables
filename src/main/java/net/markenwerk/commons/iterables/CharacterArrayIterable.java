@@ -38,7 +38,7 @@ import net.markenwerk.commons.iterators.CharacterArrayIterator;
  */
 public final class CharacterArrayIterable implements Iterable<Character> {
 
-	private final char[] values;
+	private final char[] array;
 
 	private final Character replacement;
 
@@ -46,35 +46,43 @@ public final class CharacterArrayIterable implements Iterable<Character> {
 	 * Creates a new {@link CharacterArrayIterable} for the given {@code char[]}
 	 * .
 	 * 
-	 * @param values
+	 * @param array
 	 *            The {@code char[]} to iterate over.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@code char[]} is {@literal null}.
 	 */
-	public CharacterArrayIterable(char[] values) {
-		this(values, null);
+	public CharacterArrayIterable(char[] array) throws IllegalArgumentException {
+		this(array, null);
 	}
 
 	/**
 	 * Creates a new {@link CharacterArrayIterable} for the given {@code char[]}
 	 * .
 	 * 
-	 * @param values
+	 * @param array
 	 *            The {@code char[]} to iterate over.
 	 * @param replacement
-	 *            The value to replace removed values with.
+	 *            The value to replace removed array with.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@code char[]} is {@literal null}.
 	 */
-	public CharacterArrayIterable(char[] values, char replacement) {
-		this(values, Character.valueOf(replacement));
+	public CharacterArrayIterable(char[] array, char replacement) throws IllegalArgumentException {
+		this(array, Character.valueOf(replacement));
 	}
 
-	private CharacterArrayIterable(char[] values, Character replacement) {
-		this.values = values;
+	private CharacterArrayIterable(char[] array, Character replacement) throws IllegalArgumentException {
+		if (null == array) {
+			throw new IllegalArgumentException("array is null");
+		}
+		this.array = array;
 		this.replacement = replacement;
 	}
 
 	@Override
 	public CharacterArrayIterator iterator() {
-		return null != replacement ? new CharacterArrayIterator(values, replacement) : new CharacterArrayIterator(
-				values);
+		return null != replacement ? new CharacterArrayIterator(array, replacement) : new CharacterArrayIterator(array);
 	}
 
 }

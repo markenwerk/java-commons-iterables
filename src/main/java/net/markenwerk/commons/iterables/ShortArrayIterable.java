@@ -38,40 +38,49 @@ import net.markenwerk.commons.iterators.ShortArrayIterator;
  */
 public final class ShortArrayIterable implements Iterable<Short> {
 
-	private final short[] values;
+	private final short[] array;
 
 	private final Short replacement;
 
 	/**
 	 * Creates a new {@link ShortArrayIterable} for the given {@code short[]}.
 	 * 
-	 * @param values
-	 *           The {@code short[]} to iterate over.
+	 * @param array
+	 *            The {@code short[]} to iterate over.
+	 *            
+	 * @throws IllegalArgumentException
+	 *             If the given {@code short[]} is {@literal null}.
 	 */
-	public ShortArrayIterable(short[] values) {
-		this(values, null);
+	public ShortArrayIterable(short[] array) throws IllegalArgumentException {
+		this(array, null);
 	}
 
 	/**
 	 * Creates a new {@link ShortArrayIterable} for the given {@code short[]}.
 	 * 
-	 * @param values
-	 *           The {@code short[]} to iterate over.
+	 * @param array
+	 *            The {@code short[]} to iterate over.
 	 * @param replacement
-	 *           The value to replace removed values with.
+	 *            The value to replace removed array with.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@code short[]} is {@literal null}.
 	 */
-	public ShortArrayIterable(short[] values, short replacement) {
-		this(values, Short.valueOf(replacement));
+	public ShortArrayIterable(short[] array, short replacement) throws IllegalArgumentException {
+		this(array, Short.valueOf(replacement));
 	}
 
-	private ShortArrayIterable(short[] values, Short replacement) {
-		this.values = values;
+	private ShortArrayIterable(short[] array, Short replacement) throws IllegalArgumentException {
+		if (null == array) {
+			throw new IllegalArgumentException("array is null");
+		}
+		this.array = array;
 		this.replacement = replacement;
 	}
 
 	@Override
 	public ShortArrayIterator iterator() {
-		return null != replacement ? new ShortArrayIterator(values, replacement) : new ShortArrayIterator(values);
+		return null != replacement ? new ShortArrayIterator(array, replacement) : new ShortArrayIterator(array);
 	}
 
 }

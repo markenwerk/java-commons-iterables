@@ -80,12 +80,10 @@ public class BooleanArrayIterableTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test
+	@Test(expected=IllegalArgumentException.class)
 	public void iterateNullArray() {
 
-		Iterator<Boolean> iterator = new BooleanArrayIterable(null).iterator();
-
-		Assert.assertFalse(iterator.hasNext());
+		new BooleanArrayIterable(null).iterator();
 
 	}
 

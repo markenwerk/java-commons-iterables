@@ -57,8 +57,13 @@ public final class FilteringIterable<Payload> implements Iterable<Payload> {
 	 * @param predicate
 	 *            The {@link Predicate} to {@link Predicate#test(Object) test}
 	 *            every value yielded by the given {@link Iterable} with.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@link Iterable} is {@literal null} or if the
+	 *             given {@link Predicate} is {@literal null}.
 	 */
-	public FilteringIterable(Iterable<? extends Payload> iterable, Predicate<Payload> predicate) {
+	public FilteringIterable(Iterable<? extends Payload> iterable, Predicate<Payload> predicate)
+			throws IllegalArgumentException {
 		this(iterable, predicate, false);
 	}
 
@@ -74,8 +79,18 @@ public final class FilteringIterable<Payload> implements Iterable<Payload> {
 	 * @param invertPredicate
 	 *            Whether to invert the test result and yield values that don't
 	 *            satisfy the given {@link Predicate}.
+	 *            
+	 * @throws IllegalArgumentException
+	 *             If the given {@link Iterable} is {@literal null} or if the
+	 *             given {@link Predicate} is {@literal null}.
 	 */
-	public FilteringIterable(Iterable<? extends Payload> iterable, Predicate<Payload> predicate, boolean invertPredicate) {
+	public FilteringIterable(Iterable<? extends Payload> iterable, Predicate<Payload> predicate, boolean invertPredicate) throws IllegalArgumentException {
+		if(null == iterable) {
+			throw new IllegalArgumentException("iterable is null");
+		}
+		if(null == predicate) {
+			throw new IllegalArgumentException("predicate is null");
+		}
 		this.iterable = iterable;
 		this.predicate = predicate;
 		this.invertPredicate = invertPredicate;

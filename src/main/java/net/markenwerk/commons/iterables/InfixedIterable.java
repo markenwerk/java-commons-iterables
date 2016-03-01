@@ -54,8 +54,14 @@ public final class InfixedIterable<Payload> implements Iterable<Payload> {
 	 *            {@link InfixedIterable} will be wrapped.
 	 * @param infix
 	 *            The infix to be yielded.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@link Iterable} is {@literal null}.
 	 */
-	public InfixedIterable(Iterable<? extends Payload> iterable, Payload infix) {
+	public InfixedIterable(Iterable<? extends Payload> iterable, Payload infix) throws IllegalArgumentException {
+		if (null == iterable) {
+			throw new IllegalArgumentException("iterable is null");
+		}
 		this.iterable = iterable;
 		this.infix = infix;
 	}

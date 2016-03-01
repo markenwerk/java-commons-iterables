@@ -80,12 +80,10 @@ public class FloatArrayIterableTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test
+	@Test(expected=IllegalArgumentException.class)
 	public void iterateNullArray() {
 
-		Iterator<Float> iterator = new FloatArrayIterable(null).iterator();
-
-		Assert.assertFalse(iterator.hasNext());
+		new FloatArrayIterable(null);
 
 	}
 

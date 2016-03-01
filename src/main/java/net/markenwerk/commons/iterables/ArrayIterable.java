@@ -40,7 +40,7 @@ import net.markenwerk.commons.iterators.ArrayIterator;
  */
 public final class ArrayIterable<Payload> implements Iterable<Payload> {
 
-	private final Payload[] values;
+	private final Payload[] array;
 
 	private final boolean removable;
 
@@ -49,34 +49,43 @@ public final class ArrayIterable<Payload> implements Iterable<Payload> {
 	/**
 	 * Creates a new {@link ArrayIterable} for the given payload array.
 	 * 
-	 * @param values
+	 * @param array
 	 *            The payload array to iterate over.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given payload array is {@literal null}.
 	 */
-	public ArrayIterable(Payload[] values) {
-		this(values, false, null);
+	public ArrayIterable(Payload[] array) throws IllegalArgumentException {
+		this(array, false, null);
 	}
 
 	/**
 	 * Creates a new {@link ArrayIterable} for the given payload array.
 	 * 
-	 * @param values
+	 * @param array
 	 *            The payload array to iterate over.
 	 * @param replacement
-	 *            The value to replace removed values with.
+	 *            The value to replace removed array with.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given payload array is {@literal null}.
 	 */
-	public ArrayIterable(Payload[] values, Payload replacement) {
-		this(values, true, replacement);
+	public ArrayIterable(Payload[] array, Payload replacement) throws IllegalArgumentException {
+		this(array, true, replacement);
 	}
 
-	private ArrayIterable(Payload[] values, boolean removable, Payload replacement) {
-		this.values = values;
+	private ArrayIterable(Payload[] array, boolean removable, Payload replacement) throws IllegalArgumentException {
+		if (null == array) {
+			throw new IllegalArgumentException("array is null");
+		}
+		this.array = array;
 		this.removable = removable;
 		this.replacement = replacement;
 	}
 
 	@Override
 	public ArrayIterator<Payload> iterator() {
-		return removable ? new ArrayIterator<Payload>(values, replacement) : new ArrayIterator<Payload>(values);
+		return removable ? new ArrayIterator<Payload>(array, replacement) : new ArrayIterator<Payload>(array);
 	}
 
 }

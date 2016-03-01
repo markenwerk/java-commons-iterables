@@ -38,40 +38,49 @@ import net.markenwerk.commons.iterators.DoubleArrayIterator;
  */
 public final class DoubleArrayIterable implements Iterable<Double> {
 
-	private final double[] values;
+	private final double[] array;
 
 	private final Double replacement;
 
 	/**
 	 * Creates a new {@link DoubleArrayIterable} for the given {@code double[]}.
 	 * 
-	 * @param values
+	 * @param array
 	 *            The {@code double[]} to iterate over.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@code double[]} is {@literal null}.
 	 */
-	public DoubleArrayIterable(double[] values) {
-		this(values, null);
+	public DoubleArrayIterable(double[] array) throws IllegalArgumentException {
+		this(array, null);
 	}
 
 	/**
 	 * Creates a new {@link DoubleArrayIterable} for the given {@code double[]}.
 	 * 
-	 * @param values
+	 * @param array
 	 *            The {@code double[]} to iterate over.
 	 * @param replacement
-	 *            The value to replace removed values with.
+	 *            The value to replace removed array with.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@code double[]} is {@literal null}.
 	 */
-	public DoubleArrayIterable(double[] values, double replacement) {
-		this(values, Double.valueOf(replacement));
+	public DoubleArrayIterable(double[] array, double replacement) throws IllegalArgumentException {
+		this(array, Double.valueOf(replacement));
 	}
 
-	private DoubleArrayIterable(double[] values, Double replacement) {
-		this.values = values;
+	private DoubleArrayIterable(double[] array, Double replacement) throws IllegalArgumentException {
+		if (null == array) {
+			throw new IllegalArgumentException("array is null");
+		}
+		this.array = array;
 		this.replacement = replacement;
 	}
 
 	@Override
 	public DoubleArrayIterator iterator() {
-		return null != replacement ? new DoubleArrayIterator(values, replacement) : new DoubleArrayIterator(values);
+		return null != replacement ? new DoubleArrayIterator(array, replacement) : new DoubleArrayIterator(array);
 	}
 
 }

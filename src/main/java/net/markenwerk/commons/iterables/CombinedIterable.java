@@ -47,26 +47,40 @@ public final class CombinedIterable<Payload> implements Iterable<Payload> {
 	private final Iterable<? extends Iterable<? extends Payload>> iterables;
 
 	/**
-	 * Creates a new {@link CombinedIterable} from the given {@link Iterable
-	 * Iterables}.
+	 * Creates a new {@link CombinedIterable} from the given sequence of
+	 * {@link Iterable Iterables}.
 	 * 
 	 * @param iterables
-	 *            The {@link Iterable Iterables} to combine into a single
-	 *            {@link Iterable}.
+	 *            The sequence of {@link Iterable Iterables} to combine into a
+	 *            single {@link Iterable}.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given sequence of {@link Iterable Iterables} is
+	 *             {@literal null}.
 	 */
 	public CombinedIterable(Iterable<? extends Payload>... iterables) {
-		this(new ArrayIterable<Iterable<? extends Payload>>(iterables));
+		if (null == iterables) {
+			throw new IllegalArgumentException("iterables is null");
+		}
+		this.iterables = new ArrayIterable<Iterable<? extends Payload>>(iterables);
 	}
 
 	/**
-	 * Creates a new {@link CombinedIterable} from the given {@link Iterable
-	 * Iterables}.
+	 * Creates a new {@link CombinedIterable} from the given {@link Iterable} of
+	 * {@link Iterable Iterables}.
 	 * 
 	 * @param iterable
-	 *            The {@link Iterable Iterables} to combine into a single
-	 *            {@link Iterable}.
+	 *            The {@link Iterable} of {@link Iterable Iterables} to combine
+	 *            into a single {@link Iterable}.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@link Iterable} of {@link Iterable Iterables}
+	 *             is {@literal null}.
 	 */
-	public CombinedIterable(Iterable<? extends Iterable<? extends Payload>> iterable) {
+	public CombinedIterable(Iterable<? extends Iterable<? extends Payload>> iterable) throws IllegalArgumentException {
+		if (null == iterable) {
+			throw new IllegalArgumentException("iterable is null");
+		}
 		this.iterables = iterable;
 	}
 

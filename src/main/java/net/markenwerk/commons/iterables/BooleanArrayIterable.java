@@ -38,7 +38,7 @@ import net.markenwerk.commons.iterators.BooleanArrayIterator;
  */
 public final class BooleanArrayIterable implements Iterable<Boolean> {
 
-	private final boolean[] values;
+	private final boolean[] array;
 
 	private final Boolean replacement;
 
@@ -46,34 +46,43 @@ public final class BooleanArrayIterable implements Iterable<Boolean> {
 	 * Creates a new {@link BooleanArrayIterable} for the given
 	 * {@code boolean[]}.
 	 * 
-	 * @param values
+	 * @param array
 	 *            The {@code boolean[]} to iterate over.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@code boolean[]} is {@literal null}.
 	 */
-	public BooleanArrayIterable(boolean[] values) {
-		this(values, null);
+	public BooleanArrayIterable(boolean[] array) throws IllegalArgumentException {
+		this(array, null);
 	}
 
 	/**
 	 * Creates a new {@link BooleanArrayIterable} for the given
 	 * {@code boolean[]}.
 	 * 
-	 * @param values
+	 * @param array
 	 *            The {@code boolean[]} to iterate over.
 	 * @param replacement
-	 *            The value to replace removed values with.
+	 *            The value to replace removed array with.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@code boolean[]} is {@literal null}.
 	 */
-	public BooleanArrayIterable(boolean[] values, boolean replacement) {
-		this(values, Boolean.valueOf(replacement));
+	public BooleanArrayIterable(boolean[] array, boolean replacement) throws IllegalArgumentException {
+		this(array, Boolean.valueOf(replacement));
 	}
 
-	private BooleanArrayIterable(boolean[] values, Boolean replacement) {
-		this.values = values;
+	private BooleanArrayIterable(boolean[] array, Boolean replacement) throws IllegalArgumentException {
+		if (null == array) {
+			throw new IllegalArgumentException("array is null");
+		}
+		this.array = array;
 		this.replacement = replacement;
 	}
 
 	@Override
 	public BooleanArrayIterator iterator() {
-		return null != replacement ? new BooleanArrayIterator(values, replacement) : new BooleanArrayIterator(values);
+		return null != replacement ? new BooleanArrayIterator(array, replacement) : new BooleanArrayIterator(array);
 	}
 
 }

@@ -37,7 +37,7 @@ import net.markenwerk.commons.iterators.LookAheadIterator;
  * {@link LookAheadIterator}.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.6
  */
@@ -49,10 +49,16 @@ public final class LookAheadIterable<Payload> implements Iterable<LookAhead<Payl
 	 * Creates a new {@link LookAheadIterable} from the given {@link Iterable}.
 	 * 
 	 * @param iterable
-	 *           The {@link Iterable}, around which the new
-	 *           {@link LookAheadIterable} will be wrapped.
+	 *            The {@link Iterable}, around which the new
+	 *            {@link LookAheadIterable} will be wrapped.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@link Iterable} is {@literal null}.
 	 */
-	public LookAheadIterable(Iterable<? extends Payload> iterable) {
+	public LookAheadIterable(Iterable<? extends Payload> iterable) throws IllegalArgumentException {
+		if (null == iterable) {
+			throw new IllegalArgumentException("iterable is null");
+		}
 		this.iterable = iterable;
 	}
 

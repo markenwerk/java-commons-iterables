@@ -28,16 +28,32 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.ArrayIterable;
-import net.markenwerk.commons.iterables.CombinedIterable;
-import net.markenwerk.commons.iterables.FilteringIterable;
-
 /**
- * JUnit test for {@link FilteringIterable}.
+ * JUnit test for {@link CombinedIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  */
 public class CombinedIterableTests {
+
+	/**
+	 * Iterate over a {@code null} {@link Iterator}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void iterateNullIterators() {
+
+		new CombinedIterable<Object>((Iterable<Object>[]) null);
+
+	}
+
+	/**
+	 * Iterate over a {@code null} {@link Iterator}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void iterateNullIterator() {
+
+		new CombinedIterable<Object>((Iterable<Iterable<Object>>) null);
+
+	}
 
 	/**
 	 * Iterate over no iterators.
@@ -125,14 +141,14 @@ public class CombinedIterableTests {
 	@SuppressWarnings("unchecked")
 	public void iterateTwice() {
 
-		Object[] values = new Object[] { new Object()};
+		Object[] values = new Object[] { new Object() };
 		Iterable<Object> iterable = new CombinedIterable<Object>(new ArrayIterable<Object>(values));
 		Iterator<Object> iterator = iterable.iterator();
 
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertSame(values[0], iterator.next());
 		Assert.assertFalse(iterator.hasNext());
-		
+
 		Iterator<Object> iterator2 = iterable.iterator();
 
 		Assert.assertNotSame(iterator, iterator2);
@@ -142,7 +158,7 @@ public class CombinedIterableTests {
 		Assert.assertFalse(iterator2.hasNext());
 
 	}
-	
+
 	/**
 	 * Remove an object from the underlying {@link Iterable}.
 	 */

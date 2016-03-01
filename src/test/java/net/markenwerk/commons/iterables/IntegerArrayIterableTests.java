@@ -79,12 +79,10 @@ public class IntegerArrayIterableTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test
+	@Test(expected=IllegalArgumentException.class)
 	public void iterateNullArray() {
 
-		Iterator<Integer> iterator = new IntegerArrayIterable(null).iterator();
-
-		Assert.assertFalse(iterator.hasNext());
+		new IntegerArrayIterable(null);
 
 	}
 

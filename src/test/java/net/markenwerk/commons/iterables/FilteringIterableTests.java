@@ -43,6 +43,28 @@ public class FilteringIterableTests {
 			return null == object || UNSATISFYING_OBJECT != object;
 		}
 	};
+	
+	
+	/**
+	 * Iterate over a {@code null} {@link Iterator}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void iterateNullIterator() {
+
+		new FilteringIterable<Object>(null, UNSATISFYING_OBJECT_PREDICATE);
+
+	}
+	
+	
+	/**
+	 * Iterate with a {@code null} {@link Predicate}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void iterateNullPredicate() {
+
+		new FilteringIterable<Object>(new EmptyIterable<Object>(), null);
+
+	}
 
 	/**
 	 * Filter out a unsatisfying value at the front of the underlying

@@ -29,7 +29,7 @@ import org.junit.Test;
 import net.markenwerk.commons.interfaces.Converter;
 
 /**
- * JUnit test for {@link FilteringIterable}.
+ * JUnit test for {@link ConvertingIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  */
@@ -51,6 +51,26 @@ public class ConvertingIterableTests {
 			return null == from ? null : new Wrapper(from);
 		}
 	};
+
+	/**
+	 * Iterate over a {@code null} {@link Iterator}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void iterateNullIterator() {
+
+		new ConvertingIterable<Object, Wrapper>(null, WRAPPING_CONVERTER);
+
+	}
+
+	/**
+	 * Iterate with a {@code null} {@link Converter}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void iterateNullConverter() {
+
+		new ConvertingIterable<Object, Wrapper>(new EmptyIterable<Object>(), null);
+
+	}
 
 	/**
 	 * Convert all values yielded by the underlying {@link Iterable} to their

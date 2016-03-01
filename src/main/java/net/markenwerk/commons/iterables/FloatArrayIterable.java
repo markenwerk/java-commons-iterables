@@ -38,40 +38,49 @@ import net.markenwerk.commons.iterators.FloatArrayIterator;
  */
 public final class FloatArrayIterable implements Iterable<Float> {
 
-	private final float[] values;
+	private final float[] array;
 
 	private final Float replacement;
 
 	/**
 	 * Creates a new {@link FloatArrayIterable} for the given {@code float[]}.
 	 * 
-	 * @param values
+	 * @param array
 	 *            The {@code float[]} to iterate over.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@code float[]} is {@literal null}.
 	 */
-	public FloatArrayIterable(float[] values) {
-		this(values, null);
+	public FloatArrayIterable(float[] array) throws IllegalArgumentException {
+		this(array, null);
 	}
 
 	/**
 	 * Creates a new {@link FloatArrayIterable} for the given {@code float[]}.
 	 * 
-	 * @param values
+	 * @param array
 	 *            The {@code float[]} to iterate over.
 	 * @param replacement
-	 *            The value to replace removed values with.
+	 *            The value to replace removed array with.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@code float[]} is {@literal null}.
 	 */
-	public FloatArrayIterable(float[] values, float replacement) {
-		this(values, Float.valueOf(replacement));
+	public FloatArrayIterable(float[] array, float replacement) throws IllegalArgumentException {
+		this(array, Float.valueOf(replacement));
 	}
 
-	private FloatArrayIterable(float[] values, Float replacement) {
-		this.values = values;
+	private FloatArrayIterable(float[] array, Float replacement) throws IllegalArgumentException {
+		if (null == array) {
+			throw new IllegalArgumentException("array is null");
+		}
+		this.array = array;
 		this.replacement = replacement;
 	}
 
 	@Override
 	public FloatArrayIterator iterator() {
-		return null != replacement ? new FloatArrayIterator(values, replacement) : new FloatArrayIterator(values);
+		return null != replacement ? new FloatArrayIterator(array, replacement) : new FloatArrayIterator(array);
 	}
 
 }
