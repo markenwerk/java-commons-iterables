@@ -94,10 +94,7 @@ public class DoubleArrayIterableTests {
 		double[] values = new double[] { 1 };
 		Iterator<Double> iterator = new DoubleArrayIterable(values, replacement).iterator();
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Double.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 		Assert.assertEquals(replacement, values[0], 0);
@@ -113,10 +110,7 @@ public class DoubleArrayIterableTests {
 		double[] values = new double[] { 1 };
 		Iterator<Double> iterator = new DoubleArrayIterable(values).iterator();
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Double.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 	}

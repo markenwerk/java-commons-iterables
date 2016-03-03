@@ -94,12 +94,9 @@ public class CharacterArrayIterableTests {
 		char[] values = new char[] { 1 };
 		Iterator<Character> iterator = new CharacterArrayIterable(values, replacement).iterator();
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Character.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
-
+		
 		Assert.assertEquals(replacement, values[0]);
 
 	}
@@ -113,10 +110,7 @@ public class CharacterArrayIterableTests {
 		char[] values = new char[] { 1 };
 		Iterator<Character> iterator = new CharacterArrayIterable(values).iterator();
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Character.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 	}

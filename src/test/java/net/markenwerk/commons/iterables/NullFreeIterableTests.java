@@ -131,10 +131,7 @@ public class NullFreeIterableTests {
 		Iterator<Object> iterator = new NullFreeIterable<Object>(new ArrayIterable<Object>(values, replacement))
 				.iterator();
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 		Assert.assertSame(replacement, values[0]);

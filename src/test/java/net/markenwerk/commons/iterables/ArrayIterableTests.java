@@ -94,10 +94,7 @@ public class ArrayIterableTests {
 		Object[] values = new Object[] { new Object() };
 		Iterator<Object> iterator = new ArrayIterable<Object>(values, replacement).iterator();
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 		Assert.assertEquals(replacement, values[0]);
@@ -113,10 +110,7 @@ public class ArrayIterableTests {
 		Object[] values = new Object[] { new Object() };
 		Iterator<Object> iterator = new ArrayIterable<Object>(values).iterator();
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 	}

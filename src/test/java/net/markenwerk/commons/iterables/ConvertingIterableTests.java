@@ -128,10 +128,7 @@ public class ConvertingIterableTests {
 		Iterator<Wrapper> iterator = new ConvertingIterable<Object, Wrapper>(new ArrayIterable<Object>(values,
 				replacement), WRAPPING_CONVERTER).iterator();
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next().wrapped);
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 		Assert.assertSame(replacement, values[0]);

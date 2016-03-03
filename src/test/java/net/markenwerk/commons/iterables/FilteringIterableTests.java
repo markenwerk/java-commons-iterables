@@ -173,10 +173,7 @@ public class FilteringIterableTests {
 		Iterator<Object> iterator = new FilteringIterable<Object>(new ArrayIterable<Object>(values, replacement),
 				UNSATISFYING_OBJECT_PREDICATE).iterator();
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 		Assert.assertSame(replacement, values[0]);

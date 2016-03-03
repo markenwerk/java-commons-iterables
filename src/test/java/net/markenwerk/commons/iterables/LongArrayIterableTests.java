@@ -94,10 +94,7 @@ public class LongArrayIterableTests {
 		long[] values = new long[] { 1 };
 		Iterator<Long> iterator = new LongArrayIterable(values, replacement).iterator();
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Long.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 		Assert.assertEquals(replacement, values[0]);
@@ -113,10 +110,7 @@ public class LongArrayIterableTests {
 		long[] values = new long[] { 1 };
 		Iterator<Long> iterator = new LongArrayIterable(values).iterator();
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Long.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 	}

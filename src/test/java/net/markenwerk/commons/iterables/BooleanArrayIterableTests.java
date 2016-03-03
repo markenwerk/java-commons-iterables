@@ -97,10 +97,7 @@ public class BooleanArrayIterableTests {
 		boolean[] values = new boolean[] { true };
 		Iterator<Boolean> iterator = new BooleanArrayIterable(values, replacement).iterator();
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Boolean.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 		Assert.assertEquals(replacement, values[0]);
@@ -116,10 +113,7 @@ public class BooleanArrayIterableTests {
 		boolean[] values = new boolean[] { true };
 		Iterator<Boolean> iterator = new BooleanArrayIterable(values).iterator();
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Boolean.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
+		iterator.next();
 		iterator.remove();
 
 	}
