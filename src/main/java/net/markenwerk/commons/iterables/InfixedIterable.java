@@ -36,7 +36,7 @@ import net.markenwerk.commons.iterators.InfixedIterator;
  * {@link InfixedIterator}.
  * 
  * @param <Payload>
- *            The payload type.
+ *           The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.6
  */
@@ -44,31 +44,34 @@ public final class InfixedIterable<Payload> implements Iterable<Payload> {
 
 	private final Iterable<? extends Payload> iterable;
 
-	private final Payload infix;
+	private final Payload[] infixes;
 
 	/**
 	 * Creates a new {@link InfixedIterable} from the given {@link Iterable}.
 	 * 
 	 * @param iterable
-	 *            The {@link Iterable}, around which the new
-	 *            {@link InfixedIterable} will be wrapped.
-	 * @param infix
-	 *            The infix to be yielded.
+	 *           The {@link Iterable}, around which the new
+	 *           {@link InfixedIterable} will be wrapped.
+	 * @param infixes
+	 *           The infixes to be yielded.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             If the given {@link Iterable} is {@literal null}.
+	 *            If the given {@link Iterable} is {@literal null}.
 	 */
-	public InfixedIterable(Iterable<? extends Payload> iterable, Payload infix) throws IllegalArgumentException {
+	public InfixedIterable(Iterable<? extends Payload> iterable, Payload... infixes) throws IllegalArgumentException {
 		if (null == iterable) {
 			throw new IllegalArgumentException("iterable is null");
 		}
+		if (null == infixes) {
+			throw new IllegalArgumentException("infixes is null");
+		}
 		this.iterable = iterable;
-		this.infix = infix;
+		this.infixes = infixes;
 	}
 
 	@Override
 	public InfixedIterator<Payload> iterator() {
-		return new InfixedIterator<Payload>(iterable.iterator(), infix);
+		return new InfixedIterator<Payload>(iterable.iterator(), infixes);
 	}
 
 }
