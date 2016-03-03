@@ -43,7 +43,7 @@ This library provides the generic [`FilteringIterable`][FilteringIterable] that 
 Iterable<Foo> iterable = ...
 
 // generated iterable yield every foo from from iterator that matches the condition
-Iterable<Foo> filteringIterable = new filteringIterable<Foo>(iterable, new Predicate<Foo>(){
+Iterable<Foo> filteringIterable = new filteringIterable<>(iterable, new Predicate<Foo>(){
 
 	@Override
 	public boolean test(Object object) throws PredicateException {
@@ -59,7 +59,7 @@ This library provides the generic [`ConvertingIterable`][ConvertingIterable] tha
 Iterable<Foo> iterable = ...
 
 // generated iterable yield a bar for every foo from from iterator
-Iterable<Bar> convertingIterable = new ConvertingIterable<Foo, Bar>(iterable, new Converter<Foo, Bar>(){
+Iterable<Bar> convertingIterable = new ConvertingIterable<>(iterable, new Converter<Foo, Bar>(){
 
 	@Override
 	public Bar convert(Foo foo) throws ConverterException {
@@ -80,7 +80,7 @@ Iterable<Foo> iterable1 = ...
 Iterable<Foo> iterable2 = ...
 
 // generated iterable yield every foo from every iterator1 and iterator2
-Iterable<Foo> combinedIterable = new CombinedIterable<Foo>(iterable1, iterable2);
+Iterable<Foo> combinedIterable = new CombinedIterable<>(iterable1, iterable2);
 ```
 
 It can be constructed from an [`Iterable`][Iterable] of [`Iterables`][Iterable] (i.e. a [`List`][List]).
@@ -89,7 +89,7 @@ It can be constructed from an [`Iterable`][Iterable] of [`Iterables`][Iterable] 
 List<Iterable<Foo>>[] iterables = ...
 
 // generated iterable yield every foo from every iterator from iterators
-Iterable<Foo> combinedIterable = new CombinedIterable<Foo>(iterables);
+Iterable<Foo> combinedIterable = new CombinedIterable<>(iterables);
 ```
 
 ### Interspersing infix value
@@ -101,7 +101,7 @@ Foo infix = ...
 Iterable<Foo> iterable = ...
 
 // generated iterable yields every foo from iterator, interspersed with the infix
-Iterable<Foo> infixedIterable = new InfixedIterable<Foo>(iterator, infix);
+Iterable<Foo> infixedIterable = new InfixedIterable<>(iterator, infix);
 ```
 
 ### Looking ahead
@@ -112,7 +112,7 @@ This library provides the generic [`LookAheadIterable`][LookAheadIterable] that 
 Iterable<Foo> iterable = ...
 
 // generated iterator yields a look ahead for every foo from iterator
-Iterable<LookAhead<Foo>> lookAheadIterable = new LookAheadIterable<Foo>(iterator);
+Iterable<LookAhead<Foo>> lookAheadIterable = new LookAheadIterable<>(iterator);
 ```
 
 A [`LookAheadIterable`][LookAheadIterable] can be used to easily perform actions between every element yielded by the original [`Iterable`][Iterable].
@@ -137,7 +137,7 @@ For situations where it is necessary to provide an [`Iterable`][Iterable], but n
 
 ```java
 // generated iterable yield nothing
-Iterable<Foo> emptyIterable = new EmptyIterable<Foo>();
+Iterable<Foo> emptyIterable = new EmptyIterable<>();
 ```
 
 For situations where some [`Iterable`][Iterable] is obtained and passed along, it might be useful to wrap the obtained [`Iterable`][Iterable] in a [`NullSaveIterable`][NullSaveIterable]. A [`NullSaveIterable`][NullSaveIterable] always generates an [`Iterator`][Iterator], even if it is constructed from a `null` [`Iterable`][Iterable].
@@ -146,7 +146,7 @@ For situations where some [`Iterable`][Iterable] is obtained and passed along, i
 Iterable<Foo> iterable = ...
 
 // generated iterable yield every foo from iterator of nothing, if iterator is null
-Iterable<Foo> nullSaveIterable = new NullSaveIterable(iterable);
+Iterable<Foo> nullSaveIterable = new NullSaveIterable<>(iterable);
 ```
 
 For situations where some [`Iterable`][Iterable] is obtained, it might be useful to wrap the obtained [`Iterable`][Iterable] in a [`NullFreeIterable`][NullFreeIterable]. A [`NullFreeIterable`][NullFreeIterable] generates [`Iterators`][Iterator] that tilter out all `null` values yielded by the obtained [`Iterable`][Iterable].
@@ -155,7 +155,7 @@ For situations where some [`Iterable`][Iterable] is obtained, it might be useful
 Iterable<Foo> iterable = ...
 
 // generated iterable yield every non-null foo from iterator
-Iterable<Foo> nullFreeIterable = new NullFreeIterable(iterable);
+Iterable<Foo> nullFreeIterable = new NullFreeIterable<>(iterable);
 ```
 
 ### Iterating over single values
@@ -166,10 +166,10 @@ This library provides the [`ObjectIterable`][ObjectIterable] and [`OptionalItera
 Foo foo = ...
 
 // generated iterable yield foo, even if foo is null
-Iterable<Foo> objectIterable = new ObjectIterable(foo); 
+Iterable<Foo> objectIterable = new ObjectIterable<>(foo); 
 
 // generated iterable yield foo or nothing, if foo is null
-Iterable<Foo> optionalIterable = new OptionalIterable(foo); 
+Iterable<Foo> optionalIterable = new OptionalIterable<>(foo); 
 ```
 
 ### Iterating over primitive Arrays
@@ -200,7 +200,7 @@ This library provides the generic [`ArrayIterable`][ArrayIterable] that takes an
 Foo[] foos = ...
 
 // generated iterables yield every foo from foos
-Iterable<Foo> arrayIterable = new ArrayIterable(foos);
+Iterable<Foo> arrayIterable = new ArrayIterable<>(foos);
 ```
 
 ### Counting
