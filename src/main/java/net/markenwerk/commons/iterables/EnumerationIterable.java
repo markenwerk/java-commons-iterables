@@ -40,7 +40,7 @@ import net.markenwerk.commons.iterators.EnumerationIterator;
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.0.0
+ * @since 1.1.6
  */
 public final class EnumerationIterable<Payload> implements ProtectedIterable<Payload> {
 
