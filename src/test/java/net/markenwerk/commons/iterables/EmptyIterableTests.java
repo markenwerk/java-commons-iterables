@@ -26,8 +26,6 @@ import java.util.Iterator;
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.EmptyIterable;
-
 /**
  * JUnit test for {@link EmptyIterable}.
  * 
@@ -36,47 +34,26 @@ import net.markenwerk.commons.iterables.EmptyIterable;
 public class EmptyIterableTests {
 
 	/**
-	 * Iterate over an {@link EmptyIterable}.
+	 * Create on {@link Iterator}.
 	 */
 	@Test
-	public void iterate() {
-
-		Iterator<Object> iterator = new EmptyIterable<Object>().iterator();
-
-		Assert.assertFalse(iterator.hasNext());
-		Assert.assertNull(iterator.next());
-
-	}
-	
-	/**
-	 * Iterate over an {@link EmptyIterable} twice.
-	 */
-	@Test
-	public void iterateTwice() {
+	public void iterator() {
 
 		Iterable<Object> iterable = new EmptyIterable<Object>();
-		Iterator<Object> iterator = iterable.iterator();
 
-		Assert.assertFalse(iterator.hasNext());
-		Assert.assertNull(iterator.next());
-		
-		Iterator<Object> iterator2 = iterable.iterator();
-
-		Assert.assertNotSame(iterator, iterator2);
-
-		Assert.assertNotSame(iterator, iterator2);
-		Assert.assertFalse(iterator2.hasNext());
-		Assert.assertNull(iterator2.next());
+		Assert.assertNotNull(iterable.iterator());
 
 	}
 
 	/**
-	 * Iterate over an {@link EmptyIterable}.
+	 * Create multiple {@link Iterator Iterators}.
 	 */
-	@Test(expected = UnsupportedOperationException.class)
-	public void remove() {
+	@Test
+	public void iterator_twice() {
 
-		new EmptyIterable<Object>().iterator().remove();
+		Iterable<Object> iterable = new EmptyIterable<Object>();
+
+		Assert.assertNotSame(iterable.iterator(), iterable.iterator());
 
 	}
 

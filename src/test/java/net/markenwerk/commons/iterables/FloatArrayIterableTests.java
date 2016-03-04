@@ -32,70 +32,37 @@ import org.junit.Test;
  * @author Torsten Krause (tk at markenwerk dot net)
  */
 public class FloatArrayIterableTests {
-
 	/**
-	 * Iterate over a {@code float[]}.
-	 */
-	@Test
-	public void iterate() {
-
-		float[] values = new float[] { 1, 2 };
-		Iterator<Float> iterator = new FloatArrayIterable(values).iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Float.valueOf(values[0]), iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Float.valueOf(values[1]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-	}
-
-	/**
-	 * Iterate over a {@code float[]} twice.
-	 */
-	@Test
-	public void iterateTwice() {
-
-		float[] values = new float[] { 1 };
-		Iterable<Float> iterable = new FloatArrayIterable(values);
-		Iterator<Float> iterator = iterable.iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Float.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-		Iterator<Float> iterator2 = iterable.iterator();
-
-		Assert.assertNotSame(iterator, iterator2);
-
-		Assert.assertTrue(iterator2.hasNext());
-		Assert.assertEquals(Float.valueOf(values[0]), iterator2.next());
-		Assert.assertFalse(iterator2.hasNext());
-
-	}
-
-	/**
-	 * Iterate over a {@code null} array.
+	 * create with a {@code null} array.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullArray() {
+	public void create_nullArray() {
 
 		new FloatArrayIterable(null);
 
 	}
 
 	/**
-	 * Remove a value in a {@code float[]}.
+	 * Iterate over {@code float[]} array.
 	 */
-	@Test(expected = UnsupportedOperationException.class)
-	public void removeWithoutFallback() {
+	@Test
+	public void iterator() {
 
-		float[] values = new float[] { 1 };
-		Iterator<Float> iterator = new FloatArrayIterable(values).iterator();
+		Iterable<Float> iterable = new FloatArrayIterable(new float[0]);
 
-		iterator.next();
-		iterator.remove();
+		Assert.assertNotNull(iterable.iterator());
 
 	}
 
+	/**
+	 * Create multiple {@link Iterator Iterators}.
+	 */
+	@Test
+	public void iterator_twice() {
+
+		Iterable<Float> iterable = new FloatArrayIterable(new float[0]);
+
+		Assert.assertNotSame(iterable.iterator(), iterable.iterator());
+
+	}
 }

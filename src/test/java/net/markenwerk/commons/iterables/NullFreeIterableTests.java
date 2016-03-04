@@ -33,108 +33,37 @@ import org.junit.Test;
  */
 public class NullFreeIterableTests {
 
-	
 	/**
-	 * Iterate over a {@code null} {@link Iterator}.
+	 * Create with a {@code null} {@link Iterable}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullIterator() {
+	public void create_nullIterable() {
 
 		new NullFreeIterable<Object>(null);
 
 	}
-	
+
 	/**
-	 * Filter out a {@literal null} value at the front of the underlying
-	 * {@link Iterable}.
+	 * Create on {@link Iterator}.
 	 */
 	@Test
-	public void nullAtFront() {
+	public void iterator() {
 
-		Object[] values = new Object[] { null, new Object() };
-		Iterator<Object> iterator = new NullFreeIterable<Object>(new ArrayIterable<Object>(values)).iterator();
+		Iterable<Object> iterable = new NullFreeIterable<Object>(new EmptyIterable<Object>());
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[1], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
+		Assert.assertNotNull(iterable.iterator());
 
 	}
 
 	/**
-	 * Filter out a {@literal null} value in the middle of the underlying
-	 * {@link Iterable}.
+	 * Create multiple {@link Iterator Iterators}.
 	 */
 	@Test
-	public void nullInMiddle() {
+	public void iterator_twice() {
 
-		Object[] values = new Object[] { new Object(), null, new Object() };
-		Iterator<Object> iterator = new NullFreeIterable<Object>(new ArrayIterable<Object>(values)).iterator();
+		Iterable<Object> iterable = new NullFreeIterable<Object>(new EmptyIterable<Object>());
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[2], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-	}
-
-	/**
-	 * Filter out a {@literal null} value at the end of the underlying
-	 * {@link Iterable}.
-	 */
-	@Test
-	public void nullAtEnd() {
-
-		Object[] values = new Object[] { new Object(), null };
-		Iterator<Object> iterator = new NullFreeIterable<Object>(new ArrayIterable<Object>(values)).iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-	}
-
-	
-	/**
-	 * Filter out a {@literal null} value from the underlying
-	 * {@link Iterable} twice.
-	 */
-	@Test
-	public void iterateTwice() {
-
-		Object[] values = new Object[] { null, new Object() };
-		Iterable<Object> iterable = new NullFreeIterable<Object>(new ArrayIterable<Object>(values));
-		Iterator<Object> iterator = iterable.iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[1], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-		
-		Iterator<Object> iterator2 = iterable.iterator();
-
-		Assert.assertNotSame(iterator, iterator2);
-
-		Assert.assertTrue(iterator2.hasNext());
-		Assert.assertSame(values[1], iterator2.next());
-		Assert.assertFalse(iterator2.hasNext());
-
-	}
-	
-	/**
-	 * Remove an object from the underlying {@link Iterable}.
-	 */
-	@Test
-	public void remove() {
-
-		Object replacement = new Object();
-		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new NullFreeIterable<Object>(new ArrayIterable<Object>(values, replacement))
-				.iterator();
-
-		iterator.next();
-		iterator.remove();
-
-		Assert.assertSame(replacement, values[0]);
+		Assert.assertNotSame(iterable.iterator(), iterable.iterator());
 
 	}
 

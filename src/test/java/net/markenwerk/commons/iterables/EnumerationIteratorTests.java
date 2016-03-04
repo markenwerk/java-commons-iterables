@@ -21,7 +21,6 @@
  */
 package net.markenwerk.commons.iterables;
 
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Vector;
@@ -39,72 +38,45 @@ import net.markenwerk.commons.interfaces.Producer;
  */
 public class EnumerationIteratorTests {
 
+	private static final Producer<Enumeration<Object>> ENUMERATION_PRODUCER = new Producer<Enumeration<Object>>() {
+
+		@Override
+		public Enumeration<Object> create() throws CreationException {
+			return new Vector<Object>().elements();
+		}
+	};;
+
 	/**
-	 * Iterate with a {@code null} {@link Enumeration} {@link Producer}.
+	 * Create with a {@code null} {@link Iterable}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullTokenizer() {
+	public void create_nullProducer() {
 
 		new EnumerationIterable<Object>(null);
 
 	}
 
 	/**
-	 * Iterate over an empty {@link Enumeration}.
+	 * Create on {@link Iterator}.
 	 */
 	@Test
-	public void iterateEmpty() {
+	public void iterator() {
 
-		Iterator<Object> iterator = new EnumerationIterable<Object>(new Producer<Enumeration<Object>>() {
-			@Override
-			public Enumeration<Object> create() throws CreationException {
-				return new Vector<Object>(Arrays.asList()).elements();
-			}
-		}).iterator();
+		Iterable<Object> iterable = new EnumerationIterable<Object>(ENUMERATION_PRODUCER);
 
-		Assert.assertFalse(iterator.hasNext());
+		Assert.assertNotNull(iterable.iterator());
 
 	}
 
 	/**
-	 * Iterate over an {@link Enumeration} with one element.
+	 * Create multiple {@link Iterator Iterators}.
 	 */
 	@Test
-	public void iterateOne() {
+	public void iterator_twice() {
 
-		final Object value = new Object();
-		Iterator<Object> iterator = new EnumerationIterable<Object>(new Producer<Enumeration<Object>>() {
-			@Override
-			public Enumeration<Object> create() throws CreationException {
-				return new Vector<Object>(Arrays.asList(value)).elements();
-			}
-		}).iterator();
+		Iterable<Object> iterable = new EnumerationIterable<Object>(ENUMERATION_PRODUCER);
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(value, iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-	}
-
-	/**
-	 * Iterate over an {@link Enumeration} with two elements.
-	 */
-	@Test
-	public void iterateTwo() {
-
-		final Object[] values = new Object[] { new Object(), new Object() };
-		Iterator<Object> iterator = new EnumerationIterable<Object>(new Producer<Enumeration<Object>>() {
-			@Override
-			public Enumeration<Object> create() throws CreationException {
-				return new Vector<Object>(Arrays.asList(values)).elements();
-			}
-		}).iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[1], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
+		Assert.assertNotSame(iterable.iterator(), iterable.iterator());
 
 	}
 

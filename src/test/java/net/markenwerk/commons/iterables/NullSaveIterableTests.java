@@ -34,88 +34,38 @@ import org.junit.Test;
 public class NullSaveIterableTests {
 
 	/**
-	 * Iterate over a a non-{@literal null} {@link Iterable}.
+	 * Create with a {@code null} {@link Iterable}.
 	 */
 	@Test
-	public void nonNullIterator() {
+	public void create_nullIterable() {
 
-		Object[] values = new Object[] { new Object(), new Object() };
-		Iterator<Object> iterator = new NullSaveIterable<Object>(new ArrayIterable<Object>(values)).iterator();
+		Iterable<Object> iterable = new NullSaveIterable<Object>(null);
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[1], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
+		Assert.assertNotNull(iterable.iterator());
 
 	}
 
 	/**
-	 * Iterate over a a non-{@literal null} {@link Iterable} twice.
+	 * Create on {@link Iterator}.
 	 */
 	@Test
-	public void nonNullIteratorTwice() {
+	public void iterator() {
 
-		Object[] values = new Object[] { new Object() };
-		Iterable<Object> iterable = new NullSaveIterable<Object>(new ArrayIterable<Object>(values));
-		Iterator<Object> iterator = iterable.iterator();
+		Iterable<Object> iterable = new NullSaveIterable<Object>(new EmptyIterable<Object>());
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-		Iterator<Object> iterator2 = iterable.iterator();
-
-		Assert.assertNotSame(iterator, iterator2);
-		
-		Assert.assertTrue(iterator2.hasNext());
-		Assert.assertSame(values[0], iterator2.next());
-		Assert.assertFalse(iterator2.hasNext());
+		Assert.assertNotNull(iterable.iterator());
 
 	}
 
 	/**
-	 * Iterate over a a {@literal null} {@link Iterable}.
-	 */
-
-	@Test
-	public void nullIterator() {
-
-		Iterator<Object> iterator = new NullSaveIterable<Object>((Iterable<Object>) null).iterator();
-
-		Assert.assertFalse(iterator.hasNext());
-
-	}
-
-	/**
-	 * Iterate over a a non-{@literal null} {@link Iterable}.
-	 */
-
-	@Test
-	public void nullIterable() {
-
-		Iterator<Object> iterator = new NullSaveIterable<Object>((Iterable<Object>) null).iterator();
-
-		Assert.assertFalse(iterator.hasNext());
-
-	}
-
-	/**
-	 * Remove an object from the underlying {@link Iterable}.
+	 * Create multiple {@link Iterator Iterators}.
 	 */
 	@Test
-	public void remove() {
+	public void iterator_twice() {
 
-		Object replacement = new Object();
-		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new NullSaveIterable<Object>(new ArrayIterable<Object>(values, replacement))
-				.iterator();
+		Iterable<Object> iterable = new NullSaveIterable<Object>(new EmptyIterable<Object>());
 
-		iterator.next();
-		iterator.remove();
-
-		Assert.assertSame(replacement, values[0]);
+		Assert.assertNotSame(iterable.iterator(), iterable.iterator());
 
 	}
-
 }

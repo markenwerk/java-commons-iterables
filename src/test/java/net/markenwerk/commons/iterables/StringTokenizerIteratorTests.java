@@ -29,76 +29,54 @@ import org.junit.Test;
 
 import net.markenwerk.commons.exceptions.CreationException;
 import net.markenwerk.commons.interfaces.Producer;
-import net.markenwerk.commons.iterators.StringTokenizerIterator;
 
 /**
- * JUnit test for {@link StringTokenizerIterator}.
+ * JUnit test for {@link StringTokenizerIterable}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  */
 public class StringTokenizerIteratorTests {
 
+	private static final Producer<StringTokenizer> TOKENIZER_PRODUCER = new Producer<StringTokenizer>() {
+
+		@Override
+		public StringTokenizer create() throws CreationException {
+			return new StringTokenizer("");
+		}
+	};
+
 	/**
-	 * Iterate over a {@code null} {@link StringTokenizer} {@link Producer}.
+	 * Create with a {@code null} {@link Producer} for {@link StringTokenizer
+	 * StringTokenizers}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullTokenizer() {
+	public void create_nullProducer() {
 
 		new StringTokenizerIterable(null);
 
 	}
 
 	/**
-	 * Iterate over an empty {@link StringTokenizer}.
+	 * Create on {@link Iterator}.
 	 */
 	@Test
-	public void iterateEmpty() {
+	public void iterator() {
 
-		Iterator<String> iterator = new StringTokenizerIterable(new Producer<StringTokenizer>() {
-			public StringTokenizer create() throws CreationException {
-				return new StringTokenizer("");
-			}
-		}).iterator();
+		Iterable<String> iterable = new StringTokenizerIterable(TOKENIZER_PRODUCER);
 
-		Assert.assertFalse(iterator.hasNext());
+		Assert.assertNotNull(iterable.iterator());
 
 	}
 
 	/**
-	 * Iterate over an {@link StringTokenizer} with one element.
+	 * Create multiple {@link Iterator Iterators}.
 	 */
 	@Test
-	public void iterateOne() {
+	public void iterator_twice() {
 
-		Iterator<String> iterator = new StringTokenizerIterable(new Producer<StringTokenizer>() {
-			public StringTokenizer create() throws CreationException {
-				return new StringTokenizer("foo");
-			}
-		}).iterator();
+		Iterable<String> iterable = new StringTokenizerIterable(TOKENIZER_PRODUCER);
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals("foo", iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-	}
-
-	/**
-	 * Iterate over an {@link StringTokenizer} with two elements.
-	 */
-	@Test
-	public void iterateTwo() {
-
-		Iterator<String> iterator = new StringTokenizerIterable(new Producer<StringTokenizer>() {
-			public StringTokenizer create() throws CreationException {
-				return new StringTokenizer("foo bar");
-			}
-		}).iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals("foo", iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals("bar", iterator.next());
-		Assert.assertFalse(iterator.hasNext());
+		Assert.assertNotSame(iterable.iterator(), iterable.iterator());
 
 	}
 

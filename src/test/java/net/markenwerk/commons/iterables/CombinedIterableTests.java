@@ -22,8 +22,6 @@
 package net.markenwerk.commons.iterables;
 
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -69,112 +67,26 @@ public class CombinedIterableTests {
 	}
 
 	/**
-	 * Iterate over one iterator.
+	 * Create on {@link Iterator}.
 	 */
 	@Test
-	@SuppressWarnings("unchecked")
-	public void oneIterator() {
+	public void iterator() {
 
-		Object[] values = new Object[] { new Object(), new Object() };
-		Iterator<Object> iterator = new CombinedIterable<Object>(new ArrayIterable<Object>(values)).iterator();
+		Iterable<Object> iterable = new CombinedIterable<Object>(new EmptyIterable<Iterable<Object>>());
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[1], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
+		Assert.assertNotNull(iterable.iterator());
 
 	}
 
 	/**
-	 * Iterate over multiple iterator.
+	 * Create multiple {@link Iterator Iterators}.
 	 */
 	@Test
-	@SuppressWarnings("unchecked")
-	public void iterablesArray() {
+	public void iterator_twice() {
 
-		Object[] values = new Object[] { new Object(), new Object() };
-		Iterator<Object> iterator = new CombinedIterable<Object>(new ArrayIterable<Object>(values),
-				new ArrayIterable<Object>(values)).iterator();
+		Iterable<Object> iterable = new CombinedIterable<Object>(new EmptyIterable<Iterable<Object>>());
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[1], iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[1], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-	}
-
-	/**
-	 * Iterate over multiple iterator.
-	 */
-	@Test
-	public void iterablesIterable() {
-
-		Object[] values = new Object[] { new Object(), new Object() };
-
-		List<Iterable<Object>> iteratorsList = new LinkedList<Iterable<Object>>();
-		iteratorsList.add(new ArrayIterable<Object>(values));
-		iteratorsList.add(new ArrayIterable<Object>(values));
-		Iterator<Object> iterator = new CombinedIterable<Object>(iteratorsList).iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[1], iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[1], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-	}
-
-	/**
-	 * Iterate over one iterator twice.
-	 */
-	@Test
-	@SuppressWarnings("unchecked")
-	public void iterateTwice() {
-
-		Object[] values = new Object[] { new Object() };
-		Iterable<Object> iterable = new CombinedIterable<Object>(new ArrayIterable<Object>(values));
-		Iterator<Object> iterator = iterable.iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-		Iterator<Object> iterator2 = iterable.iterator();
-
-		Assert.assertNotSame(iterator, iterator2);
-
-		Assert.assertTrue(iterator2.hasNext());
-		Assert.assertSame(values[0], iterator2.next());
-		Assert.assertFalse(iterator2.hasNext());
-
-	}
-
-	/**
-	 * Remove an object from the underlying {@link Iterable}.
-	 */
-	@Test
-	@SuppressWarnings("unchecked")
-	public void remove() {
-
-		Object replacement = new Object();
-		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new CombinedIterable<Object>(new ArrayIterable<Object>(values, replacement))
-				.iterator();
-
-		iterator.next();
-		iterator.remove();
-
-		Assert.assertSame(replacement, values[0]);
+		Assert.assertNotSame(iterable.iterator(), iterable.iterator());
 
 	}
 

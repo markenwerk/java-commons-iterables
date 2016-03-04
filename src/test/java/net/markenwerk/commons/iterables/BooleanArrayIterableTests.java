@@ -34,67 +34,36 @@ import org.junit.Test;
 public class BooleanArrayIterableTests {
 
 	/**
-	 * Iterate over a {@code boolean[]}.
-	 */
-	@Test
-	public void iterate() {
-
-		boolean[] values = new boolean[] { true, false };
-		Iterator<Boolean> iterator = new BooleanArrayIterable(values).iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Boolean.valueOf(values[0]), iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Boolean.valueOf(values[1]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-	}
-
-	/**
-	 * Iterate over a {@code boolean[]} twice.
-	 */
-	@Test
-	public void iterateTwice() {
-
-		boolean[] values = new boolean[] { true };
-		Iterable<Boolean> iterable = new BooleanArrayIterable(values);
-		Iterator<Boolean> iterator = iterable.iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Boolean.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-		Iterator<Boolean> iterator2 = iterable.iterator();
-
-		Assert.assertNotSame(iterator, iterator2);
-
-		Assert.assertTrue(iterator2.hasNext());
-		Assert.assertEquals(Boolean.valueOf(values[0]), iterator2.next());
-		Assert.assertFalse(iterator2.hasNext());
-
-	}
-
-	/**
-	 * Iterate over a {@code null} array.
+	 * create with a {@code null} array.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullArray() {
+	public void create_nullArray() {
 
-		new BooleanArrayIterable(null).iterator();
+		new BooleanArrayIterable(null);
 
 	}
 
 	/**
-	 * Remove a value in a {@code boolean[]}.
+	 * Create one {@link Iterator}.
 	 */
-	@Test(expected = UnsupportedOperationException.class)
-	public void removeWithoutFallback() {
+	@Test
+	public void iterator() {
 
-		boolean[] values = new boolean[] { true };
-		Iterator<Boolean> iterator = new BooleanArrayIterable(values).iterator();
+		Iterable<Boolean> iterable = new BooleanArrayIterable(new boolean[0]);
 
-		iterator.next();
-		iterator.remove();
+		Assert.assertNotNull(iterable.iterator());
+
+	}
+
+	/**
+	 * Create multiple {@link Iterator Iterators}.
+	 */
+	@Test
+	public void iterator_twice() {
+
+		Iterable<Boolean> iterable = new BooleanArrayIterable(new boolean[0]);
+
+		Assert.assertNotSame(iterable.iterator(), iterable.iterator());
 
 	}
 

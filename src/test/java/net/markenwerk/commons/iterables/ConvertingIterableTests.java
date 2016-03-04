@@ -26,6 +26,7 @@ import java.util.Iterator;
 import org.junit.Assert;
 import org.junit.Test;
 
+import net.markenwerk.commons.datastructures.Wrapper;
 import net.markenwerk.commons.interfaces.Converter;
 
 /**
@@ -35,103 +36,56 @@ import net.markenwerk.commons.interfaces.Converter;
  */
 public class ConvertingIterableTests {
 
-	private static final class Wrapper {
-
-		private final Object wrapped;
-
-		public Wrapper(Object wrapped) {
-			this.wrapped = wrapped;
-		}
-
-	}
-
-	private final Converter<Object, Wrapper> WRAPPING_CONVERTER = new Converter<Object, Wrapper>() {
+	private final Converter<Object, Wrapper<Object>> WRAPPING_CONVERTER = new Converter<Object, Wrapper<Object>>() {
 		@Override
-		public Wrapper convert(Object from) {
-			return null == from ? null : new Wrapper(from);
+		public Wrapper<Object> convert(Object from) {
+			return null == from ? null : new Wrapper<Object>(from);
 		}
 	};
 
 	/**
-	 * Iterate over a {@code null} {@link Iterator}.
+	 * Create with a {@code null} {@link Iterable}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullIterator() {
+	public void create_nullIterable() {
 
-		new ConvertingIterable<Object, Wrapper>(null, WRAPPING_CONVERTER);
+		new InfixedIterable<Object>(null, WRAPPING_CONVERTER);
 
 	}
 
 	/**
-	 * Iterate with a {@code null} {@link Converter}.
+	 * Create with a {@code null} {@link Converter}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullConverter() {
+	public void create_nullConverter() {
 
-		new ConvertingIterable<Object, Wrapper>(new EmptyIterable<Object>(), null);
-
-	}
-
-	/**
-	 * Convert all values yielded by the underlying {@link Iterable} to their
-	 * hash values.
-	 */
-	@Test
-	public void iterate() {
-
-		Object[] values = new Object[] { new Object(), new Object() };
-		Iterator<Wrapper> iterator = new ConvertingIterable<Object, Wrapper>(new ArrayIterable<Object>(values),
-				WRAPPING_CONVERTER).iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next().wrapped);
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[1], iterator.next().wrapped);
-		Assert.assertFalse(iterator.hasNext());
+		new InfixedIterable<Object>(null, WRAPPING_CONVERTER);
 
 	}
 
 	/**
-	 * Convert all values yielded by the underlying {@link Iterable} to their
-	 * hash values twice.
+	 * Create on {@link Iterator}.
 	 */
 	@Test
-	public void iterateTwice() {
+	public void iterator() {
 
-		Object[] values = new Object[] { new Object() };
-		Iterable<Wrapper> iterable = new ConvertingIterable<Object, Wrapper>(new ArrayIterable<Object>(values),
-				WRAPPING_CONVERTER);
-		Iterator<Wrapper> iterator = iterable.iterator();
+		Iterable<Wrapper<Object>> iterable = new ConvertingIterable<Object, Wrapper<Object>>(
+				new EmptyIterable<Object>(), WRAPPING_CONVERTER);
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next().wrapped);
-		Assert.assertFalse(iterator.hasNext());
-
-		Iterator<Wrapper> iterator2 = iterable.iterator();
-
-		Assert.assertNotSame(iterator, iterator2);
-
-		Assert.assertTrue(iterator2.hasNext());
-		Assert.assertSame(values[0], iterator2.next().wrapped);
-		Assert.assertFalse(iterator2.hasNext());
+		Assert.assertNotNull(iterable.iterator());
 
 	}
 
 	/**
-	 * Remove an object from the underlying {@link Iterable}.
+	 * Create multiple {@link Iterator Iterators}.
 	 */
 	@Test
-	public void remove() {
+	public void iterator_twice() {
 
-		Object replacement = new Object();
-		Object[] values = new Object[] { new Object() };
-		Iterator<Wrapper> iterator = new ConvertingIterable<Object, Wrapper>(new ArrayIterable<Object>(values,
-				replacement), WRAPPING_CONVERTER).iterator();
+		Iterable<Wrapper<Object>> iterable = new ConvertingIterable<Object, Wrapper<Object>>(
+				new EmptyIterable<Object>(), WRAPPING_CONVERTER);
 
-		iterator.next();
-		iterator.remove();
-
-		Assert.assertSame(replacement, values[0]);
+		Assert.assertNotSame(iterable.iterator(), iterable.iterator());
 
 	}
 

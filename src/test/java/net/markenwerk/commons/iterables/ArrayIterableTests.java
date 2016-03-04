@@ -34,67 +34,36 @@ import org.junit.Test;
 public class ArrayIterableTests {
 
 	/**
-	 * Iterate over a payload array.
-	 */
-	@Test
-	public void iterate() {
-
-		Object[] values = new Object[] { new Object(), new Object() };
-		Iterator<Object> iterator = new ArrayIterable<Object>(values).iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[1], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-	}
-
-	/**
-	 * Iterate over a payload array twice.
-	 */
-	@Test
-	public void iterateTwice() {
-
-		Object[] values = new Object[] { new Object(), };
-		Iterable<Object> iterable = new ArrayIterable<Object>(values);
-		Iterator<Object> iterator = iterable.iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-		Iterator<Object> iterator2 = iterable.iterator();
-
-		Assert.assertNotSame(iterator, iterator2);
-
-		Assert.assertTrue(iterator2.hasNext());
-		Assert.assertSame(values[0], iterator2.next());
-		Assert.assertFalse(iterator2.hasNext());
-
-	}
-
-	/**
-	 * Iterate over a {@code null} array.
+	 * create with a {@code null} array.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullArray() {
+	public void create_nullArray() {
 
 		new ArrayIterable<Object>(null);
 
 	}
 
 	/**
-	 * Remove a value in a {@code short[]}.
+	 * Create one {@link Iterator}.
 	 */
-	@Test(expected = UnsupportedOperationException.class)
-	public void removeWithoutFallback() {
+	@Test
+	public void iterator() {
 
-		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new ArrayIterable<Object>(values).iterator();
+		Iterable<Object> iterable = new ArrayIterable<Object>(new Object[0]);
 
-		iterator.next();
-		iterator.remove();
+		Assert.assertNotNull(iterable.iterator());
+
+	}
+
+	/**
+	 * Create multiple {@link Iterator Iterators}.
+	 */
+	@Test
+	public void iterator_twice() {
+
+		Iterable<Object> iterable = new ArrayIterable<Object>(new Object[0]);
+
+		Assert.assertNotSame(iterable.iterator(), iterable.iterator());
 
 	}
 

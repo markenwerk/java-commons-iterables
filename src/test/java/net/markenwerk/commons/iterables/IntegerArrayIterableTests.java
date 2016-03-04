@@ -34,67 +34,36 @@ import org.junit.Test;
 public class IntegerArrayIterableTests {
 
 	/**
-	 * Iterate over a {@code int[]}.
-	 */
-	@Test
-	public void iterate() {
-
-		int[] values = new int[] { 1, 2 };
-		Iterator<Integer> iterator = new IntegerArrayIterable(values).iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Integer.valueOf(values[0]), iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Integer.valueOf(values[1]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-	}
-
-	/**
-	 * Iterate over a {@code int[]} twice.
-	 */
-	@Test
-	public void iterateTwice() {
-
-		int[] values = new int[] { 1 };
-		Iterable<Integer> iterable = new IntegerArrayIterable(values);
-		Iterator<Integer> iterator = iterable.iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Integer.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-		Iterator<Integer> iterator2 = iterable.iterator();
-
-		Assert.assertNotSame(iterator, iterator2);
-
-		Assert.assertTrue(iterator2.hasNext());
-		Assert.assertEquals(Integer.valueOf(values[0]), iterator2.next());
-		Assert.assertFalse(iterator2.hasNext());
-
-	}
-
-	/**
-	 * Iterate over a {@code null} array.
+	 * create with a {@code null} array.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullArray() {
+	public void create_nullArray() {
 
 		new IntegerArrayIterable(null);
 
 	}
 
 	/**
-	 * Remove a value in a {@code integer[]}.
+	 * Create one {@link Iterator}.
 	 */
-	@Test(expected = UnsupportedOperationException.class)
-	public void removeWithoutFallback() {
+	@Test
+	public void iterator() {
 
-		int[] values = new int[] { 1 };
-		Iterator<Integer> iterator = new IntegerArrayIterable(values).iterator();
+		Iterable<Integer> iterable = new IntegerArrayIterable(new int[0]);
 
-		iterator.next();
-		iterator.remove();
+		Assert.assertNotNull(iterable.iterator());
+
+	}
+
+	/**
+	 * Create multiple {@link Iterator Iterators}.
+	 */
+	@Test
+	public void iterator_twice() {
+
+		Iterable<Integer> iterable = new IntegerArrayIterable(new int[0]);
+
+		Assert.assertNotSame(iterable.iterator(), iterable.iterator());
 
 	}
 

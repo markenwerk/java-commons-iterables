@@ -34,67 +34,36 @@ import org.junit.Test;
 public class ByteArrayIterableTests {
 
 	/**
-	 * Iterate over a {@code byte[]}.
-	 */
-	@Test
-	public void iterate() {
-
-		byte[] values = new byte[] { 1, 2 };
-		Iterator<Byte> iterator = new ByteArrayIterable(values).iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Byte.valueOf(values[0]), iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Byte.valueOf(values[1]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-	}
-
-	/**
-	 * Iterate over a {@code byte[]} twice.
-	 */
-	@Test
-	public void iterateTwice() {
-
-		byte[] values = new byte[] { 1 };
-		Iterable<Byte> iterable = new ByteArrayIterable(values);
-		Iterator<Byte> iterator = iterable.iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Byte.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-		Iterator<Byte> iterator2 = iterable.iterator();
-
-		Assert.assertNotSame(iterator, iterator2);
-
-		Assert.assertTrue(iterator2.hasNext());
-		Assert.assertEquals(Byte.valueOf(values[0]), iterator2.next());
-		Assert.assertFalse(iterator2.hasNext());
-
-	}
-
-	/**
-	 * Iterate over a {@code null} array.
+	 * create with a {@code null} array.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullArray() {
+	public void create_nullArray() {
 
 		new ByteArrayIterable(null);
 
 	}
 
 	/**
-	 * Remove a value in a {@code byte[]}.
+	 * Create one {@link Iterator}.
 	 */
-	@Test(expected = UnsupportedOperationException.class)
-	public void removeWithoutFallback() {
+	@Test
+	public void iterator() {
 
-		byte[] values = new byte[] { 1 };
-		Iterator<Byte> iterator = new ByteArrayIterable(values).iterator();
+		Iterable<Byte> iterable = new ByteArrayIterable(new byte[0]);
 
-		iterator.next();
-		iterator.remove();
+		Assert.assertNotNull(iterable.iterator());
+
+	}
+
+	/**
+	 * Create multiple {@link Iterator Iterators}.
+	 */
+	@Test
+	public void iterator_twice() {
+
+		Iterable<Byte> iterable = new ByteArrayIterable(new byte[0]);
+
+		Assert.assertNotSame(iterable.iterator(), iterable.iterator());
 
 	}
 

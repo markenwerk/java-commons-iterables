@@ -43,141 +43,48 @@ public class FilteredIterableTests {
 			return null == object || UNSATISFYING_OBJECT != object;
 		}
 	};
-	
-	
+
 	/**
-	 * Iterate over a {@code null} {@link Iterator}.
+	 * Create with a {@code null} {@link Iterable}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullIterator() {
+	public void create_nullIterable() {
 
 		new FilteredIterable<Object>(null, UNSATISFYING_OBJECT_PREDICATE);
-
 	}
-	
-	
+
 	/**
-	 * Iterate with a {@code null} {@link Predicate}.
+	 * Create with a {@code null} {@link Predicate}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullPredicate() {
+	public void create_nullPredicate() {
 
 		new FilteredIterable<Object>(new EmptyIterable<Object>(), null);
-
 	}
 
 	/**
-	 * Filter out a unsatisfying value at the front of the underlying
-	 * {@link Iterable}.
+	 * Create on {@link Iterator}.
 	 */
 	@Test
-	public void unsatisfyingAtFront() {
+	public void iterator() {
 
-		Object[] values = new Object[] { UNSATISFYING_OBJECT, new Object() };
-		Iterator<Object> iterator = new FilteredIterable<Object>(new ArrayIterable<Object>(values),
-				UNSATISFYING_OBJECT_PREDICATE).iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[1], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-	}
-
-	/**
-	 * Filter out a unsatisfying value in the middle of the underlying
-	 * {@link Iterable}.
-	 */
-	@Test
-	public void unsatisfyingInMiddle() {
-
-		Object[] values = new Object[] { new Object(), UNSATISFYING_OBJECT, new Object() };
-		Iterator<Object> iterator = new FilteredIterable<Object>(new ArrayIterable<Object>(values),
-				UNSATISFYING_OBJECT_PREDICATE).iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[2], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-	}
-
-	/**
-	 * Filter out a unsatisfying value at the end of the underlying
-	 * {@link Iterable}.
-	 */
-	@Test
-	public void unsatisfyingAtEnd() {
-
-		Object[] values = new Object[] { new Object(), UNSATISFYING_OBJECT };
-		Iterator<Object> iterator = new FilteredIterable<Object>(new ArrayIterable<Object>(values),
-				UNSATISFYING_OBJECT_PREDICATE).iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[0], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-	}
-
-	/**
-	 * Filter out a unsatisfying value from the underlying {@link Iterable}
-	 * twice.
-	 */
-	@Test
-	public void iterateTwice() {
-
-		Object[] values = new Object[] { UNSATISFYING_OBJECT, new Object() };
-		Iterable<Object> iterable = new FilteredIterable<Object>(new ArrayIterable<Object>(values),
+		Iterable<Object> iterable = new FilteredIterable<Object>(new EmptyIterable<Object>(),
 				UNSATISFYING_OBJECT_PREDICATE);
-		Iterator<Object> iterator = iterable.iterator();
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(values[1], iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-		Iterator<Object> iterator2 = iterable.iterator();
-
-		Assert.assertNotSame(iterator, iterator2);
-
-		Assert.assertTrue(iterator2.hasNext());
-		Assert.assertSame(values[1], iterator2.next());
-		Assert.assertFalse(iterator2.hasNext());
+		Assert.assertNotNull(iterable.iterator());
 
 	}
 
 	/**
-	 * Filter out a unsatisfying value in the middle of the underlying
-	 * {@link Iterable}.
+	 * Create multiple {@link Iterator Iterators}.
 	 */
 	@Test
-	public void invertedPredicate() {
+	public void iterator_twice() {
 
-		Object[] values = new Object[] { new Object(), UNSATISFYING_OBJECT, new Object() };
-		Iterator<Object> iterator = new FilteredIterable<Object>(new ArrayIterable<Object>(values),
-				UNSATISFYING_OBJECT_PREDICATE, true).iterator();
+		Iterable<Object> iterable = new FilteredIterable<Object>(new EmptyIterable<Object>(),
+				UNSATISFYING_OBJECT_PREDICATE);
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(UNSATISFYING_OBJECT, iterator.next());
-		Assert.assertFalse(iterator.hasNext());
+		Assert.assertNotSame(iterable.iterator(), iterable.iterator());
 
 	}
-
-	/**
-	 * Remove an object from the underlying {@link Iterable}.
-	 */
-	@Test
-	public void remove() {
-
-		Object replacement = new Object();
-		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new FilteredIterable<Object>(new ArrayIterable<Object>(values, replacement),
-				UNSATISFYING_OBJECT_PREDICATE).iterator();
-
-		iterator.next();
-		iterator.remove();
-
-		Assert.assertSame(replacement, values[0]);
-
-	}
-
 }

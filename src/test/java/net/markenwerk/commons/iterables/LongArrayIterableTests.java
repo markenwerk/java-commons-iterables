@@ -34,68 +34,36 @@ import org.junit.Test;
 public class LongArrayIterableTests {
 
 	/**
-	 * Iterate over a {@code long[]}.
-	 */
-	@Test
-	public void iterate() {
-
-		long[] values = new long[] { 1, 2 };
-		Iterator<Long> iterator = new LongArrayIterable(values).iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Long.valueOf(values[0]), iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Long.valueOf(values[1]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-	}
-
-	/**
-	 * Iterate over a {@code long[]} twice.
-	 */
-	@Test
-	public void iterateTwice() {
-
-		long[] values = new long[] { 1 };
-		Iterable<Long> iterable = new LongArrayIterable(values);
-		Iterator<Long> iterator = iterable.iterator();
-
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Long.valueOf(values[0]), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-		Iterator<Long> iterator2 = iterable.iterator();
-
-		Assert.assertNotSame(iterator, iterator2);
-
-		Assert.assertTrue(iterator2.hasNext());
-		Assert.assertEquals(Long.valueOf(values[0]), iterator2.next());
-		Assert.assertFalse(iterator2.hasNext());
-
-	}
-
-	/**
-	 * Iterate over a {@code null} array.
+	 * create with a {@code null} array.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void iterateNullArray() {
+	public void create_nullArray() {
 
 		new LongArrayIterable(null);
 
 	}
 
 	/**
-	 * Remove a value in a {@code long[]}.
+	 * Create one {@link Iterator}.
 	 */
-	@Test(expected = UnsupportedOperationException.class)
-	public void removeWithoutFallback() {
+	@Test
+	public void iterator() {
 
-		long[] values = new long[] { 1 };
-		Iterator<Long> iterator = new LongArrayIterable(values).iterator();
+		Iterable<Long> iterable = new LongArrayIterable(new long[0]);
 
-		iterator.next();
-		iterator.remove();
+		Assert.assertNotNull(iterable.iterator());
 
 	}
 
+	/**
+	 * Create multiple {@link Iterator Iterators}.
+	 */
+	@Test
+	public void iterator_twice() {
+
+		Iterable<Long> iterable = new LongArrayIterable(new long[0]);
+
+		Assert.assertNotSame(iterable.iterator(), iterable.iterator());
+
+	}
 }

@@ -34,53 +34,38 @@ import org.junit.Test;
 public class OptionalIterableTests {
 
 	/**
-	 * Iterate over a payload array.
+	 * Create with a {@code null} object.
 	 */
 	@Test
-	public void iterate() {
+	public void create_nullObject() {
 
-		Object value = new Object();
-		Iterator<Object> iterator = new OptionalIterable<Object>(value).iterator();
+		Iterable<Object> iterable = new OptionalIterable<Object>(null);
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(value, iterator.next());
-		Assert.assertFalse(iterator.hasNext());
+		Assert.assertNotNull(iterable.iterator());
 
 	}
 
 	/**
-	 * Iterate over a payload array twice.
+	 * Create on {@link Iterator}.
 	 */
 	@Test
-	public void iterateTwice() {
+	public void iterator() {
 
-		Object value = new Object();
-		Iterable<Object> iterable = new OptionalIterable<Object>(value);
-		Iterator<Object> iterator = iterable.iterator();
+		Iterable<Object> iterable = new OptionalIterable<Object>(new Object());
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertSame(value, iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-
-		Iterator<Object> iterator2 = iterable.iterator();
-
-		Assert.assertNotSame(iterator, iterator2);
-
-		Assert.assertTrue(iterator2.hasNext());
-		Assert.assertSame(value, iterator2.next());
-		Assert.assertFalse(iterator2.hasNext());
+		Assert.assertNotNull(iterable.iterator());
 
 	}
-	
+
 	/**
-	 * Iterate over a payload array.
+	 * Create multiple {@link Iterator Iterators}.
 	 */
 	@Test
-	public void iterateNull() {
+	public void iterator_twice() {
 
-		Iterator<Object> iterator = new OptionalIterable<Object>(null).iterator();
+		Iterable<Object> iterable = new OptionalIterable<Object>(new Object());
 
-		Assert.assertFalse(iterator.hasNext());
+		Assert.assertNotSame(iterable.iterator(), iterable.iterator());
 
 	}
 

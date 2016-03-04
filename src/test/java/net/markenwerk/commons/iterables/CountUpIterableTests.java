@@ -26,9 +26,6 @@ import java.util.Iterator;
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.CountUpIterable;
-import net.markenwerk.commons.iterators.CountUpIterator;
-
 /**
  * JUnit test for {@link CountUpIterable}.
  * 
@@ -77,45 +74,28 @@ public class CountUpIterableTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
+
 	/**
-	 * Count up from a lower bound that is smaller than the upper bound twice.
+	 * Create on {@link Iterator}.
 	 */
 	@Test
-	public void iterateTwice() {
+	public void iterator() {
 
-		Iterable<Integer> iterable = new CountUpIterable(1, 2);
-		Iterator<Integer> iterator = iterable.iterator();
+		Iterable<Integer> iterable = new CountUpIterable(0, 0);
 
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Integer.valueOf(1), iterator.next());
-		Assert.assertTrue(iterator.hasNext());
-		Assert.assertEquals(Integer.valueOf(2), iterator.next());
-		Assert.assertFalse(iterator.hasNext());
-		
-		Iterator<Integer> iterator2 = iterable.iterator();
-
-		Assert.assertNotSame(iterator, iterator2);
-		
-		Assert.assertTrue(iterator2.hasNext());
-		Assert.assertEquals(Integer.valueOf(1), iterator2.next());
-		Assert.assertTrue(iterator2.hasNext());
-		Assert.assertEquals(Integer.valueOf(2), iterator2.next());
-		Assert.assertFalse(iterator2.hasNext());
-		
-		
+		Assert.assertNotNull(iterable.iterator());
 
 	}
 
 	/**
-	 * Remove a value from a {@link CountUpIterator}.
+	 * Create multiple {@link Iterator Iterators}.
 	 */
-	@Test(expected = UnsupportedOperationException.class)
-	public void remove() {
+	@Test
+	public void iterator_twice() {
 
-		Iterator<Integer> iterator = new CountUpIterable(1, 2).iterator();
-		iterator.remove();
+		Iterable<Integer> iterable = new CountUpIterable(0, 0);
+
+		Assert.assertNotSame(iterable.iterator(), iterable.iterator());
 
 	}
-
 }
