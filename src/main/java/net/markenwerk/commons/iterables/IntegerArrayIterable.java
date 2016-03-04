@@ -26,7 +26,7 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.IntegerArrayIterator;
 
 /**
- * An {@link IntegerArrayIterable} is a {@link Iterable} that generates
+ * An {@link IntegerArrayIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that iterate over a given {@code int[]}.
  * 
  * <p>
@@ -36,7 +36,7 @@ import net.markenwerk.commons.iterators.IntegerArrayIterator;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class IntegerArrayIterable implements Iterable<Integer> {
+public final class IntegerArrayIterable implements ProtectedIterable<Integer> {
 
 	private final int[] array;
 

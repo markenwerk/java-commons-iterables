@@ -26,8 +26,9 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.CharacterArrayIterator;
 
 /**
- * An {@link CharacterArrayIterable} is a {@link Iterable} that generates
- * {@link Iterator Iterators} that iterate over a given {@code char[]}.
+ * An {@link CharacterArrayIterable} is a {@link ProtectedIterable} that
+ * generates {@link Iterator Iterators} that iterate over a given {@code char[]}
+ * .
  * 
  * <p>
  * Calling {@link CharacterArrayIterable#iterator()} creates an instance of
@@ -36,7 +37,7 @@ import net.markenwerk.commons.iterators.CharacterArrayIterator;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class CharacterArrayIterable implements Iterable<Character> {
+public final class CharacterArrayIterable implements ProtectedIterable<Character> {
 
 	private final char[] array;
 

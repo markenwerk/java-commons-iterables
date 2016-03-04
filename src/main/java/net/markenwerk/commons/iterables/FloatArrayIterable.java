@@ -26,7 +26,7 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.FloatArrayIterator;
 
 /**
- * An {@link FloatArrayIterable} is a {@link Iterable} that generates
+ * An {@link FloatArrayIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that iterate over a given {@code float[]}.
  * 
  * <p>
@@ -36,7 +36,7 @@ import net.markenwerk.commons.iterators.FloatArrayIterator;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class FloatArrayIterable implements Iterable<Float> {
+public final class FloatArrayIterable implements ProtectedIterable<Float> {
 
 	private final float[] array;
 

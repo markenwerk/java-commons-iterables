@@ -24,8 +24,8 @@ package net.markenwerk.commons.iterables;
 import net.markenwerk.commons.iterators.OptionalIterator;
 
 /**
- * An {@link OptionalIterable} is a {@link Iterable} that behaves like an
- * {@link ObjectIterable} for a given payload object, or like an empty
+ * An {@link OptionalIterable} is a {@link ProtectedIterable} that behaves like
+ * an {@link ObjectIterable} for a given payload object, or like an empty
  * {@link Iterable}, if the given payload object is {@literal null}.
  * 
  * <p>
@@ -33,11 +33,11 @@ import net.markenwerk.commons.iterators.OptionalIterator;
  * {@link OptionalIterator}.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.5
  */
-public final class OptionalIterable<Payload> implements Iterable<Payload> {
+public final class OptionalIterable<Payload> implements ProtectedIterable<Payload> {
 
 	private final Payload value;
 
@@ -45,7 +45,7 @@ public final class OptionalIterable<Payload> implements Iterable<Payload> {
 	 * Creates a new {@link OptionalIterable} for the given payload object.
 	 * 
 	 * @param value
-	 *           The payload object to iterate over.
+	 *            The payload object to iterate over.
 	 */
 	public OptionalIterable(Payload value) {
 		this.value = value;

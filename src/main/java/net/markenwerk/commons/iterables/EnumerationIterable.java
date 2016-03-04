@@ -28,10 +28,10 @@ import net.markenwerk.commons.interfaces.Producer;
 import net.markenwerk.commons.iterators.EnumerationIterator;
 
 /**
- * An {@link EnumerationIterable} is a {@link Iterable} that can be wrapped
- * around a given {@link Producer} for {@link Enumeration Enumerations} and
- * generates {@link Iterator Iterators} that yield all values from a produced
- * {@link Enumeration}.
+ * An {@link EnumerationIterable} is a {@link ProtectedIterable} that can be
+ * wrapped around a given {@link Producer} for {@link Enumeration Enumerations}
+ * and generates {@link Iterator Iterators} that yield all values from a
+ * produced {@link Enumeration}.
  * 
  * <p>
  * Calling {@link EnumerationIterable#iterator()} creates an instance of
@@ -42,7 +42,7 @@ import net.markenwerk.commons.iterators.EnumerationIterator;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class EnumerationIterable<Payload> implements Iterable<Payload> {
+public final class EnumerationIterable<Payload> implements ProtectedIterable<Payload> {
 
 	private final Producer<Enumeration<Payload>> producer;
 

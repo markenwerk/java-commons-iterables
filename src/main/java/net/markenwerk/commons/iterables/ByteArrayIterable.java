@@ -26,7 +26,7 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.ByteArrayIterator;
 
 /**
- * An {@link ByteArrayIterable} is a {@link Iterable} that generates
+ * An {@link ByteArrayIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that iterate over a given {@code byte[]}.
  * 
  * <p>
@@ -36,7 +36,7 @@ import net.markenwerk.commons.iterators.ByteArrayIterator;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class ByteArrayIterable implements Iterable<Byte> {
+public final class ByteArrayIterable implements ProtectedIterable<Byte> {
 
 	private final byte[] array;
 

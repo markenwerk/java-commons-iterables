@@ -26,7 +26,7 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.ObjectIterator;
 
 /**
- * An {@link ObjectIterable} is a {@link Iterable} that generates
+ * An {@link ObjectIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that iterate over a single payload object.
  * 
  * <p>
@@ -38,7 +38,7 @@ import net.markenwerk.commons.iterators.ObjectIterator;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.5
  */
-public final class ObjectIterable<Payload> implements Iterable<Payload> {
+public final class ObjectIterable<Payload> implements ProtectedIterable<Payload> {
 
 	private final Payload value;
 

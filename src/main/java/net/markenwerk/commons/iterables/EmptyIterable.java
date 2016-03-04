@@ -26,7 +26,7 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.EmptyIterator;
 
 /**
- * An {@link EmptyIterable} is a {@link Iterable} that generates
+ * An {@link EmptyIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that that don't yield any values.
  * 
  * <p>
@@ -38,7 +38,7 @@ import net.markenwerk.commons.iterators.EmptyIterator;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class EmptyIterable<Payload> implements Iterable<Payload> {
+public final class EmptyIterable<Payload> implements ProtectedIterable<Payload> {
 
 	@Override
 	public EmptyIterator<Payload> iterator() {

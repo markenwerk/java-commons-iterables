@@ -28,7 +28,7 @@ import net.markenwerk.commons.interfaces.Producer;
 import net.markenwerk.commons.iterators.StringTokenizerIterator;
 
 /**
- * An {@link StringTokenizerIterable} is a {@link Iterable} that can be wrapped
+ * An {@link StringTokenizerIterable} is a {@link ProtectedIterable} that can be wrapped
  * around a given {@link Producer} for {@link StringTokenizer StringTokenizers}
  * and generates {@link Iterator Iterators} that yield all strings from a
  * produced {@link StringTokenizer}.
@@ -40,7 +40,7 @@ import net.markenwerk.commons.iterators.StringTokenizerIterator;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class StringTokenizerIterable implements Iterable<String> {
+public final class StringTokenizerIterable implements ProtectedIterable<String> {
 
 	private final Producer<StringTokenizer> producer;
 
