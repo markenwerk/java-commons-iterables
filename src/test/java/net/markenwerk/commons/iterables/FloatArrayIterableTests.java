@@ -26,8 +26,6 @@ import java.util.Iterator;
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.FloatArrayIterable;
-
 /**
  * JUnit test for {@link FloatArrayIterable}.
  * 
@@ -51,8 +49,7 @@ public class FloatArrayIterableTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
-	
+
 	/**
 	 * Iterate over a {@code float[]} twice.
 	 */
@@ -66,7 +63,7 @@ public class FloatArrayIterableTests {
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertEquals(Float.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
-		
+
 		Iterator<Float> iterator2 = iterable.iterator();
 
 		Assert.assertNotSame(iterator, iterator2);
@@ -80,27 +77,10 @@ public class FloatArrayIterableTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void iterateNullArray() {
 
 		new FloatArrayIterable(null);
-
-	}
-
-	/**
-	 * Remove a value in a {@code float[]}.
-	 */
-	@Test
-	public void removeWithFallback() {
-
-		float replacement = 0;
-		float[] values = new float[] { 1 };
-		Iterator<Float> iterator = new FloatArrayIterable(values, replacement).iterator();
-
-		iterator.next();
-		iterator.remove();
-		
-		Assert.assertEquals(replacement, values[0], 0);
 
 	}
 

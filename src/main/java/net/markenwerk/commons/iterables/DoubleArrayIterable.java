@@ -40,8 +40,6 @@ public final class DoubleArrayIterable implements Iterable<Double> {
 
 	private final double[] array;
 
-	private final Double replacement;
-
 	/**
 	 * Creates a new {@link DoubleArrayIterable} for the given {@code double[]}.
 	 * 
@@ -52,35 +50,15 @@ public final class DoubleArrayIterable implements Iterable<Double> {
 	 *             If the given {@code double[]} is {@literal null}.
 	 */
 	public DoubleArrayIterable(double[] array) throws IllegalArgumentException {
-		this(array, null);
-	}
-
-	/**
-	 * Creates a new {@link DoubleArrayIterable} for the given {@code double[]}.
-	 * 
-	 * @param array
-	 *            The {@code double[]} to iterate over.
-	 * @param replacement
-	 *            The value to replace removed array with.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given {@code double[]} is {@literal null}.
-	 */
-	public DoubleArrayIterable(double[] array, double replacement) throws IllegalArgumentException {
-		this(array, Double.valueOf(replacement));
-	}
-
-	private DoubleArrayIterable(double[] array, Double replacement) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}
 		this.array = array;
-		this.replacement = replacement;
 	}
 
 	@Override
 	public DoubleArrayIterator iterator() {
-		return null != replacement ? new DoubleArrayIterator(array, replacement) : new DoubleArrayIterator(array);
+		return new DoubleArrayIterator(array);
 	}
 
 }

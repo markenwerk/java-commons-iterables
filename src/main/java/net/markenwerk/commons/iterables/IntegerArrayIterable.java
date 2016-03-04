@@ -40,8 +40,6 @@ public final class IntegerArrayIterable implements Iterable<Integer> {
 
 	private final int[] array;
 
-	private final Integer replacement;
-
 	/**
 	 * Creates a new {@link IntegerArrayIterable} for the given {@code int[]}.
 	 * 
@@ -52,35 +50,15 @@ public final class IntegerArrayIterable implements Iterable<Integer> {
 	 *             If the given {@code int[]} is {@literal null}.
 	 */
 	public IntegerArrayIterable(int[] array) throws IllegalArgumentException {
-		this(array, null);
-	}
-
-	/**
-	 * Creates a new {@link IntegerArrayIterable} for the given {@code int[]}.
-	 * 
-	 * @param array
-	 *            The {@code int[]} to iterate over.
-	 * @param replacement
-	 *            The value to replace removed array with.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given {@code int[]} is {@literal null}.
-	 */
-	public IntegerArrayIterable(int[] array, int replacement) throws IllegalArgumentException {
-		this(array, Integer.valueOf(replacement));
-	}
-
-	private IntegerArrayIterable(int[] array, Integer replacement) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}
 		this.array = array;
-		this.replacement = replacement;
 	}
 
 	@Override
 	public IntegerArrayIterator iterator() {
-		return null != replacement ? new IntegerArrayIterator(array, replacement) : new IntegerArrayIterator(array);
+		return new IntegerArrayIterator(array);
 	}
 
 }

@@ -87,23 +87,6 @@ public class ShortArrayIterableTests {
 	/**
 	 * Remove a value in a {@code short[]}.
 	 */
-	@Test
-	public void removeWithFallback() {
-
-		short replacement = 0;
-		short[] values = new short[] { 1 };
-		Iterator<Short> iterator = new ShortArrayIterable(values, replacement).iterator();
-
-		iterator.next();
-		iterator.remove();
-
-		Assert.assertEquals(replacement, values[0]);
-
-	}
-
-	/**
-	 * Remove a value in a {@code short[]}.
-	 */
 	@Test(expected = UnsupportedOperationException.class)
 	public void removeWithoutFallback() {
 

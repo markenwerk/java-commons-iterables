@@ -87,23 +87,6 @@ public class LongArrayIterableTests {
 	/**
 	 * Remove a value in a {@code long[]}.
 	 */
-	@Test
-	public void removeWithFallback() {
-
-		long replacement = 0;
-		long[] values = new long[] { 1 };
-		Iterator<Long> iterator = new LongArrayIterable(values, replacement).iterator();
-
-		iterator.next();
-		iterator.remove();
-
-		Assert.assertEquals(replacement, values[0]);
-
-	}
-
-	/**
-	 * Remove a value in a {@code long[]}.
-	 */
 	@Test(expected = UnsupportedOperationException.class)
 	public void removeWithoutFallback() {
 

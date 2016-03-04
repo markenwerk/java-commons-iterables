@@ -40,8 +40,6 @@ public final class FloatArrayIterable implements Iterable<Float> {
 
 	private final float[] array;
 
-	private final Float replacement;
-
 	/**
 	 * Creates a new {@link FloatArrayIterable} for the given {@code float[]}.
 	 * 
@@ -52,35 +50,15 @@ public final class FloatArrayIterable implements Iterable<Float> {
 	 *             If the given {@code float[]} is {@literal null}.
 	 */
 	public FloatArrayIterable(float[] array) throws IllegalArgumentException {
-		this(array, null);
-	}
-
-	/**
-	 * Creates a new {@link FloatArrayIterable} for the given {@code float[]}.
-	 * 
-	 * @param array
-	 *            The {@code float[]} to iterate over.
-	 * @param replacement
-	 *            The value to replace removed array with.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given {@code float[]} is {@literal null}.
-	 */
-	public FloatArrayIterable(float[] array, float replacement) throws IllegalArgumentException {
-		this(array, Float.valueOf(replacement));
-	}
-
-	private FloatArrayIterable(float[] array, Float replacement) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}
 		this.array = array;
-		this.replacement = replacement;
 	}
 
 	@Override
 	public FloatArrayIterator iterator() {
-		return null != replacement ? new FloatArrayIterator(array, replacement) : new FloatArrayIterator(array);
+		return new FloatArrayIterator(array);
 	}
 
 }

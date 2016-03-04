@@ -40,8 +40,6 @@ public final class ByteArrayIterable implements Iterable<Byte> {
 
 	private final byte[] array;
 
-	private final Byte replacement;
-
 	/**
 	 * Creates a new {@link ByteArrayIterable} for the given {@code byte[]}.
 	 * 
@@ -52,35 +50,15 @@ public final class ByteArrayIterable implements Iterable<Byte> {
 	 *             If the given {@code byte[]} is {@literal null}.
 	 */
 	public ByteArrayIterable(byte[] array) throws IllegalArgumentException {
-		this(array, null);
-	}
-
-	/**
-	 * Creates a new {@link ByteArrayIterable} for the given {@code byte[]}.
-	 * 
-	 * @param array
-	 *            The {@code byte[]} to iterate over.
-	 * @param replacement
-	 *            The value to replace removed array with.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given {@code byte[]} is {@literal null}.
-	 */
-	public ByteArrayIterable(byte[] array, byte replacement) throws IllegalArgumentException {
-		this(array, Byte.valueOf(replacement));
-	}
-
-	private ByteArrayIterable(byte[] array, Byte replacement) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}
 		this.array = array;
-		this.replacement = replacement;
 	}
 
 	@Override
 	public ByteArrayIterator iterator() {
-		return null != replacement ? new ByteArrayIterator(array, replacement) : new ByteArrayIterator(array);
+		return new ByteArrayIterator(array);
 	}
 
 }

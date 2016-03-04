@@ -26,8 +26,6 @@ import java.util.Iterator;
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.BooleanArrayIterable;
-
 /**
  * JUnit test for {@link BooleanArrayIterable}.
  * 
@@ -51,8 +49,7 @@ public class BooleanArrayIterableTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
-	
+
 	/**
 	 * Iterate over a {@code boolean[]} twice.
 	 */
@@ -66,7 +63,7 @@ public class BooleanArrayIterableTests {
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertEquals(Boolean.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
-		
+
 		Iterator<Boolean> iterator2 = iterable.iterator();
 
 		Assert.assertNotSame(iterator, iterator2);
@@ -80,27 +77,10 @@ public class BooleanArrayIterableTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void iterateNullArray() {
 
 		new BooleanArrayIterable(null).iterator();
-
-	}
-
-	/**
-	 * Remove a value in a {@code boolean[]}.
-	 */
-	@Test
-	public void removeWithFallback() {
-
-		boolean replacement = false;
-		boolean[] values = new boolean[] { true };
-		Iterator<Boolean> iterator = new BooleanArrayIterable(values, replacement).iterator();
-
-		iterator.next();
-		iterator.remove();
-
-		Assert.assertEquals(replacement, values[0]);
 
 	}
 

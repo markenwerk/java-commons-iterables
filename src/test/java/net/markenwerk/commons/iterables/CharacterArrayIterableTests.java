@@ -87,23 +87,6 @@ public class CharacterArrayIterableTests {
 	/**
 	 * Remove a value in a {@code char[]}.
 	 */
-	@Test
-	public void removeWithFallback() {
-
-		char replacement = 0;
-		char[] values = new char[] { 1 };
-		Iterator<Character> iterator = new CharacterArrayIterable(values, replacement).iterator();
-
-		iterator.next();
-		iterator.remove();
-		
-		Assert.assertEquals(replacement, values[0]);
-
-	}
-
-	/**
-	 * Remove a value in a {@code char[]}.
-	 */
 	@Test(expected = UnsupportedOperationException.class)
 	public void removeWithoutFallback() {
 

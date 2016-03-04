@@ -26,8 +26,6 @@ import java.util.Iterator;
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.iterables.IntegerArrayIterable;
-
 /**
  * JUnit test for {@link IntegerArrayIterable}.
  * 
@@ -51,7 +49,7 @@ public class IntegerArrayIterableTests {
 		Assert.assertFalse(iterator.hasNext());
 
 	}
-	
+
 	/**
 	 * Iterate over a {@code int[]} twice.
 	 */
@@ -65,7 +63,7 @@ public class IntegerArrayIterableTests {
 		Assert.assertTrue(iterator.hasNext());
 		Assert.assertEquals(Integer.valueOf(values[0]), iterator.next());
 		Assert.assertFalse(iterator.hasNext());
-		
+
 		Iterator<Integer> iterator2 = iterable.iterator();
 
 		Assert.assertNotSame(iterator, iterator2);
@@ -79,27 +77,10 @@ public class IntegerArrayIterableTests {
 	/**
 	 * Iterate over a {@code null} array.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void iterateNullArray() {
 
 		new IntegerArrayIterable(null);
-
-	}
-
-	/**
-	 * Remove a value in a {@code integer[]}.
-	 */
-	@Test
-	public void removeWithFallback() {
-
-		int replacement = 0;
-		int[] values = new int[] { 1 };
-		Iterator<Integer> iterator = new IntegerArrayIterable(values, replacement).iterator();
-
-		iterator.next();
-		iterator.remove();
-
-		Assert.assertEquals(replacement, values[0]);
 
 	}
 

@@ -87,23 +87,6 @@ public class ByteArrayIterableTests {
 	/**
 	 * Remove a value in a {@code byte[]}.
 	 */
-	@Test
-	public void removeWithFallback() {
-
-		byte replacement = 0;
-		byte[] values = new byte[] { 1 };
-		Iterator<Byte> iterator = new ByteArrayIterable(values, replacement).iterator();
-
-		iterator.next();
-		iterator.remove();
-
-		Assert.assertEquals(replacement, values[0]);
-
-	}
-
-	/**
-	 * Remove a value in a {@code byte[]}.
-	 */
 	@Test(expected = UnsupportedOperationException.class)
 	public void removeWithoutFallback() {
 

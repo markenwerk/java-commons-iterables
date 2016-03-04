@@ -87,23 +87,6 @@ public class DoubleArrayIterableTests {
 	/**
 	 * Remove a value in a {@code double[]}.
 	 */
-	@Test
-	public void removeWithFallback() {
-
-		double replacement = 2;
-		double[] values = new double[] { 1 };
-		Iterator<Double> iterator = new DoubleArrayIterable(values, replacement).iterator();
-
-		iterator.next();
-		iterator.remove();
-
-		Assert.assertEquals(replacement, values[0], 0);
-
-	}
-
-	/**
-	 * Remove a value in a {@code double[]}.
-	 */
 	@Test(expected = UnsupportedOperationException.class)
 	public void removeWithoutFallback() {
 

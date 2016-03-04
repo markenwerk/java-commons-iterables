@@ -40,8 +40,6 @@ public final class BooleanArrayIterable implements Iterable<Boolean> {
 
 	private final boolean[] array;
 
-	private final Boolean replacement;
-
 	/**
 	 * Creates a new {@link BooleanArrayIterable} for the given
 	 * {@code boolean[]}.
@@ -53,36 +51,15 @@ public final class BooleanArrayIterable implements Iterable<Boolean> {
 	 *             If the given {@code boolean[]} is {@literal null}.
 	 */
 	public BooleanArrayIterable(boolean[] array) throws IllegalArgumentException {
-		this(array, null);
-	}
-
-	/**
-	 * Creates a new {@link BooleanArrayIterable} for the given
-	 * {@code boolean[]}.
-	 * 
-	 * @param array
-	 *            The {@code boolean[]} to iterate over.
-	 * @param replacement
-	 *            The value to replace removed array with.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given {@code boolean[]} is {@literal null}.
-	 */
-	public BooleanArrayIterable(boolean[] array, boolean replacement) throws IllegalArgumentException {
-		this(array, Boolean.valueOf(replacement));
-	}
-
-	private BooleanArrayIterable(boolean[] array, Boolean replacement) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}
 		this.array = array;
-		this.replacement = replacement;
 	}
 
 	@Override
 	public BooleanArrayIterator iterator() {
-		return null != replacement ? new BooleanArrayIterator(array, replacement) : new BooleanArrayIterator(array);
+		return new BooleanArrayIterator(array);
 	}
 
 }

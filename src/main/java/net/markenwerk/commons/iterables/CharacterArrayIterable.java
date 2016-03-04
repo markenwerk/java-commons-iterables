@@ -40,8 +40,6 @@ public final class CharacterArrayIterable implements Iterable<Character> {
 
 	private final char[] array;
 
-	private final Character replacement;
-
 	/**
 	 * Creates a new {@link CharacterArrayIterable} for the given {@code char[]}
 	 * .
@@ -53,36 +51,15 @@ public final class CharacterArrayIterable implements Iterable<Character> {
 	 *             If the given {@code char[]} is {@literal null}.
 	 */
 	public CharacterArrayIterable(char[] array) throws IllegalArgumentException {
-		this(array, null);
-	}
-
-	/**
-	 * Creates a new {@link CharacterArrayIterable} for the given {@code char[]}
-	 * .
-	 * 
-	 * @param array
-	 *            The {@code char[]} to iterate over.
-	 * @param replacement
-	 *            The value to replace removed array with.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given {@code char[]} is {@literal null}.
-	 */
-	public CharacterArrayIterable(char[] array, char replacement) throws IllegalArgumentException {
-		this(array, Character.valueOf(replacement));
-	}
-
-	private CharacterArrayIterable(char[] array, Character replacement) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}
 		this.array = array;
-		this.replacement = replacement;
 	}
 
 	@Override
 	public CharacterArrayIterator iterator() {
-		return null != replacement ? new CharacterArrayIterator(array, replacement) : new CharacterArrayIterator(array);
+		return new CharacterArrayIterator(array);
 	}
 
 }

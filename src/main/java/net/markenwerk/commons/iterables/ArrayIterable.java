@@ -42,10 +42,6 @@ public final class ArrayIterable<Payload> implements Iterable<Payload> {
 
 	private final Payload[] array;
 
-	private final boolean removable;
-
-	private final Payload replacement;
-
 	/**
 	 * Creates a new {@link ArrayIterable} for the given payload array.
 	 * 
@@ -56,36 +52,15 @@ public final class ArrayIterable<Payload> implements Iterable<Payload> {
 	 *             If the given payload array is {@literal null}.
 	 */
 	public ArrayIterable(Payload[] array) throws IllegalArgumentException {
-		this(array, false, null);
-	}
-
-	/**
-	 * Creates a new {@link ArrayIterable} for the given payload array.
-	 * 
-	 * @param array
-	 *            The payload array to iterate over.
-	 * @param replacement
-	 *            The value to replace removed array with.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given payload array is {@literal null}.
-	 */
-	public ArrayIterable(Payload[] array, Payload replacement) throws IllegalArgumentException {
-		this(array, true, replacement);
-	}
-
-	private ArrayIterable(Payload[] array, boolean removable, Payload replacement) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}
 		this.array = array;
-		this.removable = removable;
-		this.replacement = replacement;
 	}
 
 	@Override
 	public ArrayIterator<Payload> iterator() {
-		return removable ? new ArrayIterator<Payload>(array, replacement) : new ArrayIterator<Payload>(array);
+		return new ArrayIterator<Payload>(array);
 	}
 
 }

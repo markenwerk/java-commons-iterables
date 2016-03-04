@@ -87,23 +87,6 @@ public class ArrayIterableTests {
 	/**
 	 * Remove a value in a {@code short[]}.
 	 */
-	@Test
-	public void removeWithFallback() {
-
-		Object replacement = new Object();
-		Object[] values = new Object[] { new Object() };
-		Iterator<Object> iterator = new ArrayIterable<Object>(values, replacement).iterator();
-
-		iterator.next();
-		iterator.remove();
-
-		Assert.assertEquals(replacement, values[0]);
-
-	}
-
-	/**
-	 * Remove a value in a {@code short[]}.
-	 */
 	@Test(expected = UnsupportedOperationException.class)
 	public void removeWithoutFallback() {
 
