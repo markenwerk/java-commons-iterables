@@ -316,6 +316,7 @@ Iterable<Integer> countDownIterable = new CountUpIterable(0, 10);
 [EmptyIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/EmptyIterable.html
 [FilteredIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/FilteredIterable.html
 [FloatArrayIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/FloatArrayIterable.html
+[IndexedIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/IndexedIterable.html
 [InfixedIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/InfixedIterable.html
 [IntegerArrayIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/IntegerArrayIterable.html
 [LongArrayIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/LongArrayIterable.html
