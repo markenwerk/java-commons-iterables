@@ -156,6 +156,7 @@
 				<configuration>
 					<notimestamp>true</notimestamp>
 					<links>
+						<link>https://markenwerk.github.io/java-commons-datastructures/</link>
 						<link>https://markenwerk.github.io/java-commons-interfaces/</link>
 						<link>https://markenwerk.github.io/java-commons-iterators/</link>
 					</links>
