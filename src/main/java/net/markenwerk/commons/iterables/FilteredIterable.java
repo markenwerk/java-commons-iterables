@@ -27,12 +27,12 @@ import net.markenwerk.commons.interfaces.Predicate;
 import net.markenwerk.commons.iterators.FilteredIterator;
 
 /**
- * A {@link FilteringIterable} is an {@link Iterable} that can be wrapped around
+ * A {@link FilteredIterable} is an {@link Iterable} that can be wrapped around
  * a given {@link Iterable} and generates {@link Iterator Iterators} that
  * filters out values according to a given {@link Predicate}.
  * 
  * <p>
- * Calling {@link FilteringIterable#iterator()} creates an instance of
+ * Calling {@link FilteredIterable#iterator()} creates an instance of
  * {@link FilteredIterator}.
  * 
  * @param <Payload>
@@ -40,7 +40,7 @@ import net.markenwerk.commons.iterators.FilteredIterator;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class FilteringIterable<Payload> implements Iterable<Payload> {
+public final class FilteredIterable<Payload> implements Iterable<Payload> {
 
 	private final Iterable<? extends Payload> iterable;
 
@@ -49,11 +49,11 @@ public final class FilteringIterable<Payload> implements Iterable<Payload> {
 	private final boolean invertPredicate;
 
 	/**
-	 * Creates a new {@link FilteringIterable} from the given {@link Iterable}.
+	 * Creates a new {@link FilteredIterable} from the given {@link Iterable}.
 	 * 
 	 * @param iterable
 	 *            The {@link Iterable}, around which the new
-	 *            {@link FilteringIterable} will be wrapped.
+	 *            {@link FilteredIterable} will be wrapped.
 	 * @param predicate
 	 *            The {@link Predicate} to {@link Predicate#test(Object) test}
 	 *            every value yielded by the given {@link Iterable} with.
@@ -62,17 +62,17 @@ public final class FilteringIterable<Payload> implements Iterable<Payload> {
 	 *             If the given {@link Iterable} is {@literal null} or if the
 	 *             given {@link Predicate} is {@literal null}.
 	 */
-	public FilteringIterable(Iterable<? extends Payload> iterable, Predicate<Payload> predicate)
+	public FilteredIterable(Iterable<? extends Payload> iterable, Predicate<Payload> predicate)
 			throws IllegalArgumentException {
 		this(iterable, predicate, false);
 	}
 
 	/**
-	 * Creates a new {@link FilteringIterable} from the given {@link Iterable}.
+	 * Creates a new {@link FilteredIterable} from the given {@link Iterable}.
 	 * 
 	 * @param iterable
 	 *            The {@link Iterable}, around which the new
-	 *            {@link FilteringIterable} will be wrapped.
+	 *            {@link FilteredIterable} will be wrapped.
 	 * @param predicate
 	 *            The {@link Predicate} to {@link Predicate#test(Object) test}
 	 *            every value yielded by the given {@link Iterable} with.
@@ -84,7 +84,7 @@ public final class FilteringIterable<Payload> implements Iterable<Payload> {
 	 *             If the given {@link Iterable} is {@literal null} or if the
 	 *             given {@link Predicate} is {@literal null}.
 	 */
-	public FilteringIterable(Iterable<? extends Payload> iterable, Predicate<Payload> predicate, boolean invertPredicate) throws IllegalArgumentException {
+	public FilteredIterable(Iterable<? extends Payload> iterable, Predicate<Payload> predicate, boolean invertPredicate) throws IllegalArgumentException {
 		if(null == iterable) {
 			throw new IllegalArgumentException("iterable is null");
 		}

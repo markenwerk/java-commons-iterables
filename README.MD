@@ -37,7 +37,7 @@ Consult the [usage description](#usage) and [Javadoc](http://markenwerk.github.i
 
 ### Filtering and Converting
 
-This library provides the generic [`FilteringIterable`][FilteringIterable] that takes an existing [`Iterable`][Iterable] and a [`Predicate`][Predicate] and filters out all values yielded by the given [`Iterable`][Iterable] that don't satisfy the given [`Predicate`][Predicate].
+This library provides the generic [`FilteredIterable`][FilteredIterable] that takes an existing [`Iterable`][Iterable] and a [`Predicate`][Predicate] and filters out all values yielded by the given [`Iterable`][Iterable] that don't satisfy the given [`Predicate`][Predicate].
 
 ```java
 Iterable<Foo> iterable = ...
@@ -225,7 +225,7 @@ Iterable<Integer> countDownIterable = new CountUpIterable(0, 10);
 [CountUpIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/CountUpIterable.html
 [DoubleArrayIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/DoubleArrayIterable.html
 [EmptyIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/EmptyIterable.html
-[FilteringIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/FilteringIterable.html
+[FilteredIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/FilteredIterable.html
 [FloatArrayIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/FloatArrayIterable.html
 [InfixedIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/InfixedIterable.html
 [IntegerArrayIterable]: https://markenwerk.github.io/java-commons-iterables/index.html?net/markenwerk/commons/iterables/IntegerArrayIterable.html
