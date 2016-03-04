@@ -27,7 +27,7 @@ import java.util.StringTokenizer;
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.exceptions.ProductionException;
+import net.markenwerk.commons.exceptions.CreationException;
 import net.markenwerk.commons.interfaces.Producer;
 import net.markenwerk.commons.iterators.StringTokenizerIterator;
 
@@ -55,7 +55,7 @@ public class StringTokenizerIteratorTests {
 	public void iterateEmpty() {
 
 		Iterator<String> iterator = new StringTokenizerIterable(new Producer<StringTokenizer>() {
-			public StringTokenizer produce() throws ProductionException {
+			public StringTokenizer create() throws CreationException {
 				return new StringTokenizer("");
 			}
 		}).iterator();
@@ -71,7 +71,7 @@ public class StringTokenizerIteratorTests {
 	public void iterateOne() {
 
 		Iterator<String> iterator = new StringTokenizerIterable(new Producer<StringTokenizer>() {
-			public StringTokenizer produce() throws ProductionException {
+			public StringTokenizer create() throws CreationException {
 				return new StringTokenizer("foo");
 			}
 		}).iterator();
@@ -89,7 +89,7 @@ public class StringTokenizerIteratorTests {
 	public void iterateTwo() {
 
 		Iterator<String> iterator = new StringTokenizerIterable(new Producer<StringTokenizer>() {
-			public StringTokenizer produce() throws ProductionException {
+			public StringTokenizer create() throws CreationException {
 				return new StringTokenizer("foo bar");
 			}
 		}).iterator();

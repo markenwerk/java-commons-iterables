@@ -68,7 +68,7 @@ public final class EnumerationIterable<Payload> implements Iterable<Payload> {
 
 	@Override
 	public EnumerationIterator<Payload> iterator() {
-		return new EnumerationIterator<Payload>(producer.produce());
+		return new EnumerationIterator<Payload>(producer.create());
 	}
 
 }

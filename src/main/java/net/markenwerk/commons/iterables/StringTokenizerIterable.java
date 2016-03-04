@@ -66,7 +66,7 @@ public final class StringTokenizerIterable implements Iterable<String> {
 
 	@Override
 	public StringTokenizerIterator iterator() {
-		return new StringTokenizerIterator(producer.produce());
+		return new StringTokenizerIterator(producer.create());
 	}
 
 }

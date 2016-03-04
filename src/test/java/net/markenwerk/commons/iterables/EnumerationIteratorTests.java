@@ -29,7 +29,7 @@ import java.util.Vector;
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.exceptions.ProductionException;
+import net.markenwerk.commons.exceptions.CreationException;
 import net.markenwerk.commons.interfaces.Producer;
 
 /**
@@ -57,7 +57,7 @@ public class EnumerationIteratorTests {
 
 		Iterator<Object> iterator = new EnumerationIterable<Object>(new Producer<Enumeration<Object>>() {
 			@Override
-			public Enumeration<Object> produce() throws ProductionException {
+			public Enumeration<Object> create() throws CreationException {
 				return new Vector<Object>(Arrays.asList()).elements();
 			}
 		}).iterator();
@@ -75,7 +75,7 @@ public class EnumerationIteratorTests {
 		final Object value = new Object();
 		Iterator<Object> iterator = new EnumerationIterable<Object>(new Producer<Enumeration<Object>>() {
 			@Override
-			public Enumeration<Object> produce() throws ProductionException {
+			public Enumeration<Object> create() throws CreationException {
 				return new Vector<Object>(Arrays.asList(value)).elements();
 			}
 		}).iterator();
@@ -95,7 +95,7 @@ public class EnumerationIteratorTests {
 		final Object[] values = new Object[] { new Object(), new Object() };
 		Iterator<Object> iterator = new EnumerationIterable<Object>(new Producer<Enumeration<Object>>() {
 			@Override
-			public Enumeration<Object> produce() throws ProductionException {
+			public Enumeration<Object> create() throws CreationException {
 				return new Vector<Object>(Arrays.asList(values)).elements();
 			}
 		}).iterator();

@@ -24,7 +24,7 @@ package net.markenwerk.commons.iterables;
 import java.util.Iterator;
 
 import net.markenwerk.commons.interfaces.Predicate;
-import net.markenwerk.commons.iterators.FilteringIterator;
+import net.markenwerk.commons.iterators.FilteredIterator;
 
 /**
  * A {@link FilteringIterable} is an {@link Iterable} that can be wrapped around
@@ -33,7 +33,7 @@ import net.markenwerk.commons.iterators.FilteringIterator;
  * 
  * <p>
  * Calling {@link FilteringIterable#iterator()} creates an instance of
- * {@link FilteringIterator}.
+ * {@link FilteredIterator}.
  * 
  * @param <Payload>
  *            The payload type.
@@ -97,8 +97,8 @@ public final class FilteringIterable<Payload> implements Iterable<Payload> {
 	}
 
 	@Override
-	public FilteringIterator<Payload> iterator() {
-		return new FilteringIterator<Payload>(iterable.iterator(), predicate, invertPredicate);
+	public FilteredIterator<Payload> iterator() {
+		return new FilteredIterator<Payload>(iterable.iterator(), predicate, invertPredicate);
 	}
 
 }
