@@ -49,7 +49,7 @@ public final class IntegerArrayIterable implements ProtectedIterable<Integer> {
 	 * @throws IllegalArgumentException
 	 *             If the given {@code int[]} is {@literal null}.
 	 */
-	public IntegerArrayIterable(int[] array) throws IllegalArgumentException {
+	public IntegerArrayIterable(int ... array) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}

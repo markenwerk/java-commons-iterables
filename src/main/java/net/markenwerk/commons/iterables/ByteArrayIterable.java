@@ -49,7 +49,7 @@ public final class ByteArrayIterable implements ProtectedIterable<Byte> {
 	 * @throws IllegalArgumentException
 	 *             If the given {@code byte[]} is {@literal null}.
 	 */
-	public ByteArrayIterable(byte[] array) throws IllegalArgumentException {
+	public ByteArrayIterable(byte ... array) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}

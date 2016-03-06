@@ -49,7 +49,7 @@ public final class LongArrayIterable implements ProtectedIterable<Long> {
 	 * @throws IllegalArgumentException
 	 *             If the given {@code long[]} is {@literal null}.
 	 */
-	public LongArrayIterable(long[] array) throws IllegalArgumentException {
+	public LongArrayIterable(long ... array) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}

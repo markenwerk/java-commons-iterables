@@ -49,7 +49,7 @@ public final class DoubleArrayIterable implements ProtectedIterable<Double> {
 	 * @throws IllegalArgumentException
 	 *             If the given {@code double[]} is {@literal null}.
 	 */
-	public DoubleArrayIterable(double[] array) throws IllegalArgumentException {
+	public DoubleArrayIterable(double ... array) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}

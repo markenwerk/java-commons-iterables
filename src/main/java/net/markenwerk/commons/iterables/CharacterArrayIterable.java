@@ -51,7 +51,7 @@ public final class CharacterArrayIterable implements ProtectedIterable<Character
 	 * @throws IllegalArgumentException
 	 *             If the given {@code char[]} is {@literal null}.
 	 */
-	public CharacterArrayIterable(char[] array) throws IllegalArgumentException {
+	public CharacterArrayIterable(char ... array) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("array is null");
 		}
