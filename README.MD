@@ -227,7 +227,7 @@ Iterable<Foo> optionalIterable = new OptionalIterable<>(foo);
 
 ### Iterating over primitive Arrays
 
-This library provides the following [`Iterables`][Iterable] that take existing primitive arrays and generates [`Iterators`][Iterator] that yield all elements of the given array:
+This library provides the following [`Iterables`][Iterable] that take existing primitive arrays and generate [`Iterators`][Iterator] that yield all elements of the given array:
 
 - [`BooleanArrayIterable`][BooleanArrayIterable]
 - [`ByteArrayIterable`][ByteArrayIterable]
