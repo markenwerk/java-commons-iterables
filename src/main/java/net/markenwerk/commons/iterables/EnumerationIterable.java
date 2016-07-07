@@ -44,22 +44,24 @@ import net.markenwerk.commons.iterators.EnumerationIterator;
  */
 public final class EnumerationIterable<Payload> implements ProtectedIterable<Payload> {
 
-	private final Enumeratable<? extends Payload> enumeratable;
+	private final Producer<? extends Enumeration<? extends Payload>> enumeratable;
 
 	/**
-	 * Creates a new {@link EnumerationIterable} from the given {@link Enumeratable}.
+	 * Creates a new {@link EnumerationIterable} from the given {@link Producer}
+	 * for {@link Enumeration Enumerations}.
 	 * 
 	 * @param enumeratable
-	 *            The {@link Enumeratable} for {@link Enumeration Enumerations},
-	 *            around which the new {@link EnumerationIterable} will be
-	 *            wrapped.
+	 *           The {@link Producer} for {@link Enumeration Enumerations},
+	 *           around which the new {@link EnumerationIterable} will be
+	 *           wrapped.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             If the given {@link Producer} for {@link Enumeration
-	 *             Enumerations} is {@literal null}.
+	 *            If the given {@link Producer} for {@link Enumeration
+	 *            Enumerations} is {@literal null}.
 	 */
-	public EnumerationIterable(Enumeratable<? extends Payload> enumeratable) throws IllegalArgumentException {
-	if (null == enumeratable) {
+	public EnumerationIterable(Producer<? extends Enumeration<? extends Payload>> enumeratable)
+			throws IllegalArgumentException {
+		if (null == enumeratable) {
 			throw new IllegalArgumentException("enumeratable is null");
 		}
 		this.enumeratable = enumeratable;
@@ -67,7 +69,7 @@ public final class EnumerationIterable<Payload> implements ProtectedIterable<Pay
 
 	@Override
 	public EnumerationIterator<Payload> iterator() {
-		return new EnumerationIterator<Payload>(enumeratable.enumeration());
+		return new EnumerationIterator<Payload>(enumeratable.create());
 	}
 
 }
