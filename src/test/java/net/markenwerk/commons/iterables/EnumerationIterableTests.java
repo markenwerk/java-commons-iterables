@@ -36,7 +36,7 @@ import net.markenwerk.commons.interfaces.Producer;
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  */
-public class EnumerationIteratorTests {
+public class EnumerationIterableTests {
 
 	private static final Producer<Enumeration<Object>> ENUMERATION_PRODUCER = new Producer<Enumeration<Object>>() {
 
@@ -44,7 +44,7 @@ public class EnumerationIteratorTests {
 		public Enumeration<Object> create() throws CreationException {
 			return new Vector<Object>().elements();
 		}
-	};;
+	};
 
 	/**
 	 * Create with a {@code null} {@link Iterable}.
@@ -52,7 +52,7 @@ public class EnumerationIteratorTests {
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullProducer() {
 
-		new EnumerationIterable<Object>(null);
+		new EnumerationIterable<Object>((Producer<Enumeration<Object>>)null);
 
 	}
 

@@ -35,7 +35,7 @@ import net.markenwerk.commons.interfaces.Producer;
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  */
-public class StringTokenizerIteratorTests {
+public class StringTokenizerIterableTests {
 
 	private static final Producer<StringTokenizer> TOKENIZER_PRODUCER = new Producer<StringTokenizer>() {
 
