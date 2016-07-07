@@ -45,7 +45,7 @@ public final class RemoveHandlerIterable<Payload> implements Iterable<Payload> {
 
 	private final Iterable<? extends Payload> iterable;
 
-	private final Handler<Payload> removeHandler;
+	private final Handler<? super Payload> removeHandler;
 
 	/**
 	 * Creates a new {@link RemoveHandlerIterable} from the given
@@ -61,7 +61,7 @@ public final class RemoveHandlerIterable<Payload> implements Iterable<Payload> {
 	 *             If the given {@link Iterable} is {@literal null} or if the
 	 *             given {@link Handler} is {@literal null}.
 	 */
-	public RemoveHandlerIterable(Iterable<? extends Payload> iterable, Handler<Payload> removeHandler)
+	public RemoveHandlerIterable(Iterable<? extends Payload> iterable, Handler<? super Payload> removeHandler)
 			throws IllegalArgumentException {
 		if (null == iterable) {
 			throw new IllegalArgumentException("iterable is null");

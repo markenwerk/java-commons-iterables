@@ -32,28 +32,29 @@ import net.markenwerk.commons.iterators.EmptyIterator;
  * generating an {@link EmptyIterator}).
  * 
  * @param <Payload>
- *            The payload type.
+ *           The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
 public final class NullSaveIterable<Payload> implements Iterable<Payload> {
 
-	private final Iterable<Payload> iterable;
+	private final Iterable<? extends Payload> iterable;
 
 	/**
 	 * Creates a new {@link NullSaveIterable} from the given {@link Iterable}.
 	 * 
 	 * @param iterable
-	 *            The {@link Iterable}, around which the new
-	 *            {@link NullSaveIterable} will be wrapped.
+	 *           The {@link Iterable}, around which the new
+	 *           {@link NullSaveIterable} will be wrapped.
 	 */
-	public NullSaveIterable(Iterable<Payload> iterable) {
+	public NullSaveIterable(Iterable<? extends Payload> iterable) {
 		this.iterable = iterable;
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public Iterator<Payload> iterator() {
-		return null == iterable ? new EmptyIterator<Payload>() : iterable.iterator();
-	}
-
+		return (Iterator<Payload>) (null == iterable ? new EmptyIterator<Payload>() : iterable.iterator());
+	}	
+	
 }

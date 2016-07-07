@@ -44,7 +44,7 @@ public final class FilteredIterable<Payload> implements Iterable<Payload> {
 
 	private final Iterable<? extends Payload> iterable;
 
-	private final Predicate<Payload> predicate;
+	private final Predicate<? super Payload> predicate;
 
 	private final boolean invertPredicate;
 
@@ -62,7 +62,7 @@ public final class FilteredIterable<Payload> implements Iterable<Payload> {
 	 *             If the given {@link Iterable} is {@literal null} or if the
 	 *             given {@link Predicate} is {@literal null}.
 	 */
-	public FilteredIterable(Iterable<? extends Payload> iterable, Predicate<Payload> predicate)
+	public FilteredIterable(Iterable<? extends Payload> iterable, Predicate<? super Payload> predicate)
 			throws IllegalArgumentException {
 		this(iterable, predicate, false);
 	}
@@ -84,7 +84,8 @@ public final class FilteredIterable<Payload> implements Iterable<Payload> {
 	 *             If the given {@link Iterable} is {@literal null} or if the
 	 *             given {@link Predicate} is {@literal null}.
 	 */
-	public FilteredIterable(Iterable<? extends Payload> iterable, Predicate<Payload> predicate, boolean invertPredicate) throws IllegalArgumentException {
+	public FilteredIterable(Iterable<? extends Payload> iterable, Predicate<? super Payload> predicate,
+			boolean invertPredicate) throws IllegalArgumentException {
 		if(null == iterable) {
 			throw new IllegalArgumentException("iterable is null");
 		}

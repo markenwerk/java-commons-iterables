@@ -46,9 +46,9 @@ import net.markenwerk.commons.iterators.ConvertingIterator;
  */
 public final class ConvertingIterable<From, To> implements Iterable<To> {
 
-	private final Iterable<From> iterable;
+	private final Iterable<? extends From> iterable;
 
-	private final Converter<From, To> converter;
+	private final Converter<? super From, ? extends To> converter;
 
 	/**
 	 * Creates a new {@link ConvertingIterable} from the given {@link Iterable}.
@@ -65,7 +65,8 @@ public final class ConvertingIterable<From, To> implements Iterable<To> {
 	 *             If the given {@link Iterable} is {@literal null} or if the
 	 *             given {@link Converter} is {@literal null}.
 	 */
-	public ConvertingIterable(Iterable<From> iterable, Converter<From, To> converter) {
+	public ConvertingIterable(Iterable<? extends From> iterable, Converter<? super From, ? extends To> converter)
+			throws IllegalArgumentException {
 		if(null == iterable) {
 			throw new IllegalArgumentException("iterable is null");
 		}

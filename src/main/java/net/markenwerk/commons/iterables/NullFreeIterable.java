@@ -41,7 +41,7 @@ import net.markenwerk.commons.iterators.NullFreeIterator;
  */
 public final class NullFreeIterable<Payload> implements Iterable<Payload> {
 
-	private final Iterable<Payload> iterable;
+	private final Iterable<? extends Payload> iterable;
 
 	/**
 	 * Creates a new {@link NullFreeIterable} from the given {@link Iterable}.
@@ -53,7 +53,7 @@ public final class NullFreeIterable<Payload> implements Iterable<Payload> {
 	 * @throws IllegalArgumentException
 	 *             If the given {@link Iterable} is {@literal null}.
 	 */
-	public NullFreeIterable(Iterable<Payload> iterable) throws IllegalArgumentException {
+	public NullFreeIterable(Iterable<? extends Payload> iterable) throws IllegalArgumentException {
 		if (null == iterable) {
 			throw new IllegalArgumentException("iterable is null");
 		}
