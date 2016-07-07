@@ -30,7 +30,7 @@ This library is hosted in the [Maven Central Repository](https://maven-badges.he
 <dependency>
 	<groupId>net.markenwerk</groupId>
 	<artifactId>commons-iterables</artifactId>
-	<version>2.2.0</version>
+	<version>2.2.1</version>
 </dependency>
 ```
 
@@ -227,7 +227,7 @@ Iterable<Foo> optionalIterable = new OptionalIterable<>(foo);
 
 ### Iterating over primitive Arrays
 
-This library provides the following [`Iterables`][Iterable] that take existing primitive arrays and generates [`Iterators`][Iterator] that yield all elements of the given array:
+This library provides the following [`Iterables`][Iterable] that take existing primitive arrays and generate [`Iterators`][Iterator] that yield all elements of the given array:
 
 - [`BooleanArrayIterable`][BooleanArrayIterable]
 - [`ByteArrayIterable`][ByteArrayIterable]
