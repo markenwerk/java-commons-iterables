@@ -31,12 +31,6 @@ import net.markenwerk.commons.iterators.ConvertingIterator;
  * around a given {@link Iterable} and generates {@link Iterator Iterators} that
  * converts all values with a given {@link Converter}.
  * 
- * 
- * 
- * <p>
- * Calling {@link ConvertingIterable#iterator()} creates an instance of
- * {@link ConvertingIterator}.
- * 
  * @param <From>
  *            The type to convert values from.
  * @param <To>
@@ -51,27 +45,23 @@ public final class ConvertingIterable<From, To> implements Iterable<To> {
 	private final Converter<? super From, ? extends To> converter;
 
 	/**
-	 * Creates a new {@link ConvertingIterable} from the given {@link Iterable}.
+	 * Creates a new {@link ConvertingIterable}.
 	 * 
 	 * @param iterable
-	 *            The {@link Iterable}, around which the new
-	 *            {@link ConvertingIterable} will be wrapped.
+	 *            The {@link Iterable} to iterate over.
 	 * @param converter
-	 *            The {@link Converter} to {@link Converter#convert(Object)
-	 *            convert} every value yielded by the given {@link Iterable}
-	 *            with.
-	 *            
+	 *            The {@link Converter} to be used.
+	 * 
 	 * @throws IllegalArgumentException
 	 *             If the given {@link Iterable} is {@literal null} or if the
 	 *             given {@link Converter} is {@literal null}.
 	 */
 	public ConvertingIterable(Iterable<? extends From> iterable, Converter<? super From, ? extends To> converter)
 			throws IllegalArgumentException {
-		if(null == iterable) {
-			throw new IllegalArgumentException("iterable is null");
-		}
-		if(null == converter) {
-			throw new IllegalArgumentException("converter is null");
+		if (null == iterable) {
+			throw new IllegalArgumentException("The given iterable is null");
+		} else if (null == converter) {
+			throw new IllegalArgumentException("The given converter is null");
 		}
 		this.iterable = iterable;
 		this.converter = converter;

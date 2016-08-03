@@ -29,10 +29,6 @@ import net.markenwerk.commons.iterators.ObjectIterator;
  * An {@link ObjectIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that iterate over a single payload object.
  * 
- * <p>
- * Calling {@link ObjectIterable#iterator()} creates an instance of
- * {@link ObjectIterator}.
- * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
@@ -43,10 +39,10 @@ public final class ObjectIterable<Payload> implements ProtectedIterable<Payload>
 	private final Payload value;
 
 	/**
-	 * Creates a new {@link ObjectIterable} for the given payload object.
+	 * Creates a new {@link ObjectIterable}.
 	 * 
 	 * @param value
-	 *            The payload object to iterate over.
+	 *            The object to iterate over.
 	 */
 	public ObjectIterable(Payload value) {
 		this.value = value;

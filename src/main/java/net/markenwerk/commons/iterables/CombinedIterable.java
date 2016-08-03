@@ -33,10 +33,6 @@ import net.markenwerk.commons.iterators.ConvertingIterator;
  * {@link Iterable} by iterating over all given {@link Iterable Iterables} in
  * the order they were given.
  * 
- * <p>
- * Calling {@link CombinedIterable#iterator()} creates an instance of
- * {@link CombinedIterator}.
- * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
@@ -47,12 +43,10 @@ public final class CombinedIterable<Payload> implements Iterable<Payload> {
 	private final Iterable<? extends Iterable<? extends Payload>> iterables;
 
 	/**
-	 * Creates a new {@link CombinedIterable} from the given sequence of
-	 * {@link Iterable Iterables}.
+	 * Creates a new {@link CombinedIterable}.
 	 * 
 	 * @param iterables
-	 *            The sequence of {@link Iterable Iterables} to combine into a
-	 *            single {@link Iterable}.
+	 *            The sequence of {@link Iterable Iterables} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             If the given sequence of {@link Iterable Iterables} is
@@ -60,18 +54,16 @@ public final class CombinedIterable<Payload> implements Iterable<Payload> {
 	 */
 	public CombinedIterable(Iterable<? extends Payload>... iterables) {
 		if (null == iterables) {
-			throw new IllegalArgumentException("iterables is null");
+			throw new IllegalArgumentException("The given array of iterables is null");
 		}
 		this.iterables = new ArrayIterable<Iterable<? extends Payload>>(iterables);
 	}
 
 	/**
-	 * Creates a new {@link CombinedIterable} from the given {@link Iterable} of
-	 * {@link Iterable Iterables}.
+	 * Creates a new {@link CombinedIterable}.
 	 * 
 	 * @param iterable
-	 *            The {@link Iterable} of {@link Iterable Iterables} to combine
-	 *            into a single {@link Iterable}.
+	 *            The {@link Iterable} of {@link Iterable Iterables} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             If the given {@link Iterable} of {@link Iterable Iterables}
@@ -79,7 +71,7 @@ public final class CombinedIterable<Payload> implements Iterable<Payload> {
 	 */
 	public CombinedIterable(Iterable<? extends Iterable<? extends Payload>> iterable) throws IllegalArgumentException {
 		if (null == iterable) {
-			throw new IllegalArgumentException("iterable is null");
+			throw new IllegalArgumentException("The given iterable of iterable is null");
 		}
 		this.iterables = iterable;
 	}

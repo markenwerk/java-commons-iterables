@@ -29,10 +29,6 @@ import net.markenwerk.commons.iterators.ShortArrayIterator;
  * An {@link ShortArrayIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that iterate over a given {@code short[]}.
  * 
- * <p>
- * Calling {@link ShortArrayIterable#iterator()} creates an instance of
- * {@link ShortArrayIterator}.
- * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
@@ -41,7 +37,7 @@ public final class ShortArrayIterable implements ProtectedIterable<Short> {
 	private final short[] array;
 
 	/**
-	 * Creates a new {@link ShortArrayIterable} for the given {@code short[]}.
+	 * Creates a new {@link ShortArrayIterable}.
 	 * 
 	 * @param array
 	 *            The {@code short[]} to iterate over.
@@ -49,9 +45,9 @@ public final class ShortArrayIterable implements ProtectedIterable<Short> {
 	 * @throws IllegalArgumentException
 	 *             If the given {@code short[]} is {@literal null}.
 	 */
-	public ShortArrayIterable(short ... array) throws IllegalArgumentException {
+	public ShortArrayIterable(short... array) throws IllegalArgumentException {
 		if (null == array) {
-			throw new IllegalArgumentException("array is null");
+			throw new IllegalArgumentException("The given array is null");
 		}
 		this.array = array;
 	}

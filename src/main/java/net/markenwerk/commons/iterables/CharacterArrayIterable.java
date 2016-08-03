@@ -27,12 +27,7 @@ import net.markenwerk.commons.iterators.CharacterArrayIterator;
 
 /**
  * An {@link CharacterArrayIterable} is a {@link ProtectedIterable} that
- * generates {@link Iterator Iterators} that iterate over a given {@code char[]}
- * .
- * 
- * <p>
- * Calling {@link CharacterArrayIterable#iterator()} creates an instance of
- * {@link CharacterArrayIterator}.
+ * generates {@link Iterator Iterators} that iterate over a given {@code char[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
@@ -42,8 +37,7 @@ public final class CharacterArrayIterable implements ProtectedIterable<Character
 	private final char[] array;
 
 	/**
-	 * Creates a new {@link CharacterArrayIterable} for the given {@code char[]}
-	 * .
+	 * Creates a new {@link CharacterArrayIterable}.
 	 * 
 	 * @param array
 	 *            The {@code char[]} to iterate over.
@@ -53,7 +47,7 @@ public final class CharacterArrayIterable implements ProtectedIterable<Character
 	 */
 	public CharacterArrayIterable(char ... array) throws IllegalArgumentException {
 		if (null == array) {
-			throw new IllegalArgumentException("array is null");
+			throw new IllegalArgumentException("The given array is null");
 		}
 		this.array = array;
 	}

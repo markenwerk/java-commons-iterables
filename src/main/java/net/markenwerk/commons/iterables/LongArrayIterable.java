@@ -29,10 +29,6 @@ import net.markenwerk.commons.iterators.LongArrayIterator;
  * An {@link LongArrayIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that iterate over a given {@code long[]}.
  * 
- * <p>
- * Calling {@link LongArrayIterable#iterator()} creates an instance of
- * {@link LongArrayIterator}.
- * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
@@ -41,7 +37,7 @@ public final class LongArrayIterable implements ProtectedIterable<Long> {
 	private final long[] array;
 
 	/**
-	 * Creates a new {@link LongArrayIterable} for the given {@code long[]}.
+	 * Creates a new {@link LongArrayIterable}.
 	 * 
 	 * @param array
 	 *            The {@code long[]} to iterate over.
@@ -51,7 +47,7 @@ public final class LongArrayIterable implements ProtectedIterable<Long> {
 	 */
 	public LongArrayIterable(long ... array) throws IllegalArgumentException {
 		if (null == array) {
-			throw new IllegalArgumentException("array is null");
+			throw new IllegalArgumentException("The given array is null");
 		}
 		this.array = array;
 	}

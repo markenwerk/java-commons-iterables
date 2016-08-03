@@ -29,10 +29,6 @@ import net.markenwerk.commons.iterators.IntegerArrayIterator;
  * An {@link IntegerArrayIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that iterate over a given {@code int[]}.
  * 
- * <p>
- * Calling {@link IntegerArrayIterable#iterator()} creates an instance of
- * {@link IntegerArrayIterator}.
- * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
@@ -41,7 +37,7 @@ public final class IntegerArrayIterable implements ProtectedIterable<Integer> {
 	private final int[] array;
 
 	/**
-	 * Creates a new {@link IntegerArrayIterable} for the given {@code int[]}.
+	 * Creates a new {@link IntegerArrayIterable}.
 	 * 
 	 * @param array
 	 *            The {@code int[]} to iterate over.
@@ -51,7 +47,7 @@ public final class IntegerArrayIterable implements ProtectedIterable<Integer> {
 	 */
 	public IntegerArrayIterable(int ... array) throws IllegalArgumentException {
 		if (null == array) {
-			throw new IllegalArgumentException("array is null");
+			throw new IllegalArgumentException("The given array is null");
 		}
 		this.array = array;
 	}

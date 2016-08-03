@@ -29,10 +29,6 @@ import net.markenwerk.commons.iterators.ArrayIterator;
  * An {@link ArrayIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that iterate over a given payload array.
  * 
- * <p>
- * Calling {@link ArrayIterable#iterator()} creates an instance of
- * {@link ArrayIterator}.
- * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
@@ -43,7 +39,7 @@ public final class ArrayIterable<Payload> implements ProtectedIterable<Payload> 
 	private final Payload[] array;
 
 	/**
-	 * Creates a new {@link ArrayIterable} for the given payload array.
+	 * Creates a new {@link ArrayIterable}.
 	 * 
 	 * @param array
 	 *            The payload array to iterate over.
@@ -51,9 +47,9 @@ public final class ArrayIterable<Payload> implements ProtectedIterable<Payload> 
 	 * @throws IllegalArgumentException
 	 *             If the given payload array is {@literal null}.
 	 */
-	public ArrayIterable(Payload ... array) throws IllegalArgumentException {
+	public ArrayIterable(Payload... array) throws IllegalArgumentException {
 		if (null == array) {
-			throw new IllegalArgumentException("array is null");
+			throw new IllegalArgumentException("The given array is null");
 		}
 		this.array = array;
 	}

@@ -28,11 +28,7 @@ import net.markenwerk.commons.iterators.CountUpIterator;
 /**
  * An {@link CountUpIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that that yields all integer value between a given
- * lower value and a given upper bound.
- * 
- * <p>
- * Calling {@link CountUpIterable#iterator()} creates an instance of
- * {@link CountUpIterator}.
+ * lower bound and a given upper bound.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
@@ -44,8 +40,7 @@ public final class CountUpIterable implements ProtectedIterable<Integer> {
 	private final int toUpper;
 
 	/**
-	 * Creates a new {@link CountUpIterable} from the given lower and upper
-	 * bound.
+	 * Creates a new {@link CountUpIterable}.
 	 * 
 	 * @param fromLower
 	 *            The lower bound and first value to be yielded.

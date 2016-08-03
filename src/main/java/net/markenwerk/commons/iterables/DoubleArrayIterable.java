@@ -29,10 +29,6 @@ import net.markenwerk.commons.iterators.DoubleArrayIterator;
  * An {@link DoubleArrayIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that iterate over a given {@code double[]}.
  * 
- * <p>
- * Calling {@link DoubleArrayIterable#iterator()} creates an instance of
- * {@link DoubleArrayIterator}.
- * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
@@ -41,7 +37,7 @@ public final class DoubleArrayIterable implements ProtectedIterable<Double> {
 	private final double[] array;
 
 	/**
-	 * Creates a new {@link DoubleArrayIterable} for the given {@code double[]}.
+	 * Creates a new {@link DoubleArrayIterable}.
 	 * 
 	 * @param array
 	 *            The {@code double[]} to iterate over.
@@ -49,9 +45,9 @@ public final class DoubleArrayIterable implements ProtectedIterable<Double> {
 	 * @throws IllegalArgumentException
 	 *             If the given {@code double[]} is {@literal null}.
 	 */
-	public DoubleArrayIterable(double ... array) throws IllegalArgumentException {
+	public DoubleArrayIterable(double... array) throws IllegalArgumentException {
 		if (null == array) {
-			throw new IllegalArgumentException("array is null");
+			throw new IllegalArgumentException("The given array is null");
 		}
 		this.array = array;
 	}

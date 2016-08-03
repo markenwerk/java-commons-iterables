@@ -34,6 +34,11 @@ import net.markenwerk.commons.iterators.ProtectedIterator;
  */
 public interface ProtectedIterable<Payload> extends Iterable<Payload> {
 
+	/**
+	 * Returns a {@link ProtectedIterator}.
+	 * 
+	 * @return A {@link ProtectedIterator}.
+	 */
 	@Override
 	public ProtectedIterator<Payload> iterator();
 

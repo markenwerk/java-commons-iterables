@@ -41,11 +41,10 @@ public final class NullSaveIterable<Payload> implements Iterable<Payload> {
 	private final Iterable<? extends Payload> iterable;
 
 	/**
-	 * Creates a new {@link NullSaveIterable} from the given {@link Iterable}.
+	 * Creates a new {@link NullSaveIterable}.
 	 * 
 	 * @param iterable
-	 *           The {@link Iterable}, around which the new
-	 *           {@link NullSaveIterable} will be wrapped.
+	 *           The {@link Iterable} to iterate over.
 	 */
 	public NullSaveIterable(Iterable<? extends Payload> iterable) {
 		this.iterable = iterable;

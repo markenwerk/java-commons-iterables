@@ -44,18 +44,17 @@ public final class NullFreeIterable<Payload> implements Iterable<Payload> {
 	private final Iterable<? extends Payload> iterable;
 
 	/**
-	 * Creates a new {@link NullFreeIterable} from the given {@link Iterable}.
+	 * Creates a new {@link NullFreeIterable}.
 	 * 
 	 * @param iterable
-	 *            The {@link Iterable}, around which the new
-	 *            {@link NullFreeIterable} will be wrapped.
+	 *            The {@link Iterable} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             If the given {@link Iterable} is {@literal null}.
 	 */
 	public NullFreeIterable(Iterable<? extends Payload> iterable) throws IllegalArgumentException {
 		if (null == iterable) {
-			throw new IllegalArgumentException("iterable is null");
+			throw new IllegalArgumentException("The given iterable is null");
 		}
 		this.iterable = iterable;
 	}

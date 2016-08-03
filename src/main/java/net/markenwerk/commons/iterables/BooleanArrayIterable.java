@@ -29,10 +29,6 @@ import net.markenwerk.commons.iterators.BooleanArrayIterator;
  * An {@link BooleanArrayIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that iterate over a given {@code boolean[]}.
  * 
- * <p>
- * Calling {@link BooleanArrayIterable#iterator()} creates an instance of
- * {@link BooleanArrayIterator}.
- * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
@@ -41,8 +37,7 @@ public final class BooleanArrayIterable implements ProtectedIterable<Boolean> {
 	private final boolean[] array;
 
 	/**
-	 * Creates a new {@link BooleanArrayIterable} for the given
-	 * {@code boolean[]}.
+	 * Creates a new {@link BooleanArrayIterable}.
 	 * 
 	 * @param array
 	 *            The {@code boolean[]} to iterate over.
@@ -52,7 +47,7 @@ public final class BooleanArrayIterable implements ProtectedIterable<Boolean> {
 	 */
 	public BooleanArrayIterable(boolean ... array) throws IllegalArgumentException {
 		if (null == array) {
-			throw new IllegalArgumentException("array is null");
+			throw new IllegalArgumentException("The given array is null");
 		}
 		this.array = array;
 	}

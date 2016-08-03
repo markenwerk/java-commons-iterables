@@ -33,10 +33,6 @@ import net.markenwerk.commons.iterators.EnumerationIterator;
  * and generates {@link Iterator Iterators} that yield all values from a
  * produced {@link Enumeration}.
  * 
- * <p>
- * Calling {@link EnumerationIterable#iterator()} creates an instance of
- * {@link EnumerationIterator}.
- * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
@@ -47,13 +43,11 @@ public final class EnumerationIterable<Payload> implements ProtectedIterable<Pay
 	private final Provider<? extends Enumeration<? extends Payload>> provider;
 
 	/**
-	 * Creates a new {@link EnumerationIterable} from the given {@link Provider}
-	 * for {@link Enumeration Enumerations}.
+	 * Creates a new {@link EnumerationIterable}.
 	 * 
 	 * @param provider
-	 *            The {@link Provider} for {@link Enumeration Enumerations},
-	 *            around which the new {@link EnumerationIterable} will be
-	 *            wrapped.
+	 *            The {@link Provider} for {@link Enumeration Enumerations} to
+	 *            iterate over.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             If the given {@link Provider} for {@link Enumeration

@@ -31,10 +31,6 @@ import net.markenwerk.commons.iterators.FilteredIterator;
  * a given {@link Iterable} and generates {@link Iterator Iterators} that
  * filters out values according to a given {@link Predicate}.
  * 
- * <p>
- * Calling {@link FilteredIterable#iterator()} creates an instance of
- * {@link FilteredIterator}.
- * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
@@ -49,14 +45,12 @@ public final class FilteredIterable<Payload> implements Iterable<Payload> {
 	private final boolean invertPredicate;
 
 	/**
-	 * Creates a new {@link FilteredIterable} from the given {@link Iterable}.
+	 * Creates a new {@link FilteredIterable}.
 	 * 
 	 * @param iterable
-	 *            The {@link Iterable}, around which the new
-	 *            {@link FilteredIterable} will be wrapped.
+	 *            The {@link Iterable} to iterate over.
 	 * @param predicate
-	 *            The {@link Predicate} to {@link Predicate#test(Object) test}
-	 *            every value yielded by the given {@link Iterable} with.
+	 *            The {@link Predicate} to be used.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             If the given {@link Iterable} is {@literal null} or if the
@@ -68,29 +62,26 @@ public final class FilteredIterable<Payload> implements Iterable<Payload> {
 	}
 
 	/**
-	 * Creates a new {@link FilteredIterable} from the given {@link Iterable}.
+	 * Creates a new {@link FilteredIterable}.
 	 * 
 	 * @param iterable
-	 *            The {@link Iterable}, around which the new
-	 *            {@link FilteredIterable} will be wrapped.
+	 *            The {@link Iterable} to iterate over.
 	 * @param predicate
-	 *            The {@link Predicate} to {@link Predicate#test(Object) test}
-	 *            every value yielded by the given {@link Iterable} with.
+	 *            The {@link Predicate} to be used.
 	 * @param invertPredicate
 	 *            Whether to invert the test result and yield values that don't
 	 *            satisfy the given {@link Predicate}.
-	 *            
+	 * 
 	 * @throws IllegalArgumentException
 	 *             If the given {@link Iterable} is {@literal null} or if the
 	 *             given {@link Predicate} is {@literal null}.
 	 */
 	public FilteredIterable(Iterable<? extends Payload> iterable, Predicate<? super Payload> predicate,
 			boolean invertPredicate) throws IllegalArgumentException {
-		if(null == iterable) {
-			throw new IllegalArgumentException("iterable is null");
-		}
-		if(null == predicate) {
-			throw new IllegalArgumentException("predicate is null");
+		if (null == iterable) {
+			throw new IllegalArgumentException("The given iterable is null");
+		} else if (null == predicate) {
+			throw new IllegalArgumentException("The given predicate is null");
 		}
 		this.iterable = iterable;
 		this.predicate = predicate;

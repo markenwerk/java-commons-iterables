@@ -32,10 +32,6 @@ import net.markenwerk.commons.iterators.RemoveHandlerIterator;
  * around a given {@link Iterable} and generates {@link Iterator Iterators} that
  * filters out values according to a given {@link Predicate}.
  * 
- * <p>
- * Calling {@link RemoveHandlerIterable#iterator()} creates an instance of
- * {@link RemoveHandlerIterator}.
- * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
@@ -48,12 +44,10 @@ public final class RemoveHandlerIterable<Payload> implements Iterable<Payload> {
 	private final Handler<? super Payload> removeHandler;
 
 	/**
-	 * Creates a new {@link RemoveHandlerIterable} from the given
-	 * {@link Iterable}.
+	 * Creates a new {@link RemoveHandlerIterable}.
 	 * 
 	 * @param iterable
-	 *            The {@link Iterable}, around which the new
-	 *            {@link RemoveHandlerIterable} will be wrapped.
+	 *            The {@link Iterable} to iterate over.
 	 * @param removeHandler
 	 *            The {@link Handler} to be used.
 	 * 
@@ -64,10 +58,10 @@ public final class RemoveHandlerIterable<Payload> implements Iterable<Payload> {
 	public RemoveHandlerIterable(Iterable<? extends Payload> iterable, Handler<? super Payload> removeHandler)
 			throws IllegalArgumentException {
 		if (null == iterable) {
-			throw new IllegalArgumentException("iterable is null");
+			throw new IllegalArgumentException("The given iterable is null");
 		}
 		if (null == removeHandler) {
-			throw new IllegalArgumentException("removeHandler is null");
+			throw new IllegalArgumentException("The given handler is null");
 		}
 		this.iterable = iterable;
 		this.removeHandler = removeHandler;

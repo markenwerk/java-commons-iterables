@@ -29,10 +29,6 @@ import net.markenwerk.commons.iterators.FloatArrayIterator;
  * An {@link FloatArrayIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that iterate over a given {@code float[]}.
  * 
- * <p>
- * Calling {@link FloatArrayIterable#iterator()} creates an instance of
- * {@link FloatArrayIterator}.
- * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
@@ -41,7 +37,7 @@ public final class FloatArrayIterable implements ProtectedIterable<Float> {
 	private final float[] array;
 
 	/**
-	 * Creates a new {@link FloatArrayIterable} for the given {@code float[]}.
+	 * Creates a new {@link FloatArrayIterable}.
 	 * 
 	 * @param array
 	 *            The {@code float[]} to iterate over.
@@ -49,9 +45,9 @@ public final class FloatArrayIterable implements ProtectedIterable<Float> {
 	 * @throws IllegalArgumentException
 	 *             If the given {@code float[]} is {@literal null}.
 	 */
-	public FloatArrayIterable(float ... array) throws IllegalArgumentException {
+	public FloatArrayIterable(float... array) throws IllegalArgumentException {
 		if (null == array) {
-			throw new IllegalArgumentException("array is null");
+			throw new IllegalArgumentException("The given array is null");
 		}
 		this.array = array;
 	}

@@ -28,10 +28,6 @@ import net.markenwerk.commons.iterators.OptionalIterator;
  * an {@link ObjectIterable} for a given payload object, or like an empty
  * {@link Iterable}, if the given payload object is {@literal null}.
  * 
- * <p>
- * Calling {@link OptionalIterable#iterator()} creates an instance of
- * {@link OptionalIterator}.
- * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
@@ -42,10 +38,10 @@ public final class OptionalIterable<Payload> implements ProtectedIterable<Payloa
 	private final Payload value;
 
 	/**
-	 * Creates a new {@link OptionalIterable} for the given payload object.
+	 * Creates a new {@link OptionalIterable}.
 	 * 
 	 * @param value
-	 *            The payload object to iterate over.
+	 *            The object to iterate over.
 	 */
 	public OptionalIterable(Payload value) {
 		this.value = value;

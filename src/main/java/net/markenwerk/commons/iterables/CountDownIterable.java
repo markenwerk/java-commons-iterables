@@ -28,11 +28,7 @@ import net.markenwerk.commons.iterators.CountDownIterator;
 /**
  * An {@link CountDownIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that that yields all integer value between a given
- * lower value and a given upper bound.
- * 
- * <p>
- * Calling {@link CountDownIterable#iterator()} creates an instance of
- * {@link CountDownIterator}.
+ * lower bound and a given upper bound.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
@@ -44,9 +40,7 @@ public final class CountDownIterable implements ProtectedIterable<Integer> {
 	private final int toLower;
 
 	/**
-	 * Creates a new {@link CountDownIterable} from the given upper and lower
-	 * bound.
-	 * 
+	 * Creates a new {@link CountDownIterable}.
 	 * 
 	 * @param fromUpper
 	 *            The upper bound and first value to be yielded.

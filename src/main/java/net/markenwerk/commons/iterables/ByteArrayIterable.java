@@ -29,10 +29,6 @@ import net.markenwerk.commons.iterators.ByteArrayIterator;
  * An {@link ByteArrayIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that iterate over a given {@code byte[]}.
  * 
- * <p>
- * Calling {@link ByteArrayIterable#iterator()} creates an instance of
- * {@link ByteArrayIterator}.
- * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
@@ -41,7 +37,7 @@ public final class ByteArrayIterable implements ProtectedIterable<Byte> {
 	private final byte[] array;
 
 	/**
-	 * Creates a new {@link ByteArrayIterable} for the given {@code byte[]}.
+	 * Creates a new {@link ByteArrayIterable}.
 	 * 
 	 * @param array
 	 *            The {@code byte[]} to iterate over.
@@ -51,7 +47,7 @@ public final class ByteArrayIterable implements ProtectedIterable<Byte> {
 	 */
 	public ByteArrayIterable(byte ... array) throws IllegalArgumentException {
 		if (null == array) {
-			throw new IllegalArgumentException("array is null");
+			throw new IllegalArgumentException("The given array is null");
 		}
 		this.array = array;
 	}

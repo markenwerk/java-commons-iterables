@@ -29,14 +29,10 @@ import net.markenwerk.commons.interfaces.Provider;
 import net.markenwerk.commons.iterators.StringTokenizerIterator;
 
 /**
- * An {@link StringTokenizerIterable} is a {@link ProtectedIterable} that can be wrapped
- * around a given {@link Producer} for {@link StringTokenizer StringTokenizers}
- * and generates {@link Iterator Iterators} that yield all strings from a
- * produced {@link StringTokenizer}.
- * 
- * <p>
- * Calling {@link StringTokenizerIterable#iterator()} creates an instance of
- * {@link StringTokenizerIterator}.
+ * An {@link StringTokenizerIterable} is a {@link ProtectedIterable} that can be
+ * wrapped around a given {@link Producer} for {@link StringTokenizer
+ * StringTokenizers} and generates {@link Iterator Iterators} that yield all
+ * strings from a produced {@link StringTokenizer}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.6
@@ -46,13 +42,11 @@ public final class StringTokenizerIterable implements ProtectedIterable<String> 
 	private final Provider<StringTokenizer> provider;
 
 	/**
-	 * Creates a new {@link StringTokenizerIterable} from the given
-	 * {@link Producer} for {@link StringTokenizer StringTokenizers}.
+	 * Creates a new {@link StringTokenizerIterable}.
 	 * 
 	 * @param producer
 	 *            The {@link Producer} for {@link StringTokenizer
-	 *            StringTokenizers}, around which the new
-	 *            {@link StringTokenizerIterable} will be wrapped.
+	 *            StringTokenizers} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             If the given {@link Producer} for {@link StringTokenizer
@@ -60,7 +54,7 @@ public final class StringTokenizerIterable implements ProtectedIterable<String> 
 	 */
 	public StringTokenizerIterable(Provider<StringTokenizer> producer) throws IllegalArgumentException {
 		if (null == producer) {
-			throw new IllegalArgumentException("producer is null");
+			throw new IllegalArgumentException("The given provider is null");
 		}
 		this.provider = producer;
 	}

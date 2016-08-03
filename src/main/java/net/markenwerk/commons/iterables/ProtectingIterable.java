@@ -29,10 +29,6 @@ import net.markenwerk.commons.iterators.ProtectingIterator;
  * wrapped around a given {@link Iterable} and generates
  * {@link ProtectedIterator ProtectedIterators}.
  * 
- * <p>
- * Calling {@link ProtectingIterable#iterator()} creates an instance of
- * {@link ProtectingIterator}.
- * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
@@ -43,18 +39,17 @@ public final class ProtectingIterable<Payload> implements ProtectedIterable<Payl
 	private final Iterable<Payload> iterable;
 
 	/**
-	 * Creates a new {@link ProtectingIterable} from the given {@link Iterable}.
+	 * Creates a new {@link ProtectingIterable}.
 	 * 
 	 * @param iterable
-	 *            The {@link Iterable}, around which the new
-	 *            {@link ProtectingIterable} will be wrapped.
+	 *            The {@link Iterable} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             If the given {@link Iterable} is {@literal null}.
 	 */
 	public ProtectingIterable(Iterable<Payload> iterable) throws IllegalArgumentException {
 		if (null == iterable) {
-			throw new IllegalArgumentException("iterable is null");
+			throw new IllegalArgumentException("The given iterable is null");
 		}
 		this.iterable = iterable;
 	}
