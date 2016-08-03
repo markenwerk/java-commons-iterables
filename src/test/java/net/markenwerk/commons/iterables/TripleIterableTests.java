@@ -33,9 +33,9 @@ public class TripleIterableTests {
 			new Object(), new Object());
 
 	@Test(expected = IllegalArgumentException.class)
-	public void create_nullArray() {
+	public void create_nullTriple() {
 
-		new TripleIterable<Object>(TRIPLE);
+		new TripleIterable<Object>(null);
 
 	}
 

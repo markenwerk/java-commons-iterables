@@ -39,9 +39,9 @@ public class InfiniteIterableTests {
 	};
 
 	@Test(expected = IllegalArgumentException.class)
-	public void create_nullArray() {
+	public void create_nullProvider() {
 
-		new InfiniteIterable<Object>(PROVIDER);
+		new InfiniteIterable<Object>(null);
 
 	}
 

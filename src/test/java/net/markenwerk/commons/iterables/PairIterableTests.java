@@ -32,9 +32,9 @@ public class PairIterableTests {
 	private static final Pair<Object> PAIR = new Pair<Object>(new Object(), new Object());
 
 	@Test(expected = IllegalArgumentException.class)
-	public void create_nullArray() {
+	public void create_nullPair() {
 
-		new PairIterable<Object>(PAIR);
+		new PairIterable<Object>(null);
 
 	}
 

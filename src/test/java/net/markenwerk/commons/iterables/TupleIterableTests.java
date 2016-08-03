@@ -32,9 +32,9 @@ public class TupleIterableTests {
 	private static final Tuple<Object, Object> TUPLE = new Tuple<Object, Object>(new Object(), new Object());
 
 	@Test(expected = IllegalArgumentException.class)
-	public void create_nullArray() {
+	public void create_nullTuple() {
 
-		new TupleIterable<Object>(TUPLE);
+		new TupleIterable<Object>(null);
 
 	}
 
