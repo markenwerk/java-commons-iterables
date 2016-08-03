@@ -28,8 +28,8 @@ import java.util.Vector;
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.exceptions.CreationException;
-import net.markenwerk.commons.interfaces.Producer;
+import net.markenwerk.commons.exceptions.ProvisioningException;
+import net.markenwerk.commons.interfaces.Provider;
 
 /**
  * JUnit test for {@link EnumerationIterable}.
@@ -38,10 +38,10 @@ import net.markenwerk.commons.interfaces.Producer;
  */
 public class EnumerationIterableTests {
 
-	private static final Producer<Enumeration<Object>> ENUMERATION_PRODUCER = new Producer<Enumeration<Object>>() {
+	private static final Provider<Enumeration<Object>> ENUMERATION_PRODUCER = new Provider<Enumeration<Object>>() {
 
 		@Override
-		public Enumeration<Object> create() throws CreationException {
+		public Enumeration<Object> provide() throws ProvisioningException {
 			return new Vector<Object>().elements();
 		}
 	};
@@ -52,7 +52,7 @@ public class EnumerationIterableTests {
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullProducer() {
 
-		new EnumerationIterable<Object>((Producer<Enumeration<Object>>)null);
+		new EnumerationIterable<Object>((Provider<Enumeration<Object>>) null);
 
 	}
 

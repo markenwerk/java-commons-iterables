@@ -27,8 +27,9 @@ import java.util.StringTokenizer;
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.markenwerk.commons.exceptions.CreationException;
+import net.markenwerk.commons.exceptions.ProvisioningException;
 import net.markenwerk.commons.interfaces.Producer;
+import net.markenwerk.commons.interfaces.Provider;
 
 /**
  * JUnit test for {@link StringTokenizerIterable}.
@@ -37,10 +38,10 @@ import net.markenwerk.commons.interfaces.Producer;
  */
 public class StringTokenizerIterableTests {
 
-	private static final Producer<StringTokenizer> TOKENIZER_PRODUCER = new Producer<StringTokenizer>() {
+	private static final Provider<StringTokenizer> TOKENIZER_PRODUCER = new Provider<StringTokenizer>() {
 
 		@Override
-		public StringTokenizer create() throws CreationException {
+		public StringTokenizer provide() throws ProvisioningException {
 			return new StringTokenizer("");
 		}
 	};

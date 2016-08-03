@@ -25,6 +25,7 @@ import java.util.Iterator;
 import java.util.StringTokenizer;
 
 import net.markenwerk.commons.interfaces.Producer;
+import net.markenwerk.commons.interfaces.Provider;
 import net.markenwerk.commons.iterators.StringTokenizerIterator;
 
 /**
@@ -42,7 +43,7 @@ import net.markenwerk.commons.iterators.StringTokenizerIterator;
  */
 public final class StringTokenizerIterable implements ProtectedIterable<String> {
 
-	private final Producer<StringTokenizer> producer;
+	private final Provider<StringTokenizer> provider;
 
 	/**
 	 * Creates a new {@link StringTokenizerIterable} from the given
@@ -57,16 +58,16 @@ public final class StringTokenizerIterable implements ProtectedIterable<String> 
 	 *             If the given {@link Producer} for {@link StringTokenizer
 	 *             StringTokenizers} is {@literal null}.
 	 */
-	public StringTokenizerIterable(Producer<StringTokenizer> producer) throws IllegalArgumentException {
+	public StringTokenizerIterable(Provider<StringTokenizer> producer) throws IllegalArgumentException {
 		if (null == producer) {
 			throw new IllegalArgumentException("producer is null");
 		}
-		this.producer = producer;
+		this.provider = producer;
 	}
 
 	@Override
 	public StringTokenizerIterator iterator() {
-		return new StringTokenizerIterator(producer.create());
+		return new StringTokenizerIterator(provider.provide());
 	}
 
 }

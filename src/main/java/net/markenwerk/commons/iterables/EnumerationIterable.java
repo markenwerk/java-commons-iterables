@@ -24,12 +24,12 @@ package net.markenwerk.commons.iterables;
 import java.util.Enumeration;
 import java.util.Iterator;
 
-import net.markenwerk.commons.interfaces.Producer;
+import net.markenwerk.commons.interfaces.Provider;
 import net.markenwerk.commons.iterators.EnumerationIterator;
 
 /**
  * An {@link EnumerationIterable} is a {@link ProtectedIterable} that can be
- * wrapped around a given {@link Producer} for {@link Enumeration Enumerations}
+ * wrapped around a given {@link Provider} for {@link Enumeration Enumerations}
  * and generates {@link Iterator Iterators} that yield all values from a
  * produced {@link Enumeration}.
  * 
@@ -38,38 +38,38 @@ import net.markenwerk.commons.iterators.EnumerationIterator;
  * {@link EnumerationIterator}.
  * 
  * @param <Payload>
- *           The payload type.
+ *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.6
  */
 public final class EnumerationIterable<Payload> implements ProtectedIterable<Payload> {
 
-	private final Producer<? extends Enumeration<? extends Payload>> enumeratable;
+	private final Provider<? extends Enumeration<? extends Payload>> provider;
 
 	/**
-	 * Creates a new {@link EnumerationIterable} from the given {@link Producer}
+	 * Creates a new {@link EnumerationIterable} from the given {@link Provider}
 	 * for {@link Enumeration Enumerations}.
 	 * 
-	 * @param enumeratable
-	 *           The {@link Producer} for {@link Enumeration Enumerations},
-	 *           around which the new {@link EnumerationIterable} will be
-	 *           wrapped.
+	 * @param provider
+	 *            The {@link Provider} for {@link Enumeration Enumerations},
+	 *            around which the new {@link EnumerationIterable} will be
+	 *            wrapped.
 	 * 
 	 * @throws IllegalArgumentException
-	 *            If the given {@link Producer} for {@link Enumeration
-	 *            Enumerations} is {@literal null}.
+	 *             If the given {@link Provider} for {@link Enumeration
+	 *             Enumerations} is {@literal null}.
 	 */
-	public EnumerationIterable(Producer<? extends Enumeration<? extends Payload>> enumeratable)
+	public EnumerationIterable(Provider<? extends Enumeration<? extends Payload>> provider)
 			throws IllegalArgumentException {
-		if (null == enumeratable) {
-			throw new IllegalArgumentException("enumeratable is null");
+		if (null == provider) {
+			throw new IllegalArgumentException("The given provider is null");
 		}
-		this.enumeratable = enumeratable;
+		this.provider = provider;
 	}
 
 	@Override
 	public EnumerationIterator<Payload> iterator() {
-		return new EnumerationIterator<Payload>(enumeratable.create());
+		return new EnumerationIterator<Payload>(provider.provide());
 	}
 
 }
