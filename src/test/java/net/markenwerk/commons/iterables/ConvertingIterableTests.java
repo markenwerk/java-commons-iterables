@@ -21,19 +21,13 @@
  */
 package net.markenwerk.commons.iterables;
 
-import java.util.Iterator;
-
 import org.junit.Assert;
 import org.junit.Test;
 
 import net.markenwerk.commons.datastructures.Wrapper;
 import net.markenwerk.commons.interfaces.Converter;
 
-/**
- * JUnit test for {@link ConvertingIterable}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class ConvertingIterableTests {
 
 	private final Converter<Object, Wrapper<Object>> WRAPPING_CONVERTER = new Converter<Object, Wrapper<Object>>() {
@@ -43,9 +37,6 @@ public class ConvertingIterableTests {
 		}
 	};
 
-	/**
-	 * Create with a {@code null} {@link Iterable}.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullIterable() {
 
@@ -53,9 +44,6 @@ public class ConvertingIterableTests {
 
 	}
 
-	/**
-	 * Create with a {@code null} {@link Converter}.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullConverter() {
 
@@ -63,9 +51,6 @@ public class ConvertingIterableTests {
 
 	}
 
-	/**
-	 * Create on {@link Iterator}.
-	 */
 	@Test
 	public void iterator() {
 
@@ -76,9 +61,6 @@ public class ConvertingIterableTests {
 
 	}
 
-	/**
-	 * Create multiple {@link Iterator Iterators}.
-	 */
 	@Test
 	public void iterator_twice() {
 

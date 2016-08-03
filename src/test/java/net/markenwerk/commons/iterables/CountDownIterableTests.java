@@ -26,16 +26,9 @@ import java.util.Iterator;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * JUnit test for {@link CountDownIterable}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class CountDownIterableTests {
 
-	/**
-	 * Count down from an upper bound that is smaller than the lower bound.
-	 */
 	@Test
 	public void upperBoundSmallerThanLowerBound() {
 
@@ -45,9 +38,6 @@ public class CountDownIterableTests {
 
 	}
 
-	/**
-	 * Count down from an upper bound that equals the lower bound.
-	 */
 	@Test
 	public void upperBoundEqualsLowerBound() {
 
@@ -59,9 +49,6 @@ public class CountDownIterableTests {
 
 	}
 
-	/**
-	 * Count down from an upper bound that is larger than the lower bound.
-	 */
 	@Test
 	public void upperBoundLargerThanLowerBound() {
 
@@ -75,9 +62,6 @@ public class CountDownIterableTests {
 
 	}
 
-	/**
-	 * Create on {@link Iterator}.
-	 */
 	@Test
 	public void iterator() {
 
@@ -87,9 +71,6 @@ public class CountDownIterableTests {
 
 	}
 
-	/**
-	 * Create multiple {@link Iterator Iterators}.
-	 */
 	@Test
 	public void iterator_twice() {
 

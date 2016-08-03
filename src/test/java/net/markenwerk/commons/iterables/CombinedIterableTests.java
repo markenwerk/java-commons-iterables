@@ -26,16 +26,9 @@ import java.util.Iterator;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * JUnit test for {@link CombinedIterable}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class CombinedIterableTests {
 
-	/**
-	 * Iterate over a {@code null} {@link Iterator}.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void iterateNullIterators() {
 
@@ -43,9 +36,6 @@ public class CombinedIterableTests {
 
 	}
 
-	/**
-	 * Iterate over a {@code null} {@link Iterator}.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void iterateNullIterator() {
 
@@ -53,9 +43,6 @@ public class CombinedIterableTests {
 
 	}
 
-	/**
-	 * Iterate over no iterators.
-	 */
 	@Test
 	@SuppressWarnings("unchecked")
 	public void noIterators() {
@@ -66,9 +53,6 @@ public class CombinedIterableTests {
 
 	}
 
-	/**
-	 * Create on {@link Iterator}.
-	 */
 	@Test
 	public void iterator() {
 
@@ -78,9 +62,6 @@ public class CombinedIterableTests {
 
 	}
 
-	/**
-	 * Create multiple {@link Iterator Iterators}.
-	 */
 	@Test
 	public void iterator_twice() {
 

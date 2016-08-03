@@ -21,21 +21,12 @@
  */
 package net.markenwerk.commons.iterables;
 
-import java.util.Iterator;
-
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * JUnit test for {@link CharacterArrayIterable}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class CharacterArrayIterableTests {
 
-	/**
-	 * create with a {@code null} array.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullArray() {
 
@@ -43,9 +34,6 @@ public class CharacterArrayIterableTests {
 
 	}
 
-	/**
-	 * Create one {@link Iterator}.
-	 */
 	@Test
 	public void iterator() {
 
@@ -55,9 +43,6 @@ public class CharacterArrayIterableTests {
 
 	}
 
-	/**
-	 * Create multiple {@link Iterator Iterators}.
-	 */
 	@Test
 	public void iterator_twice() {
 

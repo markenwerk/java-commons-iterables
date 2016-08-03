@@ -21,21 +21,12 @@
  */
 package net.markenwerk.commons.iterables;
 
-import java.util.Iterator;
-
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * JUnit test for {@link NullSaveIterable}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class NullSaveIterableTests {
 
-	/**
-	 * Create with a {@code null} {@link Iterable}.
-	 */
 	@Test
 	public void create_nullIterable() {
 
@@ -45,9 +36,6 @@ public class NullSaveIterableTests {
 
 	}
 
-	/**
-	 * Create on {@link Iterator}.
-	 */
 	@Test
 	public void iterator() {
 
@@ -57,9 +45,6 @@ public class NullSaveIterableTests {
 
 	}
 
-	/**
-	 * Create multiple {@link Iterator Iterators}.
-	 */
 	@Test
 	public void iterator_twice() {
 

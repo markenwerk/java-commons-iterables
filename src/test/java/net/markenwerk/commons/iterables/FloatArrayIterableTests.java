@@ -21,20 +21,12 @@
  */
 package net.markenwerk.commons.iterables;
 
-import java.util.Iterator;
-
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * JUnit test for {@link FloatArrayIterable}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class FloatArrayIterableTests {
-	/**
-	 * create with a {@code null} array.
-	 */
+
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullArray() {
 
@@ -42,9 +34,6 @@ public class FloatArrayIterableTests {
 
 	}
 
-	/**
-	 * Iterate over {@code float[]} array.
-	 */
 	@Test
 	public void iterator() {
 
@@ -54,9 +43,6 @@ public class FloatArrayIterableTests {
 
 	}
 
-	/**
-	 * Create multiple {@link Iterator Iterators}.
-	 */
 	@Test
 	public void iterator_twice() {
 

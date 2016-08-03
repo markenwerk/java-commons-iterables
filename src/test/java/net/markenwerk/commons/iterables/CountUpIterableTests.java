@@ -26,16 +26,9 @@ import java.util.Iterator;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * JUnit test for {@link CountUpIterable}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class CountUpIterableTests {
 
-	/**
-	 * Count up from a lower bound that is larger than the upper bound.
-	 */
 	@Test
 	public void lowerBoundLargerThanUpperBound() {
 
@@ -45,9 +38,6 @@ public class CountUpIterableTests {
 
 	}
 
-	/**
-	 * Count up from a lower bound that equals the upper bound.
-	 */
 	@Test
 	public void lowerBoundEqualsUpperBound() {
 
@@ -59,9 +49,6 @@ public class CountUpIterableTests {
 
 	}
 
-	/**
-	 * Count up from a lower bound that is smaller than the upper bound.
-	 */
 	@Test
 	public void lowerBoundSmallerThanUpperBound() {
 
@@ -75,9 +62,6 @@ public class CountUpIterableTests {
 
 	}
 
-	/**
-	 * Create on {@link Iterator}.
-	 */
 	@Test
 	public void iterator() {
 
@@ -87,9 +71,6 @@ public class CountUpIterableTests {
 
 	}
 
-	/**
-	 * Create multiple {@link Iterator Iterators}.
-	 */
 	@Test
 	public void iterator_twice() {
 

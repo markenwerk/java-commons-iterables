@@ -21,19 +21,12 @@
  */
 package net.markenwerk.commons.iterables;
 
-import java.util.Iterator;
-
 import org.junit.Assert;
 import org.junit.Test;
 
 import net.markenwerk.commons.interfaces.Handler;
-import net.markenwerk.commons.interfaces.Predicate;
 
-/**
- * JUnit test for {@link RemoveHandlerIterable}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class RemoveHandlerIterableTests {
 
 	private static final Handler<Object> EMPTY_HANDLER = new Handler<Object>() {
@@ -42,27 +35,18 @@ public class RemoveHandlerIterableTests {
 		}
 	};
 
-	/**
-	 * Create with a {@code null} {@link Iterable}.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullIterable() {
 
 		new RemoveHandlerIterable<Object>(null, EMPTY_HANDLER);
 	}
 
-	/**
-	 * Create with a {@code null} {@link Predicate}.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullPredicate() {
 
 		new RemoveHandlerIterable<Object>(new EmptyIterable<Object>(), null);
 	}
 
-	/**
-	 * Create on {@link Iterator}.
-	 */
 	@Test
 	public void iterator() {
 
@@ -72,9 +56,6 @@ public class RemoveHandlerIterableTests {
 
 	}
 
-	/**
-	 * Create multiple {@link Iterator Iterators}.
-	 */
 	@Test
 	public void iterator_twice() {
 

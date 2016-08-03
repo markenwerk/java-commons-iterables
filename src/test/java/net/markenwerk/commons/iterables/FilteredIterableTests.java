@@ -21,18 +21,12 @@
  */
 package net.markenwerk.commons.iterables;
 
-import java.util.Iterator;
-
 import org.junit.Assert;
 import org.junit.Test;
 
 import net.markenwerk.commons.interfaces.Predicate;
 
-/**
- * JUnit test for {@link FilteredIterable}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class FilteredIterableTests {
 
 	private final Object UNSATISFYING_OBJECT = new Object();
@@ -44,27 +38,18 @@ public class FilteredIterableTests {
 		}
 	};
 
-	/**
-	 * Create with a {@code null} {@link Iterable}.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullIterable() {
 
 		new FilteredIterable<Object>(null, UNSATISFYING_OBJECT_PREDICATE);
 	}
 
-	/**
-	 * Create with a {@code null} {@link Predicate}.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullPredicate() {
 
 		new FilteredIterable<Object>(new EmptyIterable<Object>(), null);
 	}
 
-	/**
-	 * Create on {@link Iterator}.
-	 */
 	@Test
 	public void iterator() {
 
@@ -75,9 +60,6 @@ public class FilteredIterableTests {
 
 	}
 
-	/**
-	 * Create multiple {@link Iterator Iterators}.
-	 */
 	@Test
 	public void iterator_twice() {
 

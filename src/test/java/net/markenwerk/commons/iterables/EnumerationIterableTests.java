@@ -22,7 +22,6 @@
 package net.markenwerk.commons.iterables;
 
 import java.util.Enumeration;
-import java.util.Iterator;
 import java.util.Vector;
 
 import org.junit.Assert;
@@ -31,11 +30,7 @@ import org.junit.Test;
 import net.markenwerk.commons.exceptions.ProvisioningException;
 import net.markenwerk.commons.interfaces.Provider;
 
-/**
- * JUnit test for {@link EnumerationIterable}.
- * 
- * @author Torsten Krause (tk at markenwerk dot net)
- */
+@SuppressWarnings("javadoc")
 public class EnumerationIterableTests {
 
 	private static final Provider<Enumeration<Object>> ENUMERATION_PRODUCER = new Provider<Enumeration<Object>>() {
@@ -46,9 +41,6 @@ public class EnumerationIterableTests {
 		}
 	};
 
-	/**
-	 * Create with a {@code null} {@link Iterable}.
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void create_nullProducer() {
 
@@ -56,9 +48,6 @@ public class EnumerationIterableTests {
 
 	}
 
-	/**
-	 * Create on {@link Iterator}.
-	 */
 	@Test
 	public void iterator() {
 
@@ -68,9 +57,6 @@ public class EnumerationIterableTests {
 
 	}
 
-	/**
-	 * Create multiple {@link Iterator Iterators}.
-	 */
 	@Test
 	public void iterator_twice() {
 
