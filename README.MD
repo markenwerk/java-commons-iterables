@@ -30,7 +30,7 @@ This library is hosted in the [Maven Central Repository](https://maven-badges.he
 <dependency>
 	<groupId>net.markenwerk</groupId>
 	<artifactId>commons-iterables</artifactId>
-	<version>2.2.1</version>
+	<version>3.1.0</version>
 </dependency>
 ```
 
