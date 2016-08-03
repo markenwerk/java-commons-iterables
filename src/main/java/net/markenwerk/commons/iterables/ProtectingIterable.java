@@ -25,7 +25,7 @@ import net.markenwerk.commons.iterators.ProtectedIterator;
 import net.markenwerk.commons.iterators.ProtectingIterator;
 
 /**
- * An {@link ProtectingIterable} is a {@link ProtectedIterable} that can be
+ * A {@link ProtectingIterable} is a {@link ProtectedIterable} that can be
  * wrapped around a given {@link Iterable} and generates
  * {@link ProtectedIterator ProtectedIterators}.
  * 

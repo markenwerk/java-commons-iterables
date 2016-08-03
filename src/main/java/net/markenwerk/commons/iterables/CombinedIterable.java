@@ -28,7 +28,7 @@ import net.markenwerk.commons.iterators.CombinedIterator;
 import net.markenwerk.commons.iterators.ConvertingIterator;
 
 /**
- * An {@link CombinedIterable} is a {@link Iterable} that wraps arround some
+ * A {@link CombinedIterable} is an {@link Iterable} that wraps around some
  * given {@link Iterable Iterables} and combines them into a single
  * {@link Iterable} by iterating over all given {@link Iterable Iterables} in
  * the order they were given.

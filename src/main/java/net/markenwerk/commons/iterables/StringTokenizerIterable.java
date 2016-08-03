@@ -29,7 +29,7 @@ import net.markenwerk.commons.interfaces.Provider;
 import net.markenwerk.commons.iterators.StringTokenizerIterator;
 
 /**
- * An {@link StringTokenizerIterable} is a {@link ProtectedIterable} that can be
+ * A {@link StringTokenizerIterable} is a {@link ProtectedIterable} that can be
  * wrapped around a given {@link Producer} for {@link StringTokenizer
  * StringTokenizers} and generates {@link Iterator Iterators} that yield all
  * strings from a produced {@link StringTokenizer}.

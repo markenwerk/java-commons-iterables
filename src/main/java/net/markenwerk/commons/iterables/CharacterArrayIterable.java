@@ -26,7 +26,7 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.CharacterArrayIterator;
 
 /**
- * An {@link CharacterArrayIterable} is a {@link ProtectedIterable} that
+ * A {@link CharacterArrayIterable} is a {@link ProtectedIterable} that
  * generates {@link Iterator Iterators} that iterate over a given {@code char[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)

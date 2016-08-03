@@ -26,7 +26,7 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.CountUpIterator;
 
 /**
- * An {@link CountUpIterable} is a {@link ProtectedIterable} that generates
+ * A {@link CountUpIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that that yields all integer value between a given
  * lower bound and a given upper bound.
  * 

@@ -26,7 +26,7 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.ShortArrayIterator;
 
 /**
- * An {@link ShortArrayIterable} is a {@link ProtectedIterable} that generates
+ * A {@link ShortArrayIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that iterate over a given {@code short[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)

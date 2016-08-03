@@ -26,7 +26,7 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.DoubleArrayIterator;
 
 /**
- * An {@link DoubleArrayIterable} is a {@link ProtectedIterable} that generates
+ * A {@link DoubleArrayIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that iterate over a given {@code double[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)

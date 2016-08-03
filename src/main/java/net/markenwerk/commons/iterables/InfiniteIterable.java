@@ -30,7 +30,7 @@ import net.markenwerk.commons.interfaces.Provider;
 import net.markenwerk.commons.iterators.InfiniteIterator;
 
 /**
- * A {@link InfiniteIterable} is a {@link ProtectedIterable} that generates
+ * An {@link InfiniteIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that iterate over a given {@link NodeList}.
  * 
  * @param <Payload>

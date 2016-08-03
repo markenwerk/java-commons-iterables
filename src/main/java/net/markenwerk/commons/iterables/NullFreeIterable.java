@@ -26,7 +26,7 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.NullFreeIterator;
 
 /**
- * An {@link NullFreeIterable} is a {@link Iterable} that can be wrapped around
+ * A {@link NullFreeIterable} is an {@link Iterable} that can be wrapped around
  * a given {@link Iterable} and generates {@link Iterator Iterators} that
  * filters out {@literal null} values.
  * 

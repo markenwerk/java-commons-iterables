@@ -27,7 +27,7 @@ import net.markenwerk.commons.interfaces.Converter;
 import net.markenwerk.commons.iterators.ConvertingIterator;
 
 /**
- * An {@link ConvertingIterable} is a {@link Iterable} that can be wrapped
+ * A {@link ConvertingIterable} is an {@link Iterable} that can be wrapped
  * around a given {@link Iterable} and generates {@link Iterator Iterators} that
  * converts all values with a given {@link Converter}.
  * 

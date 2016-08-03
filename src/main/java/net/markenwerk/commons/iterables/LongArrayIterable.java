@@ -26,7 +26,7 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.LongArrayIterator;
 
 /**
- * An {@link LongArrayIterable} is a {@link ProtectedIterable} that generates
+ * A {@link LongArrayIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that iterate over a given {@code long[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)

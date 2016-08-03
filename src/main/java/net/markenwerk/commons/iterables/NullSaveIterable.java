@@ -26,7 +26,7 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.EmptyIterator;
 
 /**
- * An {@link NullSaveIterable} is a {@link Iterable} that can be wrapped around
+ * A {@link NullSaveIterable} is an {@link Iterable} that can be wrapped around
  * a given {@link Iterable} and generates {@link Iterator Iterators} that always
  * behaves correctly, even if the given {@link Iterable} is {@literal null} (by
  * generating an {@link EmptyIterator}).

@@ -26,7 +26,7 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.BooleanArrayIterator;
 
 /**
- * An {@link BooleanArrayIterable} is a {@link ProtectedIterable} that generates
+ * A {@link BooleanArrayIterable} is a {@link ProtectedIterable} that generates
  * {@link Iterator Iterators} that iterate over a given {@code boolean[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
