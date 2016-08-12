@@ -21,33 +21,34 @@
  */
 package net.markenwerk.commons.iterables;
 
-import net.markenwerk.commons.iterators.ProtectedIterator;
-import net.markenwerk.commons.iterators.ProtectingIterator;
+import net.markenwerk.commons.iterators.ProtectedReiterator;
+import net.markenwerk.commons.iterators.ProtectingReiterator;
 
 /**
- * A {@link ProtectingIterable} is a {@link ProtectedIterable} that can be
- * wrapped around a given {@link Iterable} and generates that every call to
- * {@linkplain ProtectingIterable#iterator()} yields a {@link ProtectedIterator}.
+ * A {@link ProtectingReiterable} is a {@link ProtectedReiterable} that can be
+ * wrapped around a given {@link Reiterable} and generates that every call to
+ * {@linkplain ProtectingReiterable#iterator()} yields a
+ * {@link ProtectedReiterator}.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 2.2.0
+ * @since 3.3.1
  */
-public final class ProtectingIterable<Payload> implements ProtectedIterable<Payload> {
+public final class ProtectingReiterable<Payload> implements ProtectedReiterable<Payload> {
 
-	private final Iterable<Payload> iterable;
+	private final Reiterable<Payload> iterable;
 
 	/**
-	 * Creates a new {@link ProtectingIterable}.
+	 * Creates a new {@link ProtectingReiterable}.
 	 * 
 	 * @param iterable
-	 *            The {@link Iterable} to iterate over.
+	 *            The {@link Reiterable} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             If the given {@link Iterable} is {@literal null}.
+	 *             If the given {@link Reiterable} is {@literal null}.
 	 */
-	public ProtectingIterable(Iterable<Payload> iterable) throws IllegalArgumentException {
+	public ProtectingReiterable(Reiterable<Payload> iterable) throws IllegalArgumentException {
 		if (null == iterable) {
 			throw new IllegalArgumentException("The given iterable is null");
 		}
@@ -55,8 +56,8 @@ public final class ProtectingIterable<Payload> implements ProtectedIterable<Payl
 	}
 
 	@Override
-	public ProtectingIterator<Payload> iterator() {
-		return new ProtectingIterator<Payload>(iterable.iterator());
+	public ProtectingReiterator<Payload> iterator() {
+		return new ProtectingReiterator<Payload>(iterable.iterator());
 	}
 
 }

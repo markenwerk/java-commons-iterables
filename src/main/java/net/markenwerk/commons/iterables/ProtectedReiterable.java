@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, 2016 Torsten Krause, Markenwerk GmbH
+ * Copyright (c) 2016 Torsten Krause, Markenwerk GmbH
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,42 +21,26 @@
  */
 package net.markenwerk.commons.iterables;
 
-import net.markenwerk.commons.iterators.ProtectedIterator;
-import net.markenwerk.commons.iterators.ProtectingIterator;
+import net.markenwerk.commons.iterators.ProtectedReiterator;
 
 /**
- * A {@link ProtectingIterable} is a {@link ProtectedIterable} that can be
- * wrapped around a given {@link Iterable} and generates that every call to
- * {@linkplain ProtectingIterable#iterator()} yields a {@link ProtectedIterator}.
+ * A {@link ProtectedReiterable} is a {@link Reiterable} that guarantees that
+ * every call to {@linkplain Reiterable#iterator()} yields a
+ * {@link ProtectedReiterator}.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 2.2.0
+ * @since 3.3.1
  */
-public final class ProtectingIterable<Payload> implements ProtectedIterable<Payload> {
-
-	private final Iterable<Payload> iterable;
+public interface ProtectedReiterable<Payload> extends ProtectedIterable<Payload>, Reiterable<Payload> {
 
 	/**
-	 * Creates a new {@link ProtectingIterable}.
+	 * Returns a {@link ProtectedReiterator}.
 	 * 
-	 * @param iterable
-	 *            The {@link Iterable} to iterate over.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given {@link Iterable} is {@literal null}.
+	 * @return A {@link ProtectedReiterator}.
 	 */
-	public ProtectingIterable(Iterable<Payload> iterable) throws IllegalArgumentException {
-		if (null == iterable) {
-			throw new IllegalArgumentException("The given iterable is null");
-		}
-		this.iterable = iterable;
-	}
-
 	@Override
-	public ProtectingIterator<Payload> iterator() {
-		return new ProtectingIterator<Payload>(iterable.iterator());
-	}
+	public ProtectedReiterator<Payload> iterator();
 
 }
