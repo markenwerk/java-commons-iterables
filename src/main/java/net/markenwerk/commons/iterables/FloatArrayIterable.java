@@ -26,13 +26,14 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.FloatArrayIterator;
 
 /**
- * A {@link FloatArrayIterable} is a {@link ProtectedIterable} that generates
- * {@link Iterator Iterators} that iterate over a given {@code float[]}.
+ * A {@link FloatArrayIterable} is a {@link ProtectedBidirectionalIterable} that
+ * generates {@link Iterator Iterators} that iterate over a given
+ * {@code float[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class FloatArrayIterable implements ProtectedIterable<Float> {
+public final class FloatArrayIterable implements ProtectedBidirectionalIterable<Float> {
 
 	private final float[] array;
 

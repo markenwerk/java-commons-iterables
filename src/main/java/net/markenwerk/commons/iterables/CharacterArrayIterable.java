@@ -26,13 +26,14 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.CharacterArrayIterator;
 
 /**
- * A {@link CharacterArrayIterable} is a {@link ProtectedIterable} that
- * generates {@link Iterator Iterators} that iterate over a given {@code char[]}.
+ * A {@link CharacterArrayIterable} is a {@link ProtectedBidirectionalIterable}
+ * that generates {@link Iterator Iterators} that iterate over a given
+ * {@code char[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class CharacterArrayIterable implements ProtectedIterable<Character> {
+public final class CharacterArrayIterable implements ProtectedBidirectionalIterable<Character> {
 
 	private final char[] array;
 
@@ -45,7 +46,7 @@ public final class CharacterArrayIterable implements ProtectedIterable<Character
 	 * @throws IllegalArgumentException
 	 *             If the given {@code char[]} is {@literal null}.
 	 */
-	public CharacterArrayIterable(char ... array) throws IllegalArgumentException {
+	public CharacterArrayIterable(char... array) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("The given array is null");
 		}

@@ -26,17 +26,20 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.ObjectIterator;
 
 /**
- * An {@link ObjectIterable} is a {@link ProtectedIterable} that generates
- * {@link Iterator Iterators} that iterate over a single payload object.
+ * An {@link ObjectIterable} is a {@link ProtectedBidirectionalIterable} that
+ * generates {@link Iterator Iterators} that iterate over a single payload
+ * object.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.1.5
  */
-public final class ObjectIterable<Payload> implements ProtectedIterable<Payload> {
+public final class ObjectIterable<Payload> implements ProtectedBidirectionalIterable<Payload> {
 
 	private final Payload value;
+
+	private final boolean ignoreNull;
 
 	/**
 	 * Creates a new {@link ObjectIterable}.
@@ -45,12 +48,25 @@ public final class ObjectIterable<Payload> implements ProtectedIterable<Payload>
 	 *            The object to iterate over.
 	 */
 	public ObjectIterable(Payload value) {
+		this(value, false);
+	}
+
+	/**
+	 * Creates a new {@link ObjectIterable}.
+	 * 
+	 * @param value
+	 *            The object to iterate over.
+	 * @param ignoreNull
+	 *            Whether to ignore {@literal null} values.
+	 */
+	public ObjectIterable(Payload value, boolean ignoreNull) {
 		this.value = value;
+		this.ignoreNull = ignoreNull;
 	}
 
 	@Override
 	public ObjectIterator<Payload> iterator() {
-		return new ObjectIterator<Payload>(value);
+		return new ObjectIterator<Payload>(value, ignoreNull);
 	}
 
 }

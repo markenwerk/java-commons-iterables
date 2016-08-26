@@ -26,13 +26,14 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.ShortArrayIterator;
 
 /**
- * A {@link ShortArrayIterable} is a {@link ProtectedIterable} that generates
- * {@link Iterator Iterators} that iterate over a given {@code short[]}.
+ * A {@link ShortArrayIterable} is a {@link ProtectedBidirectionalIterable} that
+ * generates {@link Iterator Iterators} that iterate over a given
+ * {@code short[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class ShortArrayIterable implements ProtectedIterable<Short> {
+public final class ShortArrayIterable implements ProtectedBidirectionalIterable<Short> {
 
 	private final short[] array;
 

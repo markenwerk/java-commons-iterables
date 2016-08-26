@@ -24,19 +24,19 @@ package net.markenwerk.commons.iterables;
 import java.util.Iterator;
 
 import org.w3c.dom.Node;
-
 import org.w3c.dom.NodeList;
 
 import net.markenwerk.commons.iterators.NodeListIterator;
 
 /**
- * A {@link NodeListIterable} is a {@link ProtectedIterable} that generates
- * {@link Iterator Iterators} that iterate over a given {@link NodeList}.
+ * A {@link NodeListIterable} is a {@link ProtectedBidirectionalIterable} that
+ * generates {@link Iterator Iterators} that iterate over a given
+ * {@link NodeList}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 3.1.0
  */
-public final class NodeListIterable implements ProtectedIterable<Node> {
+public final class NodeListIterable implements ProtectedBidirectionalIterable<Node> {
 
 	private final NodeList nodeList;
 

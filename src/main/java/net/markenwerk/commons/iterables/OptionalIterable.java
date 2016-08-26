@@ -21,35 +21,46 @@
  */
 package net.markenwerk.commons.iterables;
 
+import java.util.Iterator;
+
+import org.w3c.dom.NodeList;
+
+import net.markenwerk.commons.datastructures.Optional;
 import net.markenwerk.commons.iterators.OptionalIterator;
 
 /**
- * An {@link OptionalIterable} is a {@link ProtectedIterable} that behaves like
- * an {@link ObjectIterable} for a given payload object, or like an empty
- * {@link Iterable}, if the given payload object is {@literal null}.
+ * A {@link OptionalIterable} is a {@link ProtectedBidirectionalIterable} that
+ * generates {@link Iterator Iterators} that iterate over a given
+ * {@link NodeList}.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 1.1.5
+ * @since 3.1.0
  */
-public final class OptionalIterable<Payload> implements ProtectedIterable<Payload> {
+public final class OptionalIterable<Payload> implements ProtectedBidirectionalIterable<Payload> {
 
-	private final Payload value;
+	private final Optional<Payload> optional;
 
 	/**
 	 * Creates a new {@link OptionalIterable}.
 	 * 
-	 * @param value
-	 *            The object to iterate over.
+	 * @param optional
+	 *            The {@link Optional} to iterate over.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the given {@link Optional} is {@literal null}.
 	 */
-	public OptionalIterable(Payload value) {
-		this.value = value;
+	public OptionalIterable(Optional<Payload> optional) throws IllegalArgumentException {
+		if (null == optional) {
+			throw new IllegalArgumentException("The given optional is null");
+		}
+		this.optional = optional;
 	}
 
 	@Override
 	public OptionalIterator<Payload> iterator() {
-		return new OptionalIterator<Payload>(value);
+		return new OptionalIterator<Payload>(optional);
 	}
 
 }

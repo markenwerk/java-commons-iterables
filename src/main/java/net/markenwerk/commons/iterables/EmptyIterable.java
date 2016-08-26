@@ -26,15 +26,15 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.EmptyIterator;
 
 /**
- * An {@link EmptyIterable} is a {@link ProtectedIterable} that generates
- * {@link Iterator Iterators} that that don't yield any values.
+ * An {@link EmptyIterable} is a {@link ProtectedBidirectionalIterable} that
+ * generates {@link Iterator Iterators} that that don't yield any values.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class EmptyIterable<Payload> implements ProtectedIterable<Payload> {
+public final class EmptyIterable<Payload> implements ProtectedBidirectionalIterable<Payload> {
 
 	/**
 	 * Creates a new {@link EmptyIterable}.

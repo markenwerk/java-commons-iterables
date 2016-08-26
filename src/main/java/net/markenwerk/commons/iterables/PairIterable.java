@@ -29,15 +29,16 @@ import net.markenwerk.commons.datastructures.Pair;
 import net.markenwerk.commons.iterators.PairIterator;
 
 /**
- * A {@link PairIterable} is a {@link ProtectedIterable} that generates
- * {@link Iterator Iterators} that iterate over a given {@link NodeList}.
+ * A {@link PairIterable} is a {@link ProtectedBidirectionalIterable} that
+ * generates {@link Iterator Iterators} that iterate over a given
+ * {@link NodeList}.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 3.1.0
  */
-public final class PairIterable<Payload> implements ProtectedIterable<Payload> {
+public final class PairIterable<Payload> implements ProtectedBidirectionalIterable<Payload> {
 
 	private final Pair<Payload> pair;
 

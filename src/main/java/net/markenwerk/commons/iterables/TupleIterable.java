@@ -29,15 +29,16 @@ import net.markenwerk.commons.datastructures.Tuple;
 import net.markenwerk.commons.iterators.TupleIterator;
 
 /**
- * A {@link TupleIterable} is a {@link ProtectedIterable} that generates
- * {@link Iterator Iterators} that iterate over a given {@link NodeList}.
+ * A {@link TupleIterable} is a {@link ProtectedBidirectionalIterable} that
+ * generates {@link Iterator Iterators} that iterate over a given
+ * {@link NodeList}.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 3.1.0
  */
-public final class TupleIterable<Payload> implements ProtectedIterable<Payload> {
+public final class TupleIterable<Payload> implements ProtectedBidirectionalIterable<Payload> {
 
 	private final Tuple<? extends Payload, ? extends Payload> tuple;
 

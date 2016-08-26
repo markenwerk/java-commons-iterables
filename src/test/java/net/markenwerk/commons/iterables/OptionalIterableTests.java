@@ -21,12 +21,22 @@
  */
 package net.markenwerk.commons.iterables;
 
+import net.markenwerk.commons.datastructures.Optional;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 @SuppressWarnings("javadoc")
 public class OptionalIterableTests {
 
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void create_nullOptional() {
+
+		new PairIterable<Object>(null);
+
+	}
+	
 	@Test
 	public void create_nullObject() {
 
@@ -39,7 +49,7 @@ public class OptionalIterableTests {
 	@Test
 	public void iterator() {
 
-		Iterable<Object> iterable = new OptionalIterable<Object>(new Object());
+		Iterable<Object> iterable = new OptionalIterable<Object>(new Optional<Object>());
 
 		Assert.assertNotNull(iterable.iterator());
 
@@ -48,7 +58,7 @@ public class OptionalIterableTests {
 	@Test
 	public void iterator_twice() {
 
-		Iterable<Object> iterable = new OptionalIterable<Object>(new Object());
+		Iterable<Object> iterable = new OptionalIterable<Object>(new Optional<Object>());
 
 		Assert.assertNotSame(iterable.iterator(), iterable.iterator());
 

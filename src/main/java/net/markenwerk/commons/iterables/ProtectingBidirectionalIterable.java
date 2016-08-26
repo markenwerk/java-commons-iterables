@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Torsten Krause, Markenwerk GmbH
+ * Copyright (c) 2015, 2016 Torsten Krause, Markenwerk GmbH
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,47 +21,44 @@
  */
 package net.markenwerk.commons.iterables;
 
-import java.util.Iterator;
-
-import org.w3c.dom.NodeList;
-
-import net.markenwerk.commons.datastructures.Triple;
-import net.markenwerk.commons.iterators.TripleIterator;
+import net.markenwerk.commons.iterators.ProtectedIterator;
+import net.markenwerk.commons.iterators.ProtectingBidirectionalIterator;
 
 /**
- * A {@link TripleIterable} is a {@link ProtectedBidirectionalIterable} that
- * generates {@link Iterator Iterators} that iterate over a given
- * {@link NodeList}.
+ * A {@link ProtectingBidirectionalIterable} is a
+ * {@link ProtectedBidirectionalIterable} that can be wrapped around a given
+ * {@link BidirectionalIterable} and generates that every call to
+ * {@linkplain ProtectingBidirectionalIterable#iterator()} yields a
+ * {@link ProtectedIterator}.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 3.1.0
+ * @since 2.2.0
  */
-public final class TripleIterable<Payload> implements ProtectedBidirectionalIterable<Payload> {
+public final class ProtectingBidirectionalIterable<Payload> implements ProtectedBidirectionalIterable<Payload> {
 
-	private final Triple<? extends Payload, ? extends Payload, ? extends Payload> triple;
+	private final BidirectionalIterable<Payload> iterable;
 
 	/**
-	 * Creates a new {@link TripleIterable}.
+	 * Creates a new {@link ProtectingBidirectionalIterable}.
 	 * 
-	 * @param triple
-	 *            The {@link Triple} to iterate over.
+	 * @param iterable
+	 *            The {@link Iterable} to iterate over.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             If the given {@link Triple} is {@literal null}.
+	 *             If the given {@link Iterable} is {@literal null}.
 	 */
-	public TripleIterable(Triple<? extends Payload, ? extends Payload, ? extends Payload> triple)
-			throws IllegalArgumentException {
-		if (null == triple) {
-			throw new IllegalArgumentException("The given triple is null");
+	public ProtectingBidirectionalIterable(BidirectionalIterable<Payload> iterable) throws IllegalArgumentException {
+		if (null == iterable) {
+			throw new IllegalArgumentException("The given iterable is null");
 		}
-		this.triple = triple;
+		this.iterable = iterable;
 	}
 
 	@Override
-	public TripleIterator<Payload> iterator() {
-		return new TripleIterator<Payload>(triple);
+	public ProtectingBidirectionalIterator<Payload> iterator() {
+		return new ProtectingBidirectionalIterator<Payload>(iterable.iterator());
 	}
 
 }

@@ -26,13 +26,14 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.LongArrayIterator;
 
 /**
- * A {@link LongArrayIterable} is a {@link ProtectedIterable} that generates
- * {@link Iterator Iterators} that iterate over a given {@code long[]}.
+ * A {@link LongArrayIterable} is a {@link ProtectedBidirectionalIterable} that
+ * generates {@link Iterator Iterators} that iterate over a given {@code long[]}
+ * .
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class LongArrayIterable implements ProtectedIterable<Long> {
+public final class LongArrayIterable implements ProtectedBidirectionalIterable<Long> {
 
 	private final long[] array;
 
@@ -45,7 +46,7 @@ public final class LongArrayIterable implements ProtectedIterable<Long> {
 	 * @throws IllegalArgumentException
 	 *             If the given {@code long[]} is {@literal null}.
 	 */
-	public LongArrayIterable(long ... array) throws IllegalArgumentException {
+	public LongArrayIterable(long... array) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("The given array is null");
 		}

@@ -26,13 +26,14 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.IntegerArrayIterator;
 
 /**
- * An {@link IntegerArrayIterable} is a {@link ProtectedIterable} that generates
- * {@link Iterator Iterators} that iterate over a given {@code int[]}.
+ * An {@link IntegerArrayIterable} is a {@link ProtectedBidirectionalIterable}
+ * that generates {@link Iterator Iterators} that iterate over a given
+ * {@code int[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class IntegerArrayIterable implements ProtectedIterable<Integer> {
+public final class IntegerArrayIterable implements ProtectedBidirectionalIterable<Integer> {
 
 	private final int[] array;
 
@@ -45,7 +46,7 @@ public final class IntegerArrayIterable implements ProtectedIterable<Integer> {
 	 * @throws IllegalArgumentException
 	 *             If the given {@code int[]} is {@literal null}.
 	 */
-	public IntegerArrayIterable(int ... array) throws IllegalArgumentException {
+	public IntegerArrayIterable(int... array) throws IllegalArgumentException {
 		if (null == array) {
 			throw new IllegalArgumentException("The given array is null");
 		}

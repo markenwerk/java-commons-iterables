@@ -33,7 +33,7 @@ import net.markenwerk.commons.iterators.CountDownIterator;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class CountDownIterable implements ProtectedIterable<Integer> {
+public final class CountDownIterable implements ProtectedBidirectionalIterable<Integer> {
 
 	private final int fromUpper;
 

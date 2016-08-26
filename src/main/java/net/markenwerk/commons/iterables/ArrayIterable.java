@@ -26,7 +26,7 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.ArrayIterator;
 
 /**
- * An {@link ArrayIterable} is a {@link ProtectedIterable} that generates
+ * An {@link ArrayIterable} is a {@link ProtectedBidirectionalIterable} that generates
  * {@link Iterator Iterators} that iterate over a given payload array.
  * 
  * @param <Payload>
@@ -34,7 +34,7 @@ import net.markenwerk.commons.iterators.ArrayIterator;
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class ArrayIterable<Payload> implements ProtectedIterable<Payload> {
+public final class ArrayIterable<Payload> implements ProtectedBidirectionalIterable<Payload> {
 
 	private final Payload[] array;
 

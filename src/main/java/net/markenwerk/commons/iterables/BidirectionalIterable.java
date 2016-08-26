@@ -21,47 +21,26 @@
  */
 package net.markenwerk.commons.iterables;
 
-import java.util.Iterator;
-
-import org.w3c.dom.NodeList;
-
-import net.markenwerk.commons.datastructures.Triple;
-import net.markenwerk.commons.iterators.TripleIterator;
+import net.markenwerk.commons.iterators.BidirectionalIterator;
+import net.markenwerk.commons.iterators.ProtectedIterator;
 
 /**
- * A {@link TripleIterable} is a {@link ProtectedBidirectionalIterable} that
- * generates {@link Iterator Iterators} that iterate over a given
- * {@link NodeList}.
+ * A {@link BidirectionalIterable} is an {@link Iterable} that guarantees that every
+ * call to {@linkplain Iterable#iterator()} yields a {@link BidirectionalIterator}.
  * 
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 3.1.0
+ * @since 2.2.0
  */
-public final class TripleIterable<Payload> implements ProtectedBidirectionalIterable<Payload> {
-
-	private final Triple<? extends Payload, ? extends Payload, ? extends Payload> triple;
+public interface BidirectionalIterable<Payload> extends Iterable<Payload> {
 
 	/**
-	 * Creates a new {@link TripleIterable}.
+	 * Returns a {@link ProtectedIterator}.
 	 * 
-	 * @param triple
-	 *            The {@link Triple} to iterate over.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the given {@link Triple} is {@literal null}.
+	 * @return A {@link ProtectedIterator}.
 	 */
-	public TripleIterable(Triple<? extends Payload, ? extends Payload, ? extends Payload> triple)
-			throws IllegalArgumentException {
-		if (null == triple) {
-			throw new IllegalArgumentException("The given triple is null");
-		}
-		this.triple = triple;
-	}
-
 	@Override
-	public TripleIterator<Payload> iterator() {
-		return new TripleIterator<Payload>(triple);
-	}
+	public BidirectionalIterator<Payload> iterator();
 
 }

@@ -26,13 +26,13 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.ByteArrayIterator;
 
 /**
- * A {@link ByteArrayIterable} is a {@link ProtectedIterable} that generates
+ * A {@link ByteArrayIterable} is a {@link ProtectedBidirectionalIterable} that generates
  * {@link Iterator Iterators} that iterate over a given {@code byte[]}.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class ByteArrayIterable implements ProtectedIterable<Byte> {
+public final class ByteArrayIterable implements ProtectedBidirectionalIterable<Byte> {
 
 	private final byte[] array;
 

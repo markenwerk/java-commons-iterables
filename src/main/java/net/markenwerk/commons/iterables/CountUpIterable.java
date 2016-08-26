@@ -26,14 +26,14 @@ import java.util.Iterator;
 import net.markenwerk.commons.iterators.CountUpIterator;
 
 /**
- * A {@link CountUpIterable} is a {@link ProtectedIterable} that generates
- * {@link Iterator Iterators} that that yields all integer value between a given
- * lower bound and a given upper bound.
+ * A {@link CountUpIterable} is a {@link ProtectedBidirectionalIterable} that
+ * generates {@link Iterator Iterators} that that yields all integer value
+ * between a given lower bound and a given upper bound.
  * 
  * @author Torsten Krause (tk at markenwerk dot net)
  * @since 1.0.0
  */
-public final class CountUpIterable implements ProtectedIterable<Integer> {
+public final class CountUpIterable implements ProtectedBidirectionalIterable<Integer> {
 
 	private final int fromLower;
 
