@@ -32,7 +32,7 @@ import net.markenwerk.commons.iterators.ProtectedIterator;
  * @param <Payload>
  *            The payload type.
  * @author Torsten Krause (tk at markenwerk dot net)
- * @since 2.2.0
+ * @since 3.2.0
  */
 public interface ProtectedBidirectionalIterable<Payload> extends BidirectionalIterable<Payload> {
 
