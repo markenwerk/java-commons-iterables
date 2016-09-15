@@ -37,12 +37,10 @@ public class OptionalIterableTests {
 
 	}
 	
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void create_nullObject() {
 
-		Iterable<Object> iterable = new OptionalIterable<Object>(null);
-
-		Assert.assertNotNull(iterable.iterator());
+		new OptionalIterable<Object>(null);
 
 	}
 
